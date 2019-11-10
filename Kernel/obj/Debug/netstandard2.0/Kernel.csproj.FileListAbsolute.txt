@@ -1,0 +1,8 @@
+D:\Work Space\AIPS\Scratch\Kernel\bin\Debug\netstandard2.0\Kernel.deps.json
+D:\Work Space\AIPS\Scratch\Kernel\bin\Debug\netstandard2.0\Kernel.dll
+D:\Work Space\AIPS\Scratch\Kernel\bin\Debug\netstandard2.0\Kernel.pdb
+D:\Work Space\AIPS\Scratch\Kernel\obj\Debug\netstandard2.0\Kernel.csprojAssemblyReference.cache
+D:\Work Space\AIPS\Scratch\Kernel\obj\Debug\netstandard2.0\Kernel.AssemblyInfoInputs.cache
+D:\Work Space\AIPS\Scratch\Kernel\obj\Debug\netstandard2.0\Kernel.AssemblyInfo.cs
+D:\Work Space\AIPS\Scratch\Kernel\obj\Debug\netstandard2.0\Kernel.dll
+D:\Work Space\AIPS\Scratch\Kernel\obj\Debug\netstandard2.0\Kernel.pdb

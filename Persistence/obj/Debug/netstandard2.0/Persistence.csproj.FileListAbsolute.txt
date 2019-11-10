@@ -1,0 +1,15 @@
+D:\Work Space\AIPS\Scratch\Persistence\bin\Debug\netstandard2.0\Persistence.deps.json
+D:\Work Space\AIPS\Scratch\Persistence\bin\Debug\netstandard2.0\Persistence.dll
+D:\Work Space\AIPS\Scratch\Persistence\bin\Debug\netstandard2.0\Boundary.dll
+D:\Work Space\AIPS\Scratch\Persistence\bin\Debug\netstandard2.0\Business.dll
+D:\Work Space\AIPS\Scratch\Persistence\bin\Debug\netstandard2.0\Kernel.dll
+D:\Work Space\AIPS\Scratch\Persistence\bin\Debug\netstandard2.0\Business.pdb
+D:\Work Space\AIPS\Scratch\Persistence\bin\Debug\netstandard2.0\Boundary.pdb
+D:\Work Space\AIPS\Scratch\Persistence\bin\Debug\netstandard2.0\Kernel.pdb
+D:\Work Space\AIPS\Scratch\Persistence\obj\Debug\netstandard2.0\Persistence.csprojAssemblyReference.cache
+D:\Work Space\AIPS\Scratch\Persistence\obj\Debug\netstandard2.0\Persistence.AssemblyInfoInputs.cache
+D:\Work Space\AIPS\Scratch\Persistence\obj\Debug\netstandard2.0\Persistence.AssemblyInfo.cs
+D:\Work Space\AIPS\Scratch\Persistence\obj\Debug\netstandard2.0\Persistence.csproj.CopyComplete
+D:\Work Space\AIPS\Scratch\Persistence\bin\Debug\netstandard2.0\Persistence.pdb
+D:\Work Space\AIPS\Scratch\Persistence\obj\Debug\netstandard2.0\Persistence.dll
+D:\Work Space\AIPS\Scratch\Persistence\obj\Debug\netstandard2.0\Persistence.pdb

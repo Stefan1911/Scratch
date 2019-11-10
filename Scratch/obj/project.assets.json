@@ -1,0 +1,192 @@
+{
+  "version": 3,
+  "targets": {
+    ".NETCoreApp,Version=v3.0": {
+      "Bogus/28.4.1": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Bogus.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Bogus.dll": {}
+        }
+      },
+      "Boundary/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "Kernel": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Boundary.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Boundary.dll": {}
+        }
+      },
+      "Business/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "Boundary": "1.0.0",
+          "Kernel": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Business.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Business.dll": {}
+        }
+      },
+      "Kernel/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "compile": {
+          "bin/placeholder/Kernel.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Kernel.dll": {}
+        }
+      },
+      "Persistence/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "Bogus": "28.4.1",
+          "Business": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Persistence.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Persistence.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Bogus/28.4.1": {
+      "sha512": "SmHm3V+4j7VZZ4VnsnSXdRf9ZeBVir33YSnRHLseAuSHpmhk+hi66DXqmT4sXPOz0zFJDPGnFYuIwkB8tTMycg==",
+      "type": "package",
+      "path": "bogus/28.4.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "bogus.28.4.1.nupkg.sha512",
+        "bogus.nuspec",
+        "lib/net40/Bogus.dll",
+        "lib/net40/Bogus.pdb",
+        "lib/net40/Bogus.xml",
+        "lib/netstandard1.3/Bogus.dll",
+        "lib/netstandard1.3/Bogus.pdb",
+        "lib/netstandard1.3/Bogus.xml",
+        "lib/netstandard2.0/Bogus.dll",
+        "lib/netstandard2.0/Bogus.pdb",
+        "lib/netstandard2.0/Bogus.xml"
+      ]
+    },
+    "Boundary/1.0.0": {
+      "type": "project",
+      "path": "../Boundary/Boundary.csproj",
+      "msbuildProject": "../Boundary/Boundary.csproj"
+    },
+    "Business/1.0.0": {
+      "type": "project",
+      "path": "../Business/Business.csproj",
+      "msbuildProject": "../Business/Business.csproj"
+    },
+    "Kernel/1.0.0": {
+      "type": "project",
+      "path": "../Kernel/Kernel.csproj",
+      "msbuildProject": "../Kernel/Kernel.csproj"
+    },
+    "Persistence/1.0.0": {
+      "type": "project",
+      "path": "../Persistence/Persistence.csproj",
+      "msbuildProject": "../Persistence/Persistence.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    ".NETCoreApp,Version=v3.0": [
+      "Boundary >= 1.0.0",
+      "Business >= 1.0.0",
+      "Kernel >= 1.0.0",
+      "Persistence >= 1.0.0"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\Stefan\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "D:\\Work Space\\AIPS\\Scratch\\Scratch\\Scratch.csproj",
+      "projectName": "Scratch",
+      "projectPath": "D:\\Work Space\\AIPS\\Scratch\\Scratch\\Scratch.csproj",
+      "packagesPath": "C:\\Users\\Stefan\\.nuget\\packages\\",
+      "outputPath": "D:\\Work Space\\AIPS\\Scratch\\Scratch\\obj\\",
+      "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
+      "configFilePaths": [
+        "C:\\Users\\Stefan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "netcoreapp3.0"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "netcoreapp3.0": {
+          "projectReferences": {
+            "D:\\Work Space\\AIPS\\Scratch\\Boundary\\Boundary.csproj": {
+              "projectPath": "D:\\Work Space\\AIPS\\Scratch\\Boundary\\Boundary.csproj"
+            },
+            "D:\\Work Space\\AIPS\\Scratch\\Business\\Business.csproj": {
+              "projectPath": "D:\\Work Space\\AIPS\\Scratch\\Business\\Business.csproj"
+            },
+            "D:\\Work Space\\AIPS\\Scratch\\Kernel\\Kernel.csproj": {
+              "projectPath": "D:\\Work Space\\AIPS\\Scratch\\Kernel\\Kernel.csproj"
+            },
+            "D:\\Work Space\\AIPS\\Scratch\\Persistence\\Persistence.csproj": {
+              "projectPath": "D:\\Work Space\\AIPS\\Scratch\\Persistence\\Persistence.csproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "netcoreapp3.0": {
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.AspNetCore.App": {
+            "privateAssets": "none"
+          },
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}
