@@ -14,19 +14,24 @@ export class AppCanvasComponent implements OnInit {
   constructor(private strategyFactory : MouseStrategyFactory) { }
 
   ngOnInit() {
-    var stage = new createjs.Stage("demoCanvas");
+    let stage = new createjs.Stage("demoCanvas");
     this.mouseStrategy = this.strategyFactory.getMousStrategy(MouseStrategyEnum.drawRect,stage);
     
     
     stage.addEventListener("stagemousedown" , (event) => {this.mouseStrategy.onMousDown(event)});
     stage.addEventListener("stagemousemove" , (event) => {this.mouseStrategy.onMouseMove(event)});
     stage.addEventListener("stagemouseup" , (event) => {this.mouseStrategy.onMouseUp(event)});
-    var circle = new createjs.Shape();
-    circle.graphics.beginFill("DeepSkyBlue").drawCircle(0, 0, 50);
-    circle.x = 100;
-    circle.y = 100;
-    //circle.addEventListener("click" , (event) => {this.mouseStrategy.onMousDown(event)});
+    let circle = new createjs.Shape();
+    circle.graphics.beginFill("DeepSkyBlue").beginStroke("#000000").drawCircle(100, 100, 50);
+
+    let rect = new createjs.Shape();
+    rect.graphics.beginFill("DeepSkyBlue").beginStroke("#000000").drawRect(50, 190,100,100);
+
+    let circle3 = new createjs.Shape();
+    circle3.graphics.beginFill("DeepSkyBlue").beginStroke("#000000").drawPolyStar(100,400,20,6,6,(360/6));
     stage.addChild(circle);
+    stage.addChild(rect);
+    stage.addChild(circle3);
  
     stage.update();
  

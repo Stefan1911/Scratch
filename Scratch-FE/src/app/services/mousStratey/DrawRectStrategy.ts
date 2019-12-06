@@ -16,7 +16,7 @@ export class DrawRectStrategy{
         this.CurrentlyDrawingShape = new Shape();
         this.CurrentlyDrawingShape.graphics
                                 .beginStroke("#000000")
-                                .beginFill("#ffffff")
+                                .beginFill("DeepSkyBlue")
                                 .drawRect(this.topLeftCorner.x,this.topLeftCorner.y,this.minDrawingWidth,this.minDrawingHeigth);
         
         this.stage.addChild(this.CurrentlyDrawingShape);
@@ -31,7 +31,7 @@ export class DrawRectStrategy{
             this.CurrentlyDrawingShape.graphics
                         .clear()
                         .beginStroke("#000000")
-                        .beginFill("#ffffff")
+                        .beginFill("DeepSkyBlue")
                         .drawRect(this.topLeftCorner.x,this.topLeftCorner.y,this.defaultWidth,this.defaultHeigth);
                 this.stage.update();
         }
@@ -47,7 +47,7 @@ export class DrawRectStrategy{
                 this.CurrentlyDrawingShape.graphics
                         .clear()
                         .beginStroke("#000000")
-                        .beginFill("#ffffff")
+                        .beginFill("DeepSkyBlue")
                         .drawRect(this.topLeftCorner.x,this.topLeftCorner.y,widht,heigth);
                 this.stage.update();
             }
