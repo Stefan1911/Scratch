@@ -19,7 +19,7 @@ export class SelectorTool{
         this.previousPoint = null;
     }
     onMouseMove(event : MouseEvent){
-        if(this.isMousDown){
+        if(this.isMousDown && this.SelectedObject != null){
             this.SelectedObject.x += event.stageX - this.previousPoint.x;
             this.SelectedObject.y += event.stageY - this.previousPoint.y;
             this.previousPoint = new Point(event.stageX,event.stageY); 

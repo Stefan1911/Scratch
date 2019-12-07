@@ -1,10 +1,10 @@
 <div class="container">
     <div class="row myborder">
         <div class="col-md-10 border rounded">
-                <app-canvas class=""></app-canvas>
+                <app-canvas #canvas class=""></app-canvas>
         </div>
         <div class="col-md-2 border rounded">
-            <app-toolbar class=""></app-toolbar>       
+            <app-toolbar (toolChage)="onToolChange($event)" class=""></app-toolbar>       
         </div>    
     </div>
     

@@ -14,7 +14,7 @@ export class MouseStrategyFactory {
                 break;
             case MouseStrategyEnum.moveView:
                 break;
-            case MouseStrategyEnum.selectro:
+            case MouseStrategyEnum.selector:
                 retStrategy = new SelectorTool(stage);
             break;
             default:
@@ -29,5 +29,5 @@ export class MouseStrategyFactory {
 export enum MouseStrategyEnum{
     moveView,
     drawRect,
-    selectro
+    selector
   }

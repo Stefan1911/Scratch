@@ -11,16 +11,18 @@ import { MouseStrategyFactory, MouseStrategyEnum } from 'src/app/services/mousSt
 export class AppCanvasComponent implements OnInit {
 
   mouseStrategy : any;
+  stage;
+  mousDownListener;
+  mousMoveListener;
+  mousUpListener;
   constructor(private strategyFactory : MouseStrategyFactory) { }
 
   ngOnInit() {
-    let stage = new createjs.Stage("demoCanvas");
-    this.mouseStrategy = this.strategyFactory.getMousStrategy(MouseStrategyEnum.drawRect,stage);
+    this.stage = new createjs.Stage("demoCanvas");
+    this.mouseStrategy = this.strategyFactory.getMousStrategy(MouseStrategyEnum.selector,this.stage);
     
-    
-    stage.addEventListener("stagemousedown" , (event) => {this.mouseStrategy.onMousDown(event)});
-    stage.addEventListener("stagemousemove" , (event) => {this.mouseStrategy.onMouseMove(event)});
-    stage.addEventListener("stagemouseup" , (event) => {this.mouseStrategy.onMouseUp(event)});
+    this.setTool(MouseStrategyEnum.selector);
+
     let circle = new createjs.Shape();
     circle.graphics.beginFill("DeepSkyBlue").beginStroke("#000000").drawCircle(100, 100, 50);
 
@@ -29,11 +31,11 @@ export class AppCanvasComponent implements OnInit {
 
     let circle3 = new createjs.Shape();
     circle3.graphics.beginFill("DeepSkyBlue").beginStroke("#000000").drawPolyStar(100,400,20,6,6,(360/6));
-    stage.addChild(circle);
-    stage.addChild(rect);
-    stage.addChild(circle3);
+    this.stage.addChild(circle);
+    this.stage.addChild(rect);
+    this.stage.addChild(circle3);
  
-    stage.update();
+    this.stage.update();
  
     // createjs.Tween.get(circle, { loop: true })
     // .to({ x: 400 }, 1000, createjs.Ease.getPowInOut(4))
@@ -45,6 +47,18 @@ export class AppCanvasComponent implements OnInit {
     // createjs.Ticker.setFPS(60);
     // createjs.Ticker.addEventListener("tick", stage);
 
+  }
+  setTool( tool:MouseStrategyEnum){
+    this.stage.removeEventListener("stagemousedown", this.mousDownListener);
+    this.stage.removeEventListener("stagemousemove", this.mousDownListener);
+    this.stage.removeEventListener("stagemouseup", this.mousDownListener);
+
+    this.mouseStrategy = this.strategyFactory.getMousStrategy(tool,this.stage);
+
+    this.mousDownListener = this.stage.addEventListener("stagemousedown" , (event) => {this.mouseStrategy.onMousDown(event)});
+    this.mousMoveListener = this.stage.addEventListener("stagemousemove" , (event) => {this.mouseStrategy.onMouseMove(event)});
+    this.mousUpListener = this.stage.addEventListener("stagemouseup" , (event) => {this.mouseStrategy.onMouseUp(event)});
+    
   }
 
 }

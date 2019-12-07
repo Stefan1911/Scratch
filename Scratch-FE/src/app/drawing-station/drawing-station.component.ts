@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MouseStrategyFactory, MouseStrategyEnum } from '../services/mousStratey/MouseStrategyFactory';
 
 @Component({
@@ -7,14 +7,17 @@ import { MouseStrategyFactory, MouseStrategyEnum } from '../services/mousStratey
   styleUrls: ['./drawing-station.component.css'],
 })
 export class DrawingStationComponent implements OnInit {
+  @ViewChild("canvas", {static: false})
+  drawignBoard;
 
-  MouseStrategy :MouseStrategyEnum;
   constructor() {
-    this.MouseStrategy = MouseStrategyEnum.moveView;
    }
 
   ngOnInit() {
-   
+  }
+
+  onToolChange(tool){
+    this.drawignBoard.setTool(tool);
   }
 
 }

@@ -22,7 +22,6 @@ export class DrawRectStrategy{
         this.stage.addChild(this.CurrentlyDrawingShape);
         this.stage.update();
         this.isMousDown = true;
-        
     }
     onMouseUp(event : MouseEvent){
         this.isMousDown = false;
@@ -35,11 +34,8 @@ export class DrawRectStrategy{
                         .drawRect(this.topLeftCorner.x,this.topLeftCorner.y,this.defaultWidth,this.defaultHeigth);
                 this.stage.update();
         }
-        this.topLeftCorner = null;
-        
     }
     onMouseMove(event : MouseEvent){
-       
         if(this.isMousDown){
             let widht = (event.stageX-this.topLeftCorner.x);
             let heigth = (event.stageY - this.topLeftCorner.y);
