@@ -10,6 +10,7 @@ import {MatTreeModule} from '@angular/material/tree';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import { HttpClientModule } from "@angular/common/http";
+import {MatGridListModule} from '@angular/material/grid-list';
  
 @NgModule({
   declarations: [
@@ -23,7 +24,10 @@ import { HttpClientModule } from "@angular/common/http";
     BrowserAnimationsModule,
     MatTreeModule,
     MatButtonModule,
-    MatIconModule,HttpClientModule
+    MatIconModule,
+    HttpClientModule,
+    MatGridListModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

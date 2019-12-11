@@ -5,29 +5,57 @@ import { MouseStrategyEnum } from 'src/app/services/mousStratey/MouseStrategyFac
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 
-
-interface FoodNode {
-  name: string;
+export interface Tile {
+  color: string;
+  cols: number;
+  rows: number;
   toolName? : MouseStrategyEnum;
-  iconLink?: string
-  children?: FoodNode[];
+  iconLink?: string;
+  iconName: string;
+  toolTipText?:string
 }
 
-const TREE_DATA: FoodNode[] = [
+interface treeNode {
+  dispalyText?: string;
+  //toolName? : MouseStrategyEnum;
+  //iconLink?: string
+  children?: treeNode[];
+  tiles?: Tile[]
+  
+}
+
+
+const TREE_DATA: treeNode[] = [
   {
-    name: 'basic tools',
+    dispalyText: 'basic tools',
     children: [
-      {name: 'rectangle' , toolName : MouseStrategyEnum.drawRect,iconLink : "https://www.freepik.com/free-icon/move-arrows_887578.htm#page=1&query=move&position=0"},
-      {name: 'move' , toolName:MouseStrategyEnum.selector ,iconLink :"https://www.freepik.com/free-icon/move-arrows_887578.htm#page=1&query=move&position=0"},
+      {
+        tiles : [
+          {cols: 1, rows: 1, color: 'lightblue', toolName : MouseStrategyEnum.drawRect,iconName : "rectangle",iconLink : "https://www.freepik.com/free-icon/move-arrows_887578.htm#page=1&query=move&position=0"},
+          {cols: 1, rows: 1, color: 'lightblue', toolName:MouseStrategyEnum.selector ,iconName : "move-arrows",iconLink :"https://www.freepik.com/free-icon/move-arrows_887578.htm#page=1&query=move&position=0"},
+          {cols: 1, rows: 1, color: 'lightblue', toolName : MouseStrategyEnum.drawRect,iconName : "rectangle",iconLink : "https://www.freepik.com/free-icon/move-arrows_887578.htm#page=1&query=move&position=0"},
+    
+          {cols: 1, rows: 1, color: 'lightblue', toolName:MouseStrategyEnum.selector ,iconName : "move-arrows",iconLink :"https://www.freepik.com/free-icon/move-arrows_887578.htm#page=1&query=move&position=0"},
+          {cols: 1, rows: 1, color: 'lightblue', toolName : MouseStrategyEnum.drawRect,iconName : "rectangle",iconLink : "https://www.freepik.com/free-icon/move-arrows_887578.htm#page=1&query=move&position=0"},
+          {cols: 1, rows: 1, color: 'lightblue', toolName:MouseStrategyEnum.selector ,iconName : "move-arrows",iconLink :"https://www.freepik.com/free-icon/move-arrows_887578.htm#page=1&query=move&position=0"},
+          {cols: 1, rows: 1, color: 'lightblue', toolName:MouseStrategyEnum.selector ,iconName : "move-arrows",iconLink :"https://www.freepik.com/free-icon/move-arrows_887578.htm#page=1&query=move&position=0"},
+          {cols: 1, rows: 1, color: 'lightblue', toolName : MouseStrategyEnum.drawRect,iconName : "rectangle",iconLink : "https://www.freepik.com/free-icon/move-arrows_887578.htm#page=1&query=move&position=0"},
+          {cols: 1, rows: 1, color: 'lightblue', toolName:MouseStrategyEnum.selector ,iconName : "move-arrows",iconLink :"https://www.freepik.com/free-icon/move-arrows_887578.htm#page=1&query=move&position=0"},
+        ]
+      }
     ]
   }, {
-    name: 'UML Diagrams',
-    iconLink:'',
+    dispalyText: 'UML Diagrams',
      children: [
      {
-        name: 'Coming soon...',
-        toolName : MouseStrategyEnum.moveView,
-        iconLink: 'https://www.freepik.com/free-icon/move-arrows_887578.htm#page=1&query=move&position=0'
+        tiles: [
+          {
+            cols: 1, rows: 2, color: 'lightblue', 
+            toolName : MouseStrategyEnum.moveView,
+            iconName : "Coming soon...",
+            iconLink: 'https://www.freepik.com/free-icon/move-arrows_887578.htm#page=1&query=move&position=0'
+          }
+        ]
       }
     ]
   },
@@ -40,23 +68,35 @@ const TREE_DATA: FoodNode[] = [
 })
 export class ToolbarComponent implements OnInit {
 
-  treeControl = new NestedTreeControl<FoodNode>(node => node.children);
-  dataSource = new MatTreeNestedDataSource<FoodNode>();
+  tiles: Tile[] = [
+    {iconName: 'One', cols: 3, rows: 1, color: 'lightblue'},
+    {iconName: 'Two', cols: 1, rows: 2, color: 'lightgreen'},
+    {iconName: 'Three', cols: 1, rows: 1, color: 'lightpink'},
+    {iconName: 'Four', cols: 2, rows: 1, color: '#DDBDF1'},
+  ];
+  
+
+
+  treeControl = new NestedTreeControl<treeNode>(node => node.children);
+  dataSource = new MatTreeNestedDataSource<treeNode>();
 
   constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
     this.dataSource.data = TREE_DATA;
+
     iconRegistry.addSvgIcon(
       'rectangle',
       sanitizer.bypassSecurityTrustResourceUrl('assets/img/fav-icons/vector.svg'));
     iconRegistry.addSvgIcon(
-      'move',
+      'move-arrows',
       sanitizer.bypassSecurityTrustResourceUrl('assets/img/fav-icons/move-arrows.svg'));
     iconRegistry.addSvgIcon(
       'Coming soon...',
       sanitizer.bypassSecurityTrustResourceUrl('assets/img/fav-icons/not-found.svg'));
+    console.log(TREE_DATA);
+    
   }
 
-  hasChild = (_: number, node: FoodNode) => !!node.children && node.children.length > 0;
+  hasChild = (_: number, node: treeNode) => !!node.children && node.children.length > 0;
 
   @Output("toolChage")
   toolChangerEvent : EventEmitter<MouseStrategyEnum> = new EventEmitter();
