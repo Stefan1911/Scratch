@@ -6,19 +6,13 @@ import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 
 export interface Tile {
-  color: string;
-  cols: number;
-  rows: number;
   toolName? : MouseStrategyEnum;
-  iconLink?: string;
   iconName: string;
   toolTipText?:string
 }
 
 interface treeNode {
   dispalyText?: string;
-  //toolName? : MouseStrategyEnum;
-  //iconLink?: string
   children?: treeNode[];
   tiles?: Tile[]
   
@@ -31,16 +25,14 @@ const TREE_DATA: treeNode[] = [
     children: [
       {
         tiles : [
-          {cols: 1, rows: 1, color: 'lightblue', toolName : MouseStrategyEnum.drawRect,iconName : "rectangle",iconLink : "https://www.freepik.com/free-icon/move-arrows_887578.htm#page=1&query=move&position=0"},
-          {cols: 1, rows: 1, color: 'lightblue', toolName:MouseStrategyEnum.selector ,iconName : "move-arrows",iconLink :"https://www.freepik.com/free-icon/move-arrows_887578.htm#page=1&query=move&position=0"},
-          {cols: 1, rows: 1, color: 'lightblue', toolName : MouseStrategyEnum.drawRect,iconName : "rectangle",iconLink : "https://www.freepik.com/free-icon/move-arrows_887578.htm#page=1&query=move&position=0"},
-    
-          {cols: 1, rows: 1, color: 'lightblue', toolName:MouseStrategyEnum.selector ,iconName : "move-arrows",iconLink :"https://www.freepik.com/free-icon/move-arrows_887578.htm#page=1&query=move&position=0"},
-          {cols: 1, rows: 1, color: 'lightblue', toolName : MouseStrategyEnum.drawRect,iconName : "rectangle",iconLink : "https://www.freepik.com/free-icon/move-arrows_887578.htm#page=1&query=move&position=0"},
-          {cols: 1, rows: 1, color: 'lightblue', toolName:MouseStrategyEnum.selector ,iconName : "move-arrows",iconLink :"https://www.freepik.com/free-icon/move-arrows_887578.htm#page=1&query=move&position=0"},
-          {cols: 1, rows: 1, color: 'lightblue', toolName:MouseStrategyEnum.selector ,iconName : "move-arrows",iconLink :"https://www.freepik.com/free-icon/move-arrows_887578.htm#page=1&query=move&position=0"},
-          {cols: 1, rows: 1, color: 'lightblue', toolName : MouseStrategyEnum.drawRect,iconName : "rectangle",iconLink : "https://www.freepik.com/free-icon/move-arrows_887578.htm#page=1&query=move&position=0"},
-          {cols: 1, rows: 1, color: 'lightblue', toolName:MouseStrategyEnum.selector ,iconName : "move-arrows",iconLink :"https://www.freepik.com/free-icon/move-arrows_887578.htm#page=1&query=move&position=0"},
+          {toolName : MouseStrategyEnum.drawRect,iconName : "rectangle"},
+          { toolName:MouseStrategyEnum.selector ,iconName : "move-arrows"},
+          { toolName:MouseStrategyEnum.pencil ,iconName : "pencil"},
+          { toolName : MouseStrategyEnum.drawRect,iconName : "rectangle"},
+          { toolName:MouseStrategyEnum.selector ,iconName : "move-arrows"},
+          { toolName:MouseStrategyEnum.selector ,iconName : "move-arrows"},
+          { toolName : MouseStrategyEnum.drawRect,iconName : "rectangle"},
+          { toolName:MouseStrategyEnum.selector ,iconName : "move-arrows"},
         ]
       }
     ]
@@ -50,10 +42,8 @@ const TREE_DATA: treeNode[] = [
      {
         tiles: [
           {
-            cols: 1, rows: 2, color: 'lightblue', 
             toolName : MouseStrategyEnum.moveView,
             iconName : "Coming soon...",
-            iconLink: 'https://www.freepik.com/free-icon/move-arrows_887578.htm#page=1&query=move&position=0'
           }
         ]
       }
@@ -68,13 +58,6 @@ const TREE_DATA: treeNode[] = [
 })
 export class ToolbarComponent implements OnInit {
 
-  tiles: Tile[] = [
-    {iconName: 'One', cols: 3, rows: 1, color: 'lightblue'},
-    {iconName: 'Two', cols: 1, rows: 2, color: 'lightgreen'},
-    {iconName: 'Three', cols: 1, rows: 1, color: 'lightpink'},
-    {iconName: 'Four', cols: 2, rows: 1, color: '#DDBDF1'},
-  ];
-  
 
 
   treeControl = new NestedTreeControl<treeNode>(node => node.children);
@@ -90,12 +73,15 @@ export class ToolbarComponent implements OnInit {
       'move-arrows',
       sanitizer.bypassSecurityTrustResourceUrl('assets/img/fav-icons/move-arrows.svg'));
     iconRegistry.addSvgIcon(
+      'pencil',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/img/fav-icons/pencil.svg'));
+    iconRegistry.addSvgIcon(
       'Coming soon...',
       sanitizer.bypassSecurityTrustResourceUrl('assets/img/fav-icons/not-found.svg'));
     console.log(TREE_DATA);
     
   }
-
+  
   hasChild = (_: number, node: treeNode) => !!node.children && node.children.length > 0;
 
   @Output("toolChage")

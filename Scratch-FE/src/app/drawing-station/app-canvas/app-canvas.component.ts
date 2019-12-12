@@ -19,8 +19,6 @@ export class AppCanvasComponent implements OnInit {
 
   ngOnInit() {
     this.stage = new createjs.Stage("demoCanvas");
-    this.mouseStrategy = this.strategyFactory.getMousStrategy(MouseStrategyEnum.selector,this.stage);
-    
     this.setTool(MouseStrategyEnum.selector);
 
     let circle = new createjs.Shape();
@@ -31,9 +29,12 @@ export class AppCanvasComponent implements OnInit {
 
     let circle3 = new createjs.Shape();
     circle3.graphics.beginFill("DeepSkyBlue").beginStroke("#000000").drawPolyStar(100,400,20,6,6,(360/6));
+
+
     this.stage.addChild(circle);
     this.stage.addChild(rect);
     this.stage.addChild(circle3);
+
  
     this.stage.update();
  

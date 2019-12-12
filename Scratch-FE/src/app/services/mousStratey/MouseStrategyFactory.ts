@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { DrawRectStrategy } from './DrawRectStrategy';
 import { SelectorTool } from './SelectorTool';
+import { PencilTool } from './PencilTool';
 
 @Injectable()
 export class MouseStrategyFactory {
@@ -12,11 +13,11 @@ export class MouseStrategyFactory {
             case MouseStrategyEnum.drawRect:
                 retStrategy = new DrawRectStrategy(stage);
                 break;
-            case MouseStrategyEnum.moveView:
-                break;
             case MouseStrategyEnum.selector:
                 retStrategy = new SelectorTool(stage);
             break;
+            case MouseStrategyEnum.pencil:
+                retStrategy = new PencilTool(stage);
             default:
                 break;
         }
@@ -29,5 +30,6 @@ export class MouseStrategyFactory {
 export enum MouseStrategyEnum{
     moveView,
     drawRect,
-    selector
+    selector,
+    pencil
   }
