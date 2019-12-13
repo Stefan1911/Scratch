@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="">
     <div class="row no-gutters myborder">
         <div class="col-md-10  border rounded">
                 <app-canvas #canvas class=""></app-canvas>
@@ -7,4 +7,9 @@
             <app-toolbar (toolChage)="onToolChange($event)" class=""></app-toolbar>       
         </div>    
     </div>
-</div>  
+</div> -->
+
+<mat-drawer-container class="example-container">
+    <mat-drawer-content><app-canvas #canvas class=""></app-canvas></mat-drawer-content>
+    <mat-drawer class="toolBar" mode="side" opened><app-toolbar (toolChage)="onToolChange($event)" class=""></app-toolbar></mat-drawer>
+  </mat-drawer-container>
