@@ -36,6 +36,7 @@ namespace Scratch
 
             #region
             services.AddSingleton<IExampleRepository, ExampleRepository>();
+            services.AddSingleton<DatabaseContext>();
             services.AddUseCase<CreateExampleRequst, ExampleResponse, CreateExampleUseCase>();
             services.AddUseCase<GetExampleCollecionRequest, CollectionResponse<ExampleResponse>, GetExampleCollectionUseCase>();
             #endregion
