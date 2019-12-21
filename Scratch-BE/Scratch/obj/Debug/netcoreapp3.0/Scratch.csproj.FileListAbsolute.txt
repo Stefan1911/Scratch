@@ -1,28 +1,56 @@
-D:\Work Space\AIPS\Scratch\Scratch\bin\Debug\netcoreapp3.0\appsettings.Development.json
-D:\Work Space\AIPS\Scratch\Scratch\bin\Debug\netcoreapp3.0\appsettings.json
-D:\Work Space\AIPS\Scratch\Scratch\bin\Debug\netcoreapp3.0\Properties\launchSettings.json
-D:\Work Space\AIPS\Scratch\Scratch\bin\Debug\netcoreapp3.0\Scratch.exe
-D:\Work Space\AIPS\Scratch\Scratch\bin\Debug\netcoreapp3.0\Scratch.deps.json
-D:\Work Space\AIPS\Scratch\Scratch\bin\Debug\netcoreapp3.0\Scratch.runtimeconfig.json
-D:\Work Space\AIPS\Scratch\Scratch\bin\Debug\netcoreapp3.0\Scratch.runtimeconfig.dev.json
-D:\Work Space\AIPS\Scratch\Scratch\bin\Debug\netcoreapp3.0\Scratch.dll
-D:\Work Space\AIPS\Scratch\Scratch\bin\Debug\netcoreapp3.0\Scratch.pdb
-D:\Work Space\AIPS\Scratch\Scratch\bin\Debug\netcoreapp3.0\Boundary.dll
-D:\Work Space\AIPS\Scratch\Scratch\bin\Debug\netcoreapp3.0\Business.dll
-D:\Work Space\AIPS\Scratch\Scratch\bin\Debug\netcoreapp3.0\Kernel.dll
-D:\Work Space\AIPS\Scratch\Scratch\bin\Debug\netcoreapp3.0\Boundary.pdb
-D:\Work Space\AIPS\Scratch\Scratch\bin\Debug\netcoreapp3.0\Business.pdb
-D:\Work Space\AIPS\Scratch\Scratch\bin\Debug\netcoreapp3.0\Kernel.pdb
-D:\Work Space\AIPS\Scratch\Scratch\obj\Debug\netcoreapp3.0\Scratch.csprojAssemblyReference.cache
-D:\Work Space\AIPS\Scratch\Scratch\obj\Debug\netcoreapp3.0\staticwebassets\Scratch.StaticWebAssets.Manifest.cache
-D:\Work Space\AIPS\Scratch\Scratch\obj\Debug\netcoreapp3.0\staticwebassets\Scratch.StaticWebAssets.xml
-D:\Work Space\AIPS\Scratch\Scratch\obj\Debug\netcoreapp3.0\Scratch.MvcApplicationPartsAssemblyInfo.cache
-D:\Work Space\AIPS\Scratch\Scratch\obj\Debug\netcoreapp3.0\Scratch.AssemblyInfoInputs.cache
-D:\Work Space\AIPS\Scratch\Scratch\obj\Debug\netcoreapp3.0\Scratch.AssemblyInfo.cs
-D:\Work Space\AIPS\Scratch\Scratch\obj\Debug\netcoreapp3.0\Scratch.RazorTargetAssemblyInfo.cache
-D:\Work Space\AIPS\Scratch\Scratch\obj\Debug\netcoreapp3.0\Scratch.csproj.CopyComplete
-D:\Work Space\AIPS\Scratch\Scratch\obj\Debug\netcoreapp3.0\Scratch.dll
-D:\Work Space\AIPS\Scratch\Scratch\obj\Debug\netcoreapp3.0\Scratch.pdb
-D:\Work Space\AIPS\Scratch\Scratch\bin\Debug\netcoreapp3.0\Bogus.dll
-D:\Work Space\AIPS\Scratch\Scratch\bin\Debug\netcoreapp3.0\Persistence.dll
-D:\Work Space\AIPS\Scratch\Scratch\bin\Debug\netcoreapp3.0\Persistence.pdb
+D:/Work Space/AIPS/Scratch/Scratch/bin/Debug/netcoreapp3.0/appsettings.Development.json
+D:/Work Space/AIPS/Scratch/Scratch/bin/Debug/netcoreapp3.0/appsettings.json
+D:/Work Space/AIPS/Scratch/Scratch/bin/Debug/netcoreapp3.0/Properties/launchSettings.json
+D:/Work Space/AIPS/Scratch/Scratch/bin/Debug/netcoreapp3.0/Scratch.exe
+D:/Work Space/AIPS/Scratch/Scratch/bin/Debug/netcoreapp3.0/Scratch.deps.json
+D:/Work Space/AIPS/Scratch/Scratch/bin/Debug/netcoreapp3.0/Scratch.runtimeconfig.json
+D:/Work Space/AIPS/Scratch/Scratch/bin/Debug/netcoreapp3.0/Scratch.runtimeconfig.dev.json
+D:/Work Space/AIPS/Scratch/Scratch/bin/Debug/netcoreapp3.0/Scratch.dll
+D:/Work Space/AIPS/Scratch/Scratch/bin/Debug/netcoreapp3.0/Scratch.pdb
+D:/Work Space/AIPS/Scratch/Scratch/bin/Debug/netcoreapp3.0/Boundary.dll
+D:/Work Space/AIPS/Scratch/Scratch/bin/Debug/netcoreapp3.0/Business.dll
+D:/Work Space/AIPS/Scratch/Scratch/bin/Debug/netcoreapp3.0/Kernel.dll
+D:/Work Space/AIPS/Scratch/Scratch/bin/Debug/netcoreapp3.0/Boundary.pdb
+D:/Work Space/AIPS/Scratch/Scratch/bin/Debug/netcoreapp3.0/Business.pdb
+D:/Work Space/AIPS/Scratch/Scratch/bin/Debug/netcoreapp3.0/Kernel.pdb
+D:/Work Space/AIPS/Scratch/Scratch/obj/Debug/netcoreapp3.0/Scratch.csprojAssemblyReference.cache
+D:/Work Space/AIPS/Scratch/Scratch/obj/Debug/netcoreapp3.0/staticwebassets/Scratch.StaticWebAssets.Manifest.cache
+D:/Work Space/AIPS/Scratch/Scratch/obj/Debug/netcoreapp3.0/staticwebassets/Scratch.StaticWebAssets.xml
+D:/Work Space/AIPS/Scratch/Scratch/obj/Debug/netcoreapp3.0/Scratch.MvcApplicationPartsAssemblyInfo.cache
+D:/Work Space/AIPS/Scratch/Scratch/obj/Debug/netcoreapp3.0/Scratch.AssemblyInfoInputs.cache
+D:/Work Space/AIPS/Scratch/Scratch/obj/Debug/netcoreapp3.0/Scratch.AssemblyInfo.cs
+D:/Work Space/AIPS/Scratch/Scratch/obj/Debug/netcoreapp3.0/Scratch.RazorTargetAssemblyInfo.cache
+D:/Work Space/AIPS/Scratch/Scratch/obj/Debug/netcoreapp3.0/Scratch.csproj.CopyComplete
+D:/Work Space/AIPS/Scratch/Scratch/obj/Debug/netcoreapp3.0/Scratch.dll
+D:/Work Space/AIPS/Scratch/Scratch/obj/Debug/netcoreapp3.0/Scratch.pdb
+D:/Work Space/AIPS/Scratch/Scratch/bin/Debug/netcoreapp3.0/Bogus.dll
+D:/Work Space/AIPS/Scratch/Scratch/bin/Debug/netcoreapp3.0/Persistence.dll
+D:/Work Space/AIPS/Scratch/Scratch/bin/Debug/netcoreapp3.0/Persistence.pdb
+/home/stefan/Work_space/scratch/Scratch/Scratch-BE/Scratch/bin/Debug/netcoreapp3.0/appsettings.Development.json
+/home/stefan/Work_space/scratch/Scratch/Scratch-BE/Scratch/bin/Debug/netcoreapp3.0/appsettings.json
+/home/stefan/Work_space/scratch/Scratch/Scratch-BE/Scratch/bin/Debug/netcoreapp3.0/Properties/launchSettings.json
+/home/stefan/Work_space/scratch/Scratch/Scratch-BE/Scratch/bin/Debug/netcoreapp3.0/Scratch
+/home/stefan/Work_space/scratch/Scratch/Scratch-BE/Scratch/bin/Debug/netcoreapp3.0/Scratch.deps.json
+/home/stefan/Work_space/scratch/Scratch/Scratch-BE/Scratch/bin/Debug/netcoreapp3.0/Scratch.runtimeconfig.json
+/home/stefan/Work_space/scratch/Scratch/Scratch-BE/Scratch/bin/Debug/netcoreapp3.0/Scratch.runtimeconfig.dev.json
+/home/stefan/Work_space/scratch/Scratch/Scratch-BE/Scratch/bin/Debug/netcoreapp3.0/Scratch.dll
+/home/stefan/Work_space/scratch/Scratch/Scratch-BE/Scratch/bin/Debug/netcoreapp3.0/Scratch.pdb
+/home/stefan/Work_space/scratch/Scratch/Scratch-BE/Scratch/bin/Debug/netcoreapp3.0/Bogus.dll
+/home/stefan/Work_space/scratch/Scratch/Scratch-BE/Scratch/bin/Debug/netcoreapp3.0/Boundary.dll
+/home/stefan/Work_space/scratch/Scratch/Scratch-BE/Scratch/bin/Debug/netcoreapp3.0/Business.dll
+/home/stefan/Work_space/scratch/Scratch/Scratch-BE/Scratch/bin/Debug/netcoreapp3.0/Kernel.dll
+/home/stefan/Work_space/scratch/Scratch/Scratch-BE/Scratch/bin/Debug/netcoreapp3.0/Persistence.dll
+/home/stefan/Work_space/scratch/Scratch/Scratch-BE/Scratch/bin/Debug/netcoreapp3.0/Boundary.pdb
+/home/stefan/Work_space/scratch/Scratch/Scratch-BE/Scratch/bin/Debug/netcoreapp3.0/Business.pdb
+/home/stefan/Work_space/scratch/Scratch/Scratch-BE/Scratch/bin/Debug/netcoreapp3.0/Kernel.pdb
+/home/stefan/Work_space/scratch/Scratch/Scratch-BE/Scratch/bin/Debug/netcoreapp3.0/Persistence.pdb
+/home/stefan/Work_space/scratch/Scratch/Scratch-BE/Scratch/obj/Debug/netcoreapp3.0/Scratch.csprojAssemblyReference.cache
+/home/stefan/Work_space/scratch/Scratch/Scratch-BE/Scratch/obj/Debug/netcoreapp3.0/staticwebassets/Scratch.StaticWebAssets.Manifest.cache
+/home/stefan/Work_space/scratch/Scratch/Scratch-BE/Scratch/obj/Debug/netcoreapp3.0/staticwebassets/Scratch.StaticWebAssets.xml
+/home/stefan/Work_space/scratch/Scratch/Scratch-BE/Scratch/obj/Debug/netcoreapp3.0/Scratch.MvcApplicationPartsAssemblyInfo.cache
+/home/stefan/Work_space/scratch/Scratch/Scratch-BE/Scratch/obj/Debug/netcoreapp3.0/Scratch.AssemblyInfoInputs.cache
+/home/stefan/Work_space/scratch/Scratch/Scratch-BE/Scratch/obj/Debug/netcoreapp3.0/Scratch.AssemblyInfo.cs
+/home/stefan/Work_space/scratch/Scratch/Scratch-BE/Scratch/obj/Debug/netcoreapp3.0/Scratch.RazorTargetAssemblyInfo.cache
+/home/stefan/Work_space/scratch/Scratch/Scratch-BE/Scratch/obj/Debug/netcoreapp3.0/Scratch.csproj.CopyComplete
+/home/stefan/Work_space/scratch/Scratch/Scratch-BE/Scratch/obj/Debug/netcoreapp3.0/Scratch.dll
+/home/stefan/Work_space/scratch/Scratch/Scratch-BE/Scratch/obj/Debug/netcoreapp3.0/Scratch.pdb

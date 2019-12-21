@@ -9,7 +9,7 @@ export class PencilTool{
 
         this.CurrentlyDrawingShape = new Shape();
         this.CurrentlyDrawingShape.graphics
-                                .setStrokeStyle(4)
+                                .setStrokeStyle(10)
                                 .beginStroke("DeepSkyBlue");
         this.stage.addChild(this.CurrentlyDrawingShape);
         this.stage.update();

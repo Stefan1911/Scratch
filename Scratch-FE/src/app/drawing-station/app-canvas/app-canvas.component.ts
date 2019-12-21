@@ -30,11 +30,14 @@ export class AppCanvasComponent implements OnInit {
     let circle3 = new createjs.Shape();
     circle3.graphics.beginFill("DeepSkyBlue").beginStroke("#000000").drawPolyStar(100,400,20,6,6,(360/6));
 
+    // let myLine = new createjs.Shape();
+    // myLine.graphics.moveTo(500,500);
+    // myLine.graphics.setStrokeStyle(40).beginFill("DeepSkyBlue").beginStroke("#000000").lineTo(600,600).lineTo(600,700);
 
     this.stage.addChild(circle);
     this.stage.addChild(rect);
     this.stage.addChild(circle3);
-
+    //this.stage.addChild(myLine)
  
     this.stage.update();
  

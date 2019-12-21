@@ -1,37 +1,32 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Work Space\\AIPS\\Scratch\\Persistence\\Persistence.csproj": {}
+    "/home/stefan/Work_space/scratch/Scratch/Scratch-BE/Persistence/Persistence.csproj": {}
   },
   "projects": {
-    "D:\\Work Space\\AIPS\\Scratch\\Boundary\\Boundary.csproj": {
+    "/home/stefan/Work_space/scratch/Scratch/Scratch-BE/Boundary/Boundary.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Work Space\\AIPS\\Scratch\\Boundary\\Boundary.csproj",
+        "projectUniqueName": "/home/stefan/Work_space/scratch/Scratch/Scratch-BE/Boundary/Boundary.csproj",
         "projectName": "Boundary",
-        "projectPath": "D:\\Work Space\\AIPS\\Scratch\\Boundary\\Boundary.csproj",
-        "packagesPath": "C:\\Users\\Stefan\\.nuget\\packages\\",
-        "outputPath": "D:\\Work Space\\AIPS\\Scratch\\Boundary\\obj\\",
+        "projectPath": "/home/stefan/Work_space/scratch/Scratch/Scratch-BE/Boundary/Boundary.csproj",
+        "packagesPath": "/home/stefan/.nuget/packages/",
+        "outputPath": "/home/stefan/Work_space/scratch/Scratch/Scratch-BE/Boundary/obj/",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Stefan\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/home/stefan/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netstandard2.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netstandard2.0": {
             "projectReferences": {
-              "D:\\Work Space\\AIPS\\Scratch\\Kernel\\Kernel.csproj": {
-                "projectPath": "D:\\Work Space\\AIPS\\Scratch\\Kernel\\Kernel.csproj"
+              "/home/stefan/Work_space/scratch/Scratch/Scratch-BE/Kernel/Kernel.csproj": {
+                "projectPath": "/home/stefan/Work_space/scratch/Scratch/Scratch-BE/Kernel/Kernel.csproj"
               }
             }
           }
@@ -62,41 +57,36 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.100/RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Work Space\\AIPS\\Scratch\\Business\\Business.csproj": {
+    "/home/stefan/Work_space/scratch/Scratch/Scratch-BE/Business/Business.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Work Space\\AIPS\\Scratch\\Business\\Business.csproj",
+        "projectUniqueName": "/home/stefan/Work_space/scratch/Scratch/Scratch-BE/Business/Business.csproj",
         "projectName": "Business",
-        "projectPath": "D:\\Work Space\\AIPS\\Scratch\\Business\\Business.csproj",
-        "packagesPath": "C:\\Users\\Stefan\\.nuget\\packages\\",
-        "outputPath": "D:\\Work Space\\AIPS\\Scratch\\Business\\obj\\",
+        "projectPath": "/home/stefan/Work_space/scratch/Scratch/Scratch-BE/Business/Business.csproj",
+        "packagesPath": "/home/stefan/.nuget/packages/",
+        "outputPath": "/home/stefan/Work_space/scratch/Scratch/Scratch-BE/Business/obj/",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Stefan\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/home/stefan/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netstandard2.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netstandard2.0": {
             "projectReferences": {
-              "D:\\Work Space\\AIPS\\Scratch\\Boundary\\Boundary.csproj": {
-                "projectPath": "D:\\Work Space\\AIPS\\Scratch\\Boundary\\Boundary.csproj"
+              "/home/stefan/Work_space/scratch/Scratch/Scratch-BE/Boundary/Boundary.csproj": {
+                "projectPath": "/home/stefan/Work_space/scratch/Scratch/Scratch-BE/Boundary/Boundary.csproj"
               },
-              "D:\\Work Space\\AIPS\\Scratch\\Kernel\\Kernel.csproj": {
-                "projectPath": "D:\\Work Space\\AIPS\\Scratch\\Kernel\\Kernel.csproj"
+              "/home/stefan/Work_space/scratch/Scratch/Scratch-BE/Kernel/Kernel.csproj": {
+                "projectPath": "/home/stefan/Work_space/scratch/Scratch/Scratch-BE/Kernel/Kernel.csproj"
               }
             }
           }
@@ -127,31 +117,26 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.100/RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Work Space\\AIPS\\Scratch\\Kernel\\Kernel.csproj": {
+    "/home/stefan/Work_space/scratch/Scratch/Scratch-BE/Kernel/Kernel.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Work Space\\AIPS\\Scratch\\Kernel\\Kernel.csproj",
+        "projectUniqueName": "/home/stefan/Work_space/scratch/Scratch/Scratch-BE/Kernel/Kernel.csproj",
         "projectName": "Kernel",
-        "projectPath": "D:\\Work Space\\AIPS\\Scratch\\Kernel\\Kernel.csproj",
-        "packagesPath": "C:\\Users\\Stefan\\.nuget\\packages\\",
-        "outputPath": "D:\\Work Space\\AIPS\\Scratch\\Kernel\\obj\\",
+        "projectPath": "/home/stefan/Work_space/scratch/Scratch/Scratch-BE/Kernel/Kernel.csproj",
+        "packagesPath": "/home/stefan/.nuget/packages/",
+        "outputPath": "/home/stefan/Work_space/scratch/Scratch/Scratch-BE/Kernel/obj/",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Stefan\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/home/stefan/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netstandard2.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -185,38 +170,33 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.100/RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Work Space\\AIPS\\Scratch\\Persistence\\Persistence.csproj": {
+    "/home/stefan/Work_space/scratch/Scratch/Scratch-BE/Persistence/Persistence.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Work Space\\AIPS\\Scratch\\Persistence\\Persistence.csproj",
+        "projectUniqueName": "/home/stefan/Work_space/scratch/Scratch/Scratch-BE/Persistence/Persistence.csproj",
         "projectName": "Persistence",
-        "projectPath": "D:\\Work Space\\AIPS\\Scratch\\Persistence\\Persistence.csproj",
-        "packagesPath": "C:\\Users\\Stefan\\.nuget\\packages\\",
-        "outputPath": "D:\\Work Space\\AIPS\\Scratch\\Persistence\\obj\\",
+        "projectPath": "/home/stefan/Work_space/scratch/Scratch/Scratch-BE/Persistence/Persistence.csproj",
+        "packagesPath": "/home/stefan/.nuget/packages/",
+        "outputPath": "/home/stefan/Work_space/scratch/Scratch/Scratch-BE/Persistence/obj/",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Stefan\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/home/stefan/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netstandard2.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netstandard2.0": {
             "projectReferences": {
-              "D:\\Work Space\\AIPS\\Scratch\\Business\\Business.csproj": {
-                "projectPath": "D:\\Work Space\\AIPS\\Scratch\\Business\\Business.csproj"
+              "/home/stefan/Work_space/scratch/Scratch/Scratch-BE/Business/Business.csproj": {
+                "projectPath": "/home/stefan/Work_space/scratch/Scratch/Scratch-BE/Business/Business.csproj"
               }
             }
           }
@@ -251,7 +231,7 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.100/RuntimeIdentifierGraph.json"
         }
       }
     }
