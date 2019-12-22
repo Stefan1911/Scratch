@@ -27,7 +27,7 @@ namespace Persistence.Repositories
 
         public Task<IEnumerable<UserModel>> AddRangeAsync(IEnumerable<UserModel> users)
         {
-            throw new NotImplementedException();
+			throw new NotImplementedException();
         }
 
         public Task<UserModel> GetAsync(int id)
