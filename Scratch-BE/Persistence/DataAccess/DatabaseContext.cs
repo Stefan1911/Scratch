@@ -15,24 +15,12 @@ namespace Persistence.DataAccess
         private IMongoDatabase MongoDB { get; set; }
         public IMongoCollection<ProjectModel> Projects { get; set; }
         public IMongoCollection<UserModel> Users { get; set; }
-<<<<<<< HEAD
-        public IMongoCollection<ChatModel> Chats { get; set; }
+		public IMongoCollection<ChatModel> Chats { get; set; }
         public IMongoCollection<DrawingBoardModel> DrawingBoards { get; set; }
         public IMongoCollection<MessageModel> Messages { get; set; }
         public IMongoCollection<ShapeModel> Shapes { get; set; }
-        public DatabaseContext()
-        {
-            var connectionString = "mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb";
-            MongoClient client = new MongoClient(connectionString);
-            MongoDB = client.GetDatabase("preduzece");
 
-            Users= MongoDB.GetCollection<UserModel>("users");
-            Messages = MongoDB.GetCollection<MessageModel>("messages");
-            Shapes = MongoDB.GetCollection<ShapeModel>("shapes");
-            Chats = MongoDB.GetCollection<ChatModel>("chats");
-            DrawingBoards = MongoDB.GetCollection<DrawingBoardModel>("drawingBoards");
-            Projects = MongoDB.GetCollection<ProjectModel>("projects");
-=======
+		
         public DatabaseContext()
         {
 			var connectionString = "mongodb://127.0.0.1:27017";
@@ -50,7 +38,6 @@ namespace Persistence.DataAccess
 
 			Users = MongoDB.GetCollection<UserModel>(userCollecionName);
 			Projects = MongoDB.GetCollection<ProjectModel>(projectCollectionName);
->>>>>>> feat Testing: added a testing project and a basic data bese connection test
         }
        
 
