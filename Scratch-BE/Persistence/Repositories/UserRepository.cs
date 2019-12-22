@@ -4,6 +4,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Business.Contracts;
 using Business.Models;
+using MongoDB.Bson;
+using MongoDB.Driver;
 
 namespace Persistence.Repositories
 {
@@ -16,7 +18,14 @@ namespace Persistence.Repositories
             this.context = context;
         }
 
-        public Task<UserModel> AddAsync(UserModel instance)
+        public async Task<UserModel> AddAsync(UserModel user)
+        {
+            await context.Users.InsertOneAsync(user);
+            return user;
+
+        }
+
+        public Task<IEnumerable<UserModel>> AddRangeAsync(IEnumerable<UserModel> users)
         {
             throw new NotImplementedException();
         }
@@ -27,6 +36,11 @@ namespace Persistence.Repositories
         }
 
         public Task<IEnumerable<UserModel>> GetCollecionAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IEnumerable<UserModel>> GetRangeAsync(IEnumerable<string> userIDs)
         {
             throw new NotImplementedException();
         }

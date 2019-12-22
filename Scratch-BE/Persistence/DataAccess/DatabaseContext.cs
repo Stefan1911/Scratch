@@ -12,15 +12,25 @@ namespace Persistence.DataAccess
 {
     public class DatabaseContext
     {
-        private MongoDatabase MongoDB { get; set; }
-        public MongoCollection<ProjectModel> Projects { get; set; }
-        public MongoCollection<UserModel> Users { get; set; }
+        private IMongoDatabase MongoDB { get; set; }
+        public IMongoCollection<ProjectModel> Projects { get; set; }
+        public IMongoCollection<UserModel> Users { get; set; }
+        public IMongoCollection<ChatModel> Chats { get; set; }
+        public IMongoCollection<DrawingBoardModel> DrawingBoards { get; set; }
+        public IMongoCollection<MessageModel> Messages { get; set; }
+        public IMongoCollection<ShapeModel> Shapes { get; set; }
         public DatabaseContext()
         {
-            var connectionString = "mongodb://localhost/?safe=true";
+            var connectionString = "mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb";
             MongoClient client = new MongoClient(connectionString);
-            var server = client.GetServer();
-            MongoDB = server.GetDatabase("preduzece");
+            MongoDB = client.GetDatabase("preduzece");
+
+            Users= MongoDB.GetCollection<UserModel>("users");
+            Messages = MongoDB.GetCollection<MessageModel>("messages");
+            Shapes = MongoDB.GetCollection<ShapeModel>("shapes");
+            Chats = MongoDB.GetCollection<ChatModel>("chats");
+            DrawingBoards = MongoDB.GetCollection<DrawingBoardModel>("drawingBoards");
+            Projects = MongoDB.GetCollection<ProjectModel>("projects");
         }
        
 

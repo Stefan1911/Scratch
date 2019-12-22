@@ -16,9 +16,11 @@ namespace Persistence.Repositories
             this.context = context;
         }
 
-        public Task<ProjectModel> AddAsync(ProjectModel instance)
+        public async Task<ProjectModel> AddAsync(ProjectModel instance)
         {
-            throw new NotImplementedException();
+            await context.Projects.InsertOneAsync(instance);
+            return instance;
+
         }
 
         public Task<ProjectModel> GetAsync(int id)
