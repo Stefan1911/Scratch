@@ -15,5 +15,11 @@ namespace Business.Models
         public List<DrawingBoardModel> DrawingBoards { get; set; }
         public List<String> UserIDs { get; set; }
 
+        public ProjectModel()
+        {
+            this.DrawingBoards = new List<DrawingBoardModel>();
+            this.UserIDs = new List<string>();
+        }
+
     }
 }

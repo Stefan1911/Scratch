@@ -16,5 +16,10 @@ namespace Business.Models
         public string Username { get; set; }
         public string Password { get; set; }
         public string PictureUrl { get; set; }
+
+        public UserModel()
+        {
+            this.ProjectIDs = new List<string>();
+        }
     }
 }

@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using MongoDB.Bson;
+using MongoDB.Driver;
 
 namespace Persistence.Repositories
 {
@@ -18,12 +20,11 @@ namespace Persistence.Repositories
 
         public async Task<MessageModel> AddAsync(MessageModel message)
         {
-            await context.Messages.InsertOneAsync(message);
-            return message;
+            throw new NotImplementedException();
 
         }
 
-        Task<MessageModel> IMessageRepository.GetAsync(int id)
+        Task<MessageModel> IMessageRepository.GetAsync(string id)
         {
             throw new NotImplementedException();
         }

@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using MongoDB.Bson;
+using MongoDB.Driver;
 
 namespace Persistence.Repositories
 {
@@ -16,19 +18,17 @@ namespace Persistence.Repositories
             this.context = context;
         }
 
-        public async Task<DrawingBoardModel> AddAsync(DrawingBoardModel board)
-        {
-            await context.DrawingBoards.InsertOneAsync(board);
-            return board;
-
-        }
-
-        Task<DrawingBoardModel> IDrawingBoardRepository.GetAsync(int id)
+        public async Task<DrawingBoardModel> AddAsync(DrawingBoardModel board, string project)
         {
             throw new NotImplementedException();
         }
 
-        Task<IEnumerable<DrawingBoardModel>> IDrawingBoardRepository.GetCollecionAsync()
+        public async Task<DrawingBoardModel> GetAsync(string id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<IEnumerable<DrawingBoardModel>> GetCollecionAsync()
         {
             throw new NotImplementedException();
         }

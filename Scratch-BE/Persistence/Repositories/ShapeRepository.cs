@@ -4,6 +4,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Business.Contracts;
 using Business.Models;
+using MongoDB.Bson;
+using MongoDB.Driver;
 
 namespace Persistence.Repositories
 {
@@ -18,11 +20,10 @@ namespace Persistence.Repositories
 
         public async Task<ShapeModel> AddAsync(ShapeModel shape)
         {
-            await context.Shapes.InsertOneAsync(shape);
-            return shape;
+            throw new NotImplementedException();
 
         }
-        Task<ShapeModel> IShapeRepository.GetAsync(int id)
+        Task<ShapeModel> IShapeRepository.GetAsync(string id)
         {
             throw new NotImplementedException();
         }

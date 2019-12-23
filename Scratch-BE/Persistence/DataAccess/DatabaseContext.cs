@@ -15,10 +15,6 @@ namespace Persistence.DataAccess
         private IMongoDatabase MongoDB { get; set; }
         public IMongoCollection<ProjectModel> Projects { get; set; }
         public IMongoCollection<UserModel> Users { get; set; }
-		public IMongoCollection<ChatModel> Chats { get; set; }
-        public IMongoCollection<DrawingBoardModel> DrawingBoards { get; set; }
-        public IMongoCollection<MessageModel> Messages { get; set; }
-        public IMongoCollection<ShapeModel> Shapes { get; set; }
 
 		
         public DatabaseContext(DatabaseSettings settings)
@@ -32,6 +28,7 @@ namespace Persistence.DataAccess
 
 			Users = MongoDB.GetCollection<UserModel>(settings.UserCollecionName);
 			Projects = MongoDB.GetCollection<ProjectModel>(settings.ProjectCollecionName);
+         
         }
        
 

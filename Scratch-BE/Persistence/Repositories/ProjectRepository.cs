@@ -37,9 +37,10 @@ namespace Persistence.Repositories
             return projects.ToList();
         }
 
-        public Task<IEnumerable<ProjectModel>> GetProjectOfUserAsync(string id)
+        public async Task<IEnumerable<ProjectModel>> GetProjectOfUserAsync(string id)
         {
-            throw new NotImplementedException();
+            var projects = await context.Projects.FindAsync(x => x.UserIDs.Contains(id));
+            return projects.ToList();
         }
     }
 }

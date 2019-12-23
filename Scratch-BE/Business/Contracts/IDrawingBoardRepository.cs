@@ -8,8 +8,8 @@ namespace Business.Contracts
 {
     public interface IDrawingBoardRepository
     {
-        Task<DrawingBoardModel> AddAsync(DrawingBoardModel board);
-        Task<DrawingBoardModel> GetAsync(int id);
+        Task<DrawingBoardModel> AddAsync(DrawingBoardModel board, string project);
+        Task<DrawingBoardModel> GetAsync(string id);
         Task<IEnumerable<DrawingBoardModel>> GetCollecionAsync();
     }
 }
