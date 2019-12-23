@@ -1,4 +1,5 @@
 using Persistence.DataAccess;
+using Persistence.Repositories;
 using Xunit;
 
 namespace appTests.PersistenceTests
@@ -11,7 +12,9 @@ namespace appTests.PersistenceTests
 			//setup
 			var databaseSettings = this.GetDatabaseSettings();
 			var dataAccess = new DatabaseContext(databaseSettings);
+			var userrRepository = new UserRepository(dataAccess);
 			//aserts
+			
 			Assert.NotNull(dataAccess);
         }
 

@@ -14,13 +14,13 @@ namespace Persistence.DataAccess
     {
         private IMongoDatabase MongoDB { get; set; }
         public IMongoCollection<ProjectModel> Projects { get; set; }
-        public IMongoCollection<UserModel> Users { get; set; }
+        public virtual IMongoCollection<UserModel> Users { get; set; }
 		public IMongoCollection<ChatModel> Chats { get; set; }
         public IMongoCollection<DrawingBoardModel> DrawingBoards { get; set; }
         public IMongoCollection<MessageModel> Messages { get; set; }
         public IMongoCollection<ShapeModel> Shapes { get; set; }
 
-		
+		public DatabaseContext(){}
         public DatabaseContext(DatabaseSettings settings)
         {
 			MongoClient client = new MongoClient(settings.ConnectionString);
