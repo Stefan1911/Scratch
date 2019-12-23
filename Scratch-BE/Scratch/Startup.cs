@@ -19,6 +19,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Persistence.DataAccess;
 using Persistence.Repositories;
 using Scratch.Extensions;
@@ -37,6 +38,9 @@ namespace Scratch
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+			var databaseSetting = GetApplicationConfiguration();
+			services.AddSingleton(databaseSetting);
+
             services.AddControllers();
             services.AddSingleton<DatabaseContext>();
             #region Shape
@@ -86,5 +90,26 @@ namespace Scratch
                 endpoints.MapControllers();
             });
         }
+		public static IConfigurationRoot GetIConfigurationRoot(string outputPath = "")
+		{            
+			return new ConfigurationBuilder()
+				//.SetBasePath("outputPath")
+				.AddJsonFile("appsettings.json", optional: true)
+				.AddEnvironmentVariables()
+				.Build();
+		}
+
+		public static DatabaseSettings GetApplicationConfiguration(string outputPath = "")
+		{
+			var configuration = new DatabaseSettings();
+
+			var iConfig = GetIConfigurationRoot(outputPath);
+
+			iConfig
+				.GetSection(nameof(DatabaseSettings))
+				.Bind(configuration);
+
+			return configuration;
+		}
     }
 }

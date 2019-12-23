@@ -1,10 +1,7 @@
-using System;
-using Business.Models;
 using Persistence.DataAccess;
-using Persistence.Repositories;
 using Xunit;
 
-namespace appTests
+namespace appTests.PersistenceTests
 {
     public class DattaAccessTest
     {
@@ -12,9 +9,14 @@ namespace appTests
         public void DataBaseConectionTest()
         {
 			//setup
-			var dataAccess = new DatabaseContext();
+			var databaseSettings = this.GetDatabaseSettings();
+			var dataAccess = new DatabaseContext(databaseSettings);
 			//aserts
 			Assert.NotNull(dataAccess);
         }
+
+		private DatabaseSettings GetDatabaseSettings(){
+			return Scratch.Startup.GetApplicationConfiguration();
+		}
     }
 }

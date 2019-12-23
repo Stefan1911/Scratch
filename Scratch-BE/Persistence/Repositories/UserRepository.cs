@@ -11,16 +11,16 @@ namespace Persistence.Repositories
 {
     public class UserRepository : IUserRepository
     {
-        protected DataAccess.DatabaseContext context;
+        protected DataAccess.DatabaseContext _context;
 
         public UserRepository(DataAccess.DatabaseContext context)
         {
-            this.context = context;
+            _context = context;
         }
 
         public async Task<UserModel> AddAsync(UserModel user)
         {
-            await context.Users.InsertOneAsync(user);
+            await _context.Users.InsertOneAsync(user);
             return user;
 
         }

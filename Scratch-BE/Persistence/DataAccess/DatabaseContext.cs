@@ -21,23 +21,17 @@ namespace Persistence.DataAccess
         public IMongoCollection<ShapeModel> Shapes { get; set; }
 
 		
-        public DatabaseContext()
+        public DatabaseContext(DatabaseSettings settings)
         {
-			var connectionString = "mongodb://127.0.0.1:27017";
-			var databaseName = "preduzece";
-			var userCollecionName = "users";
-			var projectCollectionName = "projects";
-			var serverResponseWaitTime = 2000;
-
-			MongoClient client = new MongoClient(connectionString);
-			MongoDB = client.GetDatabase(databaseName);
+			MongoClient client = new MongoClient(settings.ConnectionString);
+			MongoDB = client.GetDatabase(settings.DatabaseName);
 			bool isActiveServer = MongoDB.RunCommandAsync((Command<BsonDocument>)"{ping:1}")
-        											.Wait(serverResponseWaitTime);
+        											.Wait(settings.ServerResponeWaitTime);
 			if(!isActiveServer)
 				throw new Exception("Mongo server didnt respond: check if the server is rungin");
 
-			Users = MongoDB.GetCollection<UserModel>(userCollecionName);
-			Projects = MongoDB.GetCollection<ProjectModel>(projectCollectionName);
+			Users = MongoDB.GetCollection<UserModel>(settings.UserCollecionName);
+			Projects = MongoDB.GetCollection<ProjectModel>(settings.ProjectCollecionName);
         }
        
 
