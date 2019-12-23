@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Business.Contracts;
+using MongoDB.Bson;
+using MongoDB.Driver;
 
 namespace Persistence.Repositories
 {
@@ -16,19 +18,26 @@ namespace Persistence.Repositories
             this.context = context;
         }
 
-        public async Task<ProjectModel> AddAsync(ProjectModel instance)
+        public async Task<ProjectModel> AddAsync(ProjectModel project)
         {
-            await context.Projects.InsertOneAsync(instance);
-            return instance;
+            await context.Projects.InsertOneAsync(project);
+            return project;
 
         }
 
-        public Task<ProjectModel> GetAsync(int id)
+        public async Task<ProjectModel> GetAsync(string id)
         {
-            throw new NotImplementedException();
+            var project = await context.Projects.FindAsync(i => i.Id.Equals(id));
+            return await project.FirstOrDefaultAsync();
         }
 
-        public Task<IEnumerable<ProjectModel>> GetCollecionAsync()
+        public async Task<IEnumerable<ProjectModel>> GetCollecionAsync()
+        {
+            var projects = await context.Projects.FindAsync(x => true);
+            return projects.ToList();
+        }
+
+        public Task<IEnumerable<ProjectModel>> GetProjectOfUserAsync(string id)
         {
             throw new NotImplementedException();
         }

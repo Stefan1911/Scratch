@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Business.Contracts;
 using Business.Models;
 using MongoDB.Bson;
 using MongoDB.Driver;
+
 
 namespace Persistence.Repositories
 {
@@ -25,24 +27,29 @@ namespace Persistence.Repositories
 
         }
 
-        public Task<IEnumerable<UserModel>> AddRangeAsync(IEnumerable<UserModel> users)
+        public async Task<IEnumerable<UserModel>> AddRangeAsync(IEnumerable<UserModel> users)
         {
-			throw new NotImplementedException();
+            await _context.Users.InsertManyAsync(users);
+            return users;
         }
 
-        public Task<UserModel> GetAsync(int id)
+        public async Task<UserModel> GetAsync(string id)
         {
-            throw new NotImplementedException();
+            var user = await _context.Users.FindAsync(i => i.Id.Equals(id));
+            return await user.FirstOrDefaultAsync();    
+           
         }
 
-        public Task<IEnumerable<UserModel>> GetCollecionAsync()
+        public async Task<IEnumerable<UserModel>> GetCollecionAsync()
         {
-            throw new NotImplementedException();
+            var user = await _context.Users.FindAsync(x=>true);
+            return user.ToList();
         }
 
-        public Task<IEnumerable<UserModel>> GetRangeAsync(IEnumerable<string> userIDs)
+        public async Task<IEnumerable<UserModel>> GetRangeAsync(IEnumerable<string> userIDs)
         {
-            throw new NotImplementedException();
+            var users= await _context.Users.FindAsync(x => userIDs.Contains(x.Id));         
+            return users.ToList();
         }
     }
 }

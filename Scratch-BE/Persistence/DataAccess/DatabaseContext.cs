@@ -28,7 +28,7 @@ namespace Persistence.DataAccess
 			bool isActiveServer = MongoDB.RunCommandAsync((Command<BsonDocument>)"{ping:1}")
         											.Wait(settings.ServerResponeWaitTime);
 			if(!isActiveServer)
-				throw new Exception("Mongo server didnt respond: check if the server is rungin");
+				throw new Exception("Mongo server didnt respond: check if the server is running");
 
 			Users = MongoDB.GetCollection<UserModel>(settings.UserCollecionName);
 			Projects = MongoDB.GetCollection<ProjectModel>(settings.ProjectCollecionName);

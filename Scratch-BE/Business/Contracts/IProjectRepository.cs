@@ -9,7 +9,8 @@ namespace Business.Contracts
     public interface IProjectRepository
     {
         Task<ProjectModel> AddAsync(ProjectModel instance);
-        Task<ProjectModel> GetAsync(int id);
+        Task<ProjectModel> GetAsync(string id);
+        Task<IEnumerable<ProjectModel>> GetProjectOfUserAsync(string id);
         Task<IEnumerable<ProjectModel>> GetCollecionAsync();
     }
 }
