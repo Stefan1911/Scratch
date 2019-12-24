@@ -13,18 +13,12 @@ namespace appTests.PersistenceTests
 {
     public class DrawingBoardRepositoryTest
     {
-        private DatabaseSettings GetDatabaseSettings()
-        {
-            return Scratch.Startup.GetApplicationConfiguration();
-        }
-
         [Fact]
         public async void AddAsyncTest()
         {
-			var databaseSettings = this.GetDatabaseSettings();
-            var dataAccess = new DatabaseContext(databaseSettings);
-            var boardRepository = new DrawingBoardRepository(dataAccess);
-            var projectRepository = new ProjectRepository(dataAccess);
+
+            var boardRepository = appTestDependencyHelper.drawingBoardRepository;
+            var projectRepository = appTestDependencyHelper.projectRepository;
 
             A.Configure<ProjectModel>()
               .Fill(c => c.Id, () => { return null; })

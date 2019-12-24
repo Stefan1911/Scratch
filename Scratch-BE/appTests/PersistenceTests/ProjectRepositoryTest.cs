@@ -19,9 +19,7 @@ namespace appTests.PersistenceTests
         public async void AddAndGetAsyncTest()
         {
 
-            var databaseSettings = this.GetDatabaseSettings();
-            var dataAccess = new DatabaseContext(databaseSettings);
-            var projectRepository = new ProjectRepository(dataAccess);
+            var projectRepository = appTestDependencyHelper.projectRepository;
           
             var project = A.New<ProjectModel>();
             project.Id = null;
@@ -37,10 +35,7 @@ namespace appTests.PersistenceTests
         [Fact]
         public async void GetCollecionAsyncTest()
         {
-
-            var databaseSettings = this.GetDatabaseSettings();
-            var dataAccess = new DatabaseContext(databaseSettings);
-            var projectRepository = new ProjectRepository(dataAccess);
+            var projectRepository = appTestDependencyHelper.projectRepository;
 
             var project = A.New<ProjectModel>();
             project.Id = null;
@@ -55,10 +50,8 @@ namespace appTests.PersistenceTests
         [Fact]
         public async void GetProjectOfUserAsyncTest()
         {
-            var databaseSettings = this.GetDatabaseSettings();
-            var dataAccess = new DatabaseContext(databaseSettings);
-            var projectRepository = new ProjectRepository(dataAccess);
-
+            var projectRepository = appTestDependencyHelper.projectRepository;
+			 var userRepository = appTestDependencyHelper.userRepository;
             A.Configure<ProjectModel>()
                 .Fill(c => c.Id, () => { return null; })
                 .Fill(c => c.UserIDs, () => {
@@ -68,7 +61,7 @@ namespace appTests.PersistenceTests
             
             project = await projectRepository.AddAsync(project);
 
-            var userRepository = new UserRepository(dataAccess);
+           
 
             A.Configure<UserModel>()
                 .Fill(c => c.Id, () => { return null; })

@@ -17,9 +17,7 @@ namespace appTests.PersistenceTests
         public async void getUserAsyncTest()
         {
             //Given
-            var databaseSettings = this.GetDatabaseSettings();
-            var dataAccess = new DatabaseContext(databaseSettings);
-            var userRepository = new UserRepository(dataAccess);
+            var userRepository = appTestDependencyHelper.userRepository;
             //When
             var users = new UserModel
             {
@@ -40,9 +38,7 @@ namespace appTests.PersistenceTests
         public async void addUserRangeAsyncTest()
         {
             //Given
-            var databaseSettings = this.GetDatabaseSettings();
-            var dataAccess = new DatabaseContext(databaseSettings);
-            var userRepository = new UserRepository(dataAccess);
+            var userRepository = appTestDependencyHelper.userRepository;
             //When
             var users = A.ListOf<UserModel>();
             foreach (UserModel user in users)
@@ -63,9 +59,7 @@ namespace appTests.PersistenceTests
         public async void getCollectionAsyncTest()
         {
             //Given
-            var databaseSettings = this.GetDatabaseSettings();
-            var dataAccess = new DatabaseContext(databaseSettings);
-            var userRepository = new UserRepository(dataAccess);
+            var userRepository = appTestDependencyHelper.userRepository;
             //When
             var users = A.ListOf<UserModel>();
             foreach (UserModel user in users)
@@ -93,9 +87,7 @@ namespace appTests.PersistenceTests
         public async void getRangeAsyncTest()
         {
             //Given
-            var databaseSettings = this.GetDatabaseSettings();
-            var dataAccess = new DatabaseContext(databaseSettings);
-            var userRepository = new UserRepository(dataAccess);
+            var userRepository = appTestDependencyHelper.userRepository;
             //When
             var usersWithNullId = A.ListOf<UserModel>();
             foreach (UserModel user in usersWithNullId)
@@ -120,11 +112,5 @@ namespace appTests.PersistenceTests
             }
 
         }
-
-        private DatabaseSettings GetDatabaseSettings()
-        {
-            return Scratch.Startup.GetApplicationConfiguration();
-        }
-
     }
 }
