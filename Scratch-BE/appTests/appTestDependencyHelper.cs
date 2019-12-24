@@ -19,6 +19,10 @@ namespace appTests
 									get { return new ProjectRepository(dataAccess);} 
 									private set{} 
 									}
+			public static ShapeRepository shapeRepository { 
+									get { return new ShapeRepository(dataAccess);} 
+									private set{} 
+									}
 
 			public static ChatRepository chatRepository
 			{

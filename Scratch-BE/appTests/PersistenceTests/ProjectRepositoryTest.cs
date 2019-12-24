@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Text;
 using GenFu;
-using System.Collections.Generic;
 using Business.Models;
 using Persistence.Repositories;
 using Persistence.DataAccess;
@@ -11,10 +10,6 @@ namespace appTests.PersistenceTests
 {
     public class ProjectRepositoryTest
     {
-        private DatabaseSettings GetDatabaseSettings()
-        {
-            return Scratch.Startup.GetApplicationConfiguration();
-        }
         [Fact]
         public async void AddAndGetAsyncTest()
         {

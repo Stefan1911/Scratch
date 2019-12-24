@@ -21,25 +21,10 @@ namespace Persistence.Repositories
 
 		public async Task<ShapeModel> AddAsync(ShapeModel shape, string DrawingBoardId)
 		{
-			var filter = Builders<ProjectModel>.Filter.ElemMatch(_project => _project.DrawingBoards, _board => _board.Id == DrawingBoardId);
-			// var project = await _context.Projects.FindAsync(_project => 
-			// 													 (_project.DrawingBoards
-			// 																.Where(_board => _board.Id == DrawingBoardId)
-			// 																.FirstOrDefault() != null)? true:false
-			// 												);
-			var update = Builders<ProjectModel>.Update
-													.Push(_project => _project.DrawingBoards
-																					.Where(_board => _board.Id == DrawingBoardId)
-																					.FirstOrDefault()
-																					.Shapes
-														,shape);
-			// var board = project
-			// 				.FirstOrDefault()
-			// 				.DrawingBoards
-			// 				.Where(_board => _board.Id == DrawingBoardId)
-			// 				.FirstOrDefault();
-			// board.Shapes.Add(shape);
-			// await _context.Projects.InsertOneAsync(project.FirstOrDefault());
+			shape.Id = ObjectId.GenerateNewId().ToString();
+			var filter = Builders<ProjectModel>.Filter.ElemMatch(_project => _project.DrawingBoards, _board => _board.Id.Equals(DrawingBoardId));
+			var update = Builders<ProjectModel>.Update.Push("DrawingBoards.$.Shapes",shape);
+			var pr = await _context.Projects.Find(filter).FirstOrDefaultAsync();
 			await _context.Projects.UpdateOneAsync(filter,update);
 			return shape;
 		}
