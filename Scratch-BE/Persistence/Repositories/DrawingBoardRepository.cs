@@ -39,9 +39,10 @@ namespace Persistence.Repositories
 									.FirstOrDefault();
         }
 
-        public async Task<IEnumerable<DrawingBoardModel>> GetCollecionAsync()
+        public async Task<IEnumerable<DrawingBoardModel>> GetCollecionAsync(string projectId)
         {
-            throw new NotImplementedException();
+            var project = await _context.Projects.Find(x => x.Id.Equals(projectId)).FirstOrDefaultAsync();
+            return project.DrawingBoards.ToList();
         }
     }
 }

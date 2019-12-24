@@ -10,6 +10,6 @@ namespace Business.Contracts
     {
         Task<DrawingBoardModel> AddAsync(DrawingBoardModel board, string project);
         Task<DrawingBoardModel> GetAsync(string id);
-        Task<IEnumerable<DrawingBoardModel>> GetCollecionAsync();
+        Task<IEnumerable<DrawingBoardModel>> GetCollecionAsync(string projectId);
     }
 }

@@ -20,6 +20,19 @@ namespace appTests
 									private set{} 
 									}
 
+			public static ChatRepository chatRepository
+			{
+					get { return new ChatRepository(dataAccess); }
+					private set { }
+			}
+			public static MessageRepository messageRepository
+			{
+					get { return new MessageRepository(dataAccess); }
+					private set { }
+			}
+
+
+
 		private static DatabaseSettings GetDatabaseSettings()
         {
             return Scratch.Startup.GetApplicationConfiguration();

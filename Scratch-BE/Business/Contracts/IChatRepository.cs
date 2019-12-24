@@ -8,8 +8,8 @@ namespace Business.Contracts
 {
     public interface IChatRepository
     {
-        Task<ChatModel> AddAsync(ChatModel chat);
+        Task<ChatModel> AddAsync(ChatModel chat, string projectId);
         Task<ChatModel> GetAsync(string id);
-        Task<IEnumerable<ChatModel>> GetCollecionAsync();
+        Task<IEnumerable<ChatModel>> GetCollecionAsync(string projectId);
     }
 }
