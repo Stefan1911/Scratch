@@ -8,8 +8,7 @@ namespace Business.Contracts
 {
     public interface IShapeRepository
     {
-        Task<ShapeModel> AddAsync(ShapeModel shape);
-        Task<ShapeModel> GetAsync(string id);
-        Task<IEnumerable<ShapeModel>> GetCollecionAsync();
+        Task<ShapeModel> AddAsync(ShapeModel shape, string DrawingBoardId);
+        Task<IEnumerable<ShapeModel>> GetCollecionAsync(string DrawingBoardId);
     }
 }

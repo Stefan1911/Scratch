@@ -22,15 +22,16 @@ namespace Business.UserContext.UseCases
         }
         public async Task<ShapeResponse> HandleAsync(CreateShapeRequest shape)
         {
-            var sshape = new ShapeModel
-            {
-                FillColor = shape.FillColor,
-                StrockColor = shape.StrockColor,
-                Type = shape.Type
+            // var sshape = new ShapeModel
+            // {
+            //     FillColor = shape.FillColor,
+            //     StrockColor = shape.StrockColor,
+            //     Type = shape.Type
 
-            };
-            var returnShape = await _repository.AddAsync(sshape);
-            return returnShape.ToResponse();
+            // };
+            // var returnShape = await _repository.AddAsync(sshape);
+            // return returnShape.ToResponse();
+			return new ShapeResponse();
         }
 
     }
