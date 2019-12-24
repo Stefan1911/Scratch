@@ -61,11 +61,10 @@ namespace appTests.PersistenceTests
             //Given
             var userRepository = appTestDependencyHelper.userRepository;
             //When
-            var users = A.ListOf<UserModel>();
-            foreach (UserModel user in users)
-            {
-                user.Id = null;
-            }
+            
+			 A.Configure<ProjectModel>()
+                .Fill(c => c.Id, () => { return null; });
+			var users = A.ListOf<UserModel>(5);
 
             var users2 = await userRepository.AddRangeAsync(users);
             //Then

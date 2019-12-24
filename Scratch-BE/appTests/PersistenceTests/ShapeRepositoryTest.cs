@@ -38,6 +38,8 @@ namespace appTests.PersistenceTests
 			await projectRepository.AddAsync(newProject);
 			newShape = await shapeRepository.AddAsync(newShape,drawingBoardId);
 			newShape2 = await shapeRepository.AddAsync(newShape2,drawingBoardId);
+
+			await shapeRepository.DeleteAsync(newShape.Id,drawingBoardId);
 		//Then
 			Assert.NotNull(newShape.Id);
 		}

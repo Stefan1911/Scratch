@@ -7,6 +7,7 @@ using Business.Contracts;
 using Business.Models;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using MongoDB.Driver.Builders;
 
 namespace Persistence.Repositories
 {
@@ -27,6 +28,15 @@ namespace Persistence.Repositories
 			var pr = await _context.Projects.Find(filter).FirstOrDefaultAsync();
 			await _context.Projects.UpdateOneAsync(filter,update);
 			return shape;
+		}
+
+		public async Task DeleteAsync(string shapeId, string DrawingBoardId)
+		{
+
+			var filter = Builders<ProjectModel>.Filter.ElemMatch(_project => _project.DrawingBoards, _board => _board.Id.Equals(DrawingBoardId));
+			var shapeFilter = Builders<ShapeModel>.Filter.ElemMatch(_shape => _shape.Id , shapeId);
+			var update = Builders<ProjectModel>.Update.PullFilter<ShapeModel>("DrawingBoards.$.Shapes",shapeFilter);
+			await _context.Projects.UpdateOneAsync(filter,update);
 		}
 
 		public Task<IEnumerable<ShapeModel>> GetCollecionAsync(string DrawingBoardId)
