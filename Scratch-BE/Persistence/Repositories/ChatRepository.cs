@@ -22,16 +22,27 @@ namespace Persistence.Repositories
 
         public async Task<ChatModel> AddAsync(ChatModel chat, string boardId)
         {
-            throw new NotImplementedException();
+            chat.Id = ObjectId.GenerateNewId().ToString();
+            var filter = Builders<ProjectModel>.Filter.ElemMatch(_project => _project.DrawingBoards, _board => _board.Id.Equals(boardId));
+            var update = Builders<ProjectModel>.Update.Set("DrawingBoards.$.Chat", chat);
+            var pr = await _context.Projects.Find(filter).FirstOrDefaultAsync();
+            await _context.Projects.UpdateOneAsync(filter, update);
+            return chat;
         }
-        Task<ChatModel> IChatRepository.GetAsync(string id)
+       public async Task<ChatModel> GetAsync(string drawingBoardId)
         {
-            throw new NotImplementedException();
+
+            var filter = Builders<ProjectModel>.Filter.ElemMatch(_project => _project.DrawingBoards, _board => _board.Id.Equals(drawingBoardId));
+            var project = await _context.Projects
+                                                .Find(filter)
+                                                .FirstOrDefaultAsync();
+                                                
+            return project.DrawingBoards
+                                    .Where(_board => _board.Id.Equals(drawingBoardId))
+                                    .FirstOrDefault()
+                                    .Chat;
         }
 
-        Task<IEnumerable<ChatModel>> IChatRepository.GetCollecionAsync(string projectId)
-        {
-            throw new NotImplementedException();
-        }
+       
     }
 }

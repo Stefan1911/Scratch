@@ -10,6 +10,5 @@ namespace Business.Contracts
     {
         Task<ChatModel> AddAsync(ChatModel chat, string projectId);
         Task<ChatModel> GetAsync(string id);
-        Task<IEnumerable<ChatModel>> GetCollecionAsync(string projectId);
     }
 }
