@@ -23,10 +23,9 @@ namespace Business.UserContext.UseCases
         }
         public async Task<DrawingBoardResponse> HandleAsync(CreateDrawingBoardRequest request)
         {
-            var drawingBoard = new DrawingBoardModel();
-            //    var returnDrawingBoard = await _repository.AddAsync(drawingBoard);
-            //      return returnDrawingBoard.ToResponse();
-            throw new NotImplementedException();
+			var drawingBoard = new DrawingBoardModel();
+			var returnDrawingBoard = await _repository.AddAsync(drawingBoard, request.ProjectId	);
+			return returnDrawingBoard.ToResponse();
         }
 
     }

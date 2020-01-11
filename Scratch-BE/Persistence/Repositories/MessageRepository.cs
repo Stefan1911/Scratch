@@ -18,7 +18,7 @@ namespace Persistence.Repositories
             this.context = context;
         }
 
-        public async Task<MessageModel> AddAsync(MessageModel message)
+        public Task<MessageModel> AddAsync(MessageModel message)
         {
             throw new NotImplementedException();
 

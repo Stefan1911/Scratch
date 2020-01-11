@@ -14,5 +14,11 @@ namespace Business.Models
         public ChatModel Chat { get; set; }
         public List<ShapeModel> Shapes { get; set; }
 
+		public DrawingBoardModel()
+		{
+			this.Chat = new ChatModel();
+			this.Shapes = new List<ShapeModel>();
+		}
+
     }
 }

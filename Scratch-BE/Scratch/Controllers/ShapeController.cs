@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Boundary.ShapeContext.Request;
 using Boundary.UserContext.Request;
 using Boundary.UserContext.Response;
-using Business.Models;
 using Kernel;
 using Kernel.Response;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Scratch.Models;
 
 namespace Scratch.Controllers
 {
@@ -22,10 +23,16 @@ namespace Scratch.Controllers
         {
             var request = new CreateShapeRequest
             {
+				TableId = shapeModel.tableId,
                 FillColor = shapeModel.FillColor,
                 StrockColor = shapeModel.StrockColor,
-                Type = shapeModel.Type
-
+                Type = shapeModel.Type,
+				Points = shapeModel.Points.Select((point) => {
+					return new CreatePointRequest{
+						X = point.X,
+						Y = point.Y
+					};
+				})
             };
             var response = await handle.HandleAsync(request);
             return Ok(response);

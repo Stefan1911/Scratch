@@ -15,5 +15,10 @@ namespace Business.Models
         public string FillColor { get; set; }
         public string StrockColor { get; set; }
         public string Type { get; set; }
+
+		public ShapeModel()
+		{
+			this.Points = new List<Point>();
+		}
     }
 }

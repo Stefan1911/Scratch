@@ -8,6 +8,7 @@ using Boundary.UserContext;
 using Boundary.UserContext.Request;
 using Boundary.UserContext.Response;
 using Business.Contracts;
+using Business.DrawingBoardContext.UseCases;
 using Business.ExampleContext.UseCases;
 using Business.UserContext.UseCases;
 using Kernel.Response;
@@ -54,6 +55,7 @@ namespace Scratch
             #region DrawingBoard
             services.AddSingleton<IDrawingBoardRepository, DrawingBoardRepository>();
             services.AddUseCase<CreateDrawingBoardRequest, DrawingBoardResponse, CreateDrawingBoardUseCase>();
+			services.AddUseCase<GetDrawingBoardRequest, DrawingBoardResponse, GetDrawingBoardUseCase>();
             #endregion
             #region Project
             services.AddSingleton<IProjectRepository, ProjectRepository>();

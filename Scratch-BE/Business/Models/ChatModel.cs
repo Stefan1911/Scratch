@@ -13,5 +13,9 @@ namespace Business.Models
         public string Id { get; set; }
         public List<MessageModel> Messages { get; set; }
 
+		public ChatModel()
+		{
+			this.Messages = new List<MessageModel>();
+		}
     }
 }

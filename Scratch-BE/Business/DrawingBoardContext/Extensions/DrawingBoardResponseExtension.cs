@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Business.UserContext.Extension;
 using Boundary.UserContext.Response;
 using Business.Models;
+using Business.MessageContext.Extensions;
+using System.Linq;
 
 namespace Business.DrawingBoardContext.Extension
 {
@@ -13,6 +13,10 @@ namespace Business.DrawingBoardContext.Extension
             return new DrawingBoardResponse
             {
                 Id = drawingBoard.Id,
+				Chat = drawingBoard.Chat.ToResponse(),
+				Shapes = drawingBoard.Shapes.Select(shape => {
+					return shape.ToResponse();
+				}).ToList()
             };
         }
     }

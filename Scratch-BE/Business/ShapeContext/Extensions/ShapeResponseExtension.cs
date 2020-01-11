@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Linq;
 using Boundary.UserContext.Response;
 using Business.Models;
 
@@ -15,8 +13,13 @@ namespace Business.UserContext.Extension
                 Id = shape.Id,
                 FillColor = shape.FillColor,
                 StrockColor = shape.StrockColor,
-                Type = shape.Type
-               
+                Type = shape.Type,
+				Points = shape.Points.Select(Point => {
+					return new PointResponse{
+						X = Point.X,
+						Y = Point.Y
+					};
+				}).ToList()
             };
         }
     }

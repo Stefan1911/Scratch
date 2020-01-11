@@ -8,6 +8,6 @@ namespace Boundary.UserContext.Response
     public class ChatResponse : IResponseContext
     {
         public string Id { get; set; }
-        public List<UserResponse> Messages { get; set; }
+        public List<MessageResponse> Messages { get; set; }
     }
 }
