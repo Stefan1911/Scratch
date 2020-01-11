@@ -9,7 +9,8 @@ namespace Business.Contracts
     public interface IShapeRepository
     {
         Task<ShapeModel> AddAsync(ShapeModel shape, string DrawingBoardId);
-		Task DeleteAsync(string shapeId, string DrawingBoardId);
+        Task<ShapeModel> UpdateAsync(int index, ShapeModel shapeToUpdate, string DrawingBoardId);
+        Task DeleteAsync(string shapeId, string DrawingBoardId);
         Task<IEnumerable<ShapeModel>> GetCollecionAsync(string DrawingBoardId);
     }
 }

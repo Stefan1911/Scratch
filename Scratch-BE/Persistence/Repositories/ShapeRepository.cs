@@ -39,9 +39,30 @@ namespace Persistence.Repositories
 			await _context.Projects.UpdateOneAsync(filter,update);
 		}
 
-		public Task<IEnumerable<ShapeModel>> GetCollecionAsync(string DrawingBoardId)
+		public async Task<IEnumerable<ShapeModel>> GetCollecionAsync(string DrawingBoardId)
 		{
-			throw new NotImplementedException();
+			var filter = Builders<ProjectModel>.Filter.ElemMatch(_project => _project.DrawingBoards, _board => _board.Id.Equals(DrawingBoardId));
+			var project = await _context.Projects
+												.Find(filter)
+												.FirstOrDefaultAsync();
+
+			return project.DrawingBoards
+									.Where(_board => _board.Id.Equals(DrawingBoardId))
+									.FirstOrDefault()
+									.Shapes;
+		}
+
+		public async Task<ShapeModel> UpdateAsync(int index, ShapeModel shape, string DrawingBoardId)
+		{
+			shape.Id = ObjectId.GenerateNewId().ToString();
+			IEnumerable<ShapeModel> shapes= await GetCollecionAsync(DrawingBoardId);		
+			var shapes2=shapes.ToList();
+			shapes2.Insert(index, shape);
+			shapes2.RemoveAt(index + 1);
+			var filter = Builders<ProjectModel>.Filter.ElemMatch(_project => _project.DrawingBoards, _board => _board.Id.Equals(DrawingBoardId));
+			var update = Builders<ProjectModel>.Update.Set("DrawingBoards.$.Shapes", shapes2);
+			await _context.Projects.UpdateOneAsync(filter, update);
+			return shape;
 		}
 	}
 }
