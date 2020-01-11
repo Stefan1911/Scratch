@@ -30,6 +30,7 @@ export class DrawRectStrategy{
                                 .beginStroke(this.currentShapeModel.FillColor)
                                 .beginFill(this.currentShapeModel.StrockColor)
 								.drawRect(this.topLeftCorner.x,this.topLeftCorner.y,this.minDrawingWidth,this.minDrawingHeigth);
+		this.currentShapeModel.Points[0] = new PointModel(this.topLeftCorner.x,this.topLeftCorner.y);
         this.stage.addChild(this.CurrentlyDrawingShape);
         this.stage.update();
         this.isMousDown = true;
@@ -44,11 +45,11 @@ export class DrawRectStrategy{
                         .beginFill(this.currentShapeModel.StrockColor)
 						.drawRect(this.topLeftCorner.x,this.topLeftCorner.y,this.defaultWidth,this.defaultHeigth);
 			this.currentShapeModel.shapeIndex = this.stage.getChildIndex(this.CurrentlyDrawingShape);
-			this.currentShapeModel.Points.push(new PointModel(this.topLeftCorner.x,this.topLeftCorner.y));
-			this.currentShapeModel.Points.push(new PointModel(this.topLeftCorner.x+this.defaultWidth,this.topLeftCorner.y+this.defaultHeigth));
-			this.shapeSubjects.shapeCreatedSubject.next(this.currentShapeModel);
+			this.currentShapeModel.Points[0] = new PointModel(this.topLeftCorner.x,this.topLeftCorner.y);
+			this.currentShapeModel.Points[1] = new PointModel(this.topLeftCorner.x+this.defaultWidth,this.topLeftCorner.y+this.defaultHeigth);
 			this.stage.update();
         }
+		this.shapeSubjects.shapeCreatedSubject.next(this.currentShapeModel);
     }
     onMouseMove(event : MouseEvent){
         if(this.isMousDown){
@@ -59,7 +60,8 @@ export class DrawRectStrategy{
                         .clear()
                         .beginStroke(this.currentShapeModel.FillColor)
                         .beginFill(this.currentShapeModel.StrockColor)
-                        .drawRect(this.topLeftCorner.x,this.topLeftCorner.y,widht,heigth);
+						.drawRect(this.topLeftCorner.x,this.topLeftCorner.y,widht,heigth);
+				this.currentShapeModel.Points[1] = new PointModel(event.stageX,event.stageY);
                 this.stage.update();
             }
         }
