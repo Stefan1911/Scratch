@@ -1,4 +1,5 @@
 import { Point, MouseEvent, Shape, DisplayObject } from 'createjs-module';
+import { ShapeSubjectService } from '../ShapeSubjectService';
 
 export class SelectorTool{
     isMousDown : boolean = false;
@@ -6,7 +7,7 @@ export class SelectorTool{
     previousPoint: Point;
     onMousMoveEvent;
 
-    constructor(private stage : createjs.Stage) {
+    constructor(private stage : createjs.Stage,shapeSubjects : ShapeSubjectService) {
     }
     onMousDown(event : MouseEvent){
         this.SelectedObject = this.stage.getObjectUnderPoint(event.stageX,event.stageY,0);

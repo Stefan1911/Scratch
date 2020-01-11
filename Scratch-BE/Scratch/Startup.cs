@@ -71,6 +71,18 @@ namespace Scratch
             services.AddUseCase<CreateExampleRequst, ExampleResponse, CreateExampleUseCase>();
             services.AddUseCase<GetExampleCollecionRequest, CollectionResponse<ExampleResponse>, GetExampleCollectionUseCase>();
             #endregion
+
+
+			services.AddCors(options =>
+			{
+				options.AddPolicy("MyAllowSpecificOrigins",
+				builder =>
+				{
+					builder.WithOrigins("http://localhost:4200", "http://localhost:7000")
+													.AllowAnyHeader()
+													.AllowAnyMethod();
+				});
+			});
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -80,8 +92,8 @@ namespace Scratch
             {
                 app.UseDeveloperExceptionPage();
             }
-
-            app.UseHttpsRedirection();
+			app.UseCors("MyAllowSpecificOrigins");
+            //app.UseHttpsRedirection();
 
             app.UseRouting();
 

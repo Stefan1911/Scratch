@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import * as createjs from 'createjs-module';
 import { MouseStrategyFactory, MouseStrategyEnum } from 'src/app/services/mousStratey/MouseStrategyFactory';
+import { ShapeSubjectService } from 'src/app/services/ShapeSubjectService';
+import { PostService } from 'src/app/services/httpServices/postService';
 
 @Component({
   selector: 'app-canvas',
@@ -10,16 +12,23 @@ import { MouseStrategyFactory, MouseStrategyEnum } from 'src/app/services/mousSt
 })
 export class AppCanvasComponent implements OnInit {
 
-  mouseStrategy : any;
-  stage;
-  mousDownListener;
-  mousMoveListener;
-  mousUpListener;
-  constructor(private strategyFactory : MouseStrategyFactory) { }
+	mouseStrategy : any;
+	stage;
+	mousDownListener;
+	mousMoveListener;
+	mousUpListener;
+	drawingBoardId = "5e19a1a48a5c6b319f4b8890"
+
+	shapeSubjects = new ShapeSubjectService();
+  
+  constructor(private strategyFactory : MouseStrategyFactory, private postService: PostService ) { }
 
   ngOnInit() {
+	this.strategyFactory.setShapeSubject(this.shapeSubjects);
+	this.setUpShapeSubscriptions();
     this.stage = new createjs.Stage("demoCanvas");
-    this.setTool(MouseStrategyEnum.selector);
+	this.setTool(MouseStrategyEnum.selector);
+	this.stage.addEventListener("added", (event) => console.log(event));
 
     let circle = new createjs.Shape();
     circle.graphics.beginFill("DeepSkyBlue").beginStroke("#000000").drawCircle(100, 100, 50);
@@ -62,7 +71,13 @@ export class AppCanvasComponent implements OnInit {
     this.mousDownListener = this.stage.addEventListener("stagemousedown" , (event) => {this.mouseStrategy.onMousDown(event)});
     this.mousMoveListener = this.stage.addEventListener("stagemousemove" , (event) => {this.mouseStrategy.onMouseMove(event)});
     this.mousUpListener = this.stage.addEventListener("stagemouseup" , (event) => {this.mouseStrategy.onMouseUp(event)});
-    
   }
+
+  setUpShapeSubscriptions(){
+	this.shapeSubjects.shapeCreatedSubject.subscribe( shape => {
+		shape.tableId = this.drawingBoardId;
+		this.postService.sendShape(shape);
+	})
+	}
 
 }

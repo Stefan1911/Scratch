@@ -1,4 +1,8 @@
-import { Point, MouseEvent, Shape } from 'createjs-module';
+import { Point, MouseEvent, Shape, Rectangle } from 'createjs-module';
+import { Subject } from 'rxjs';
+import { ShapeModel } from 'src/app/models/ShapeModel';
+import { ShapeSubjectService } from '../ShapeSubjectService';
+import { PointModel } from 'src/app/models/PointModel';
 
 export class DrawRectStrategy{
     isMousDown : boolean = false;
@@ -7,18 +11,25 @@ export class DrawRectStrategy{
     minDrawingHeigth:number = 2;
     defaultWidth = 100;
     defaultHeigth = 100;
-    CurrentlyDrawingShape : createjs.Shape;
+	CurrentlyDrawingShape : createjs.Shape;
+	currentShapeModel :ShapeModel;
 
-    constructor(private stage : createjs.Stage) {
+
+    constructor(private stage : createjs.Stage, private shapeSubjects : ShapeSubjectService) {
+		this.currentShapeModel = new ShapeModel();
+		this.currentShapeModel.FillColor = "#000000";
+		this.currentShapeModel.StrockColor = "DeepSkyBlue";
+		this.currentShapeModel.Type = "Rectangle";
+		this.currentShapeModel.Points = [];
     }
     onMousDown(event : MouseEvent){
         this.topLeftCorner = new Point(event.stageX,event.stageY);
-        this.CurrentlyDrawingShape = new Shape();
+		this.CurrentlyDrawingShape = new Shape();
+		this.currentShapeModel.Points.length = 0;
         this.CurrentlyDrawingShape.graphics
-                                .beginStroke("#000000")
-                                .beginFill("DeepSkyBlue")
-                                .drawRect(this.topLeftCorner.x,this.topLeftCorner.y,this.minDrawingWidth,this.minDrawingHeigth);
-        
+                                .beginStroke(this.currentShapeModel.FillColor)
+                                .beginFill(this.currentShapeModel.StrockColor)
+								.drawRect(this.topLeftCorner.x,this.topLeftCorner.y,this.minDrawingWidth,this.minDrawingHeigth);
         this.stage.addChild(this.CurrentlyDrawingShape);
         this.stage.update();
         this.isMousDown = true;
@@ -29,10 +40,14 @@ export class DrawRectStrategy{
             this.topLeftCorner = new Point(event.stageX - (this.defaultWidth/2), event.stageY - (this.defaultHeigth/2));
             this.CurrentlyDrawingShape.graphics
                         .clear()
-                        .beginStroke("#000000")
-                        .beginFill("DeepSkyBlue")
-                        .drawRect(this.topLeftCorner.x,this.topLeftCorner.y,this.defaultWidth,this.defaultHeigth);
-                this.stage.update();
+                        .beginStroke(this.currentShapeModel.FillColor)
+                        .beginFill(this.currentShapeModel.StrockColor)
+						.drawRect(this.topLeftCorner.x,this.topLeftCorner.y,this.defaultWidth,this.defaultHeigth);
+			this.currentShapeModel.shapeIndex = this.stage.getChildIndex(this.CurrentlyDrawingShape);
+			this.currentShapeModel.Points.push(new PointModel(this.topLeftCorner.x,this.topLeftCorner.y));
+			this.currentShapeModel.Points.push(new PointModel(this.topLeftCorner.x+this.defaultWidth,this.topLeftCorner.y+this.defaultHeigth));
+			this.shapeSubjects.shapeCreatedSubject.next(this.currentShapeModel);
+			this.stage.update();
         }
     }
     onMouseMove(event : MouseEvent){
@@ -42,8 +57,8 @@ export class DrawRectStrategy{
             if(Math.abs(widht) > this.minDrawingWidth && Math.abs(heigth) > this.minDrawingHeigth){
                 this.CurrentlyDrawingShape.graphics
                         .clear()
-                        .beginStroke("#000000")
-                        .beginFill("DeepSkyBlue")
+                        .beginStroke(this.currentShapeModel.FillColor)
+                        .beginFill(this.currentShapeModel.StrockColor)
                         .drawRect(this.topLeftCorner.x,this.topLeftCorner.y,widht,heigth);
                 this.stage.update();
             }
