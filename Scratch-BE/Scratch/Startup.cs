@@ -20,6 +20,7 @@ using Business.ExampleContext.UseCases;
 using Business.ShapeContext.UseCases;
 using Business.UserContext.UseCases;
 using Kernel.Response;
+using MessagingService;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -88,10 +89,12 @@ namespace Scratch
 				builder =>
 				{
 					builder.WithOrigins("http://localhost:4200", "http://localhost:7000")
-													.AllowAnyHeader()
-													.AllowAnyMethod();
+					.AllowAnyHeader()
+					.AllowAnyMethod()
+					.AllowCredentials();
 				});
 			});
+			services.AddSignalR();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -111,6 +114,7 @@ namespace Scratch
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+				endpoints.MapHub<DrawingBoardHub>("/DrawingBoard");
             });
         }
 		public static IConfigurationRoot GetIConfigurationRoot(string outputPath = "")

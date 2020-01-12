@@ -3,6 +3,7 @@ import * as createjs from 'createjs-module';
 import { MouseStrategyFactory, MouseStrategyEnum } from 'src/app/services/mousStratey/MouseStrategyFactory';
 import { ShapeSubjectService } from 'src/app/services/ShapeSubjectService';
 import { PostService } from 'src/app/services/httpServices/postService';
+import { SignalRResiver } from 'src/app/services/httpServices/signalRReciver';
 
 @Component({
   selector: 'app-canvas',
@@ -21,9 +22,12 @@ export class AppCanvasComponent implements OnInit {
 
 	shapeSubjects = new ShapeSubjectService();
   
-  constructor(private strategyFactory : MouseStrategyFactory, private postService: PostService ) { }
+  constructor(private strategyFactory : MouseStrategyFactory
+			,private postService: PostService
+			,private reciver : SignalRResiver ) { }
 
   ngOnInit() {
+	this.reciver.registerDrawingStation(this);
 	this.strategyFactory.setShapeSubject(this.shapeSubjects);
 	this.setUpShapeSubscriptions();
     this.stage = new createjs.Stage("demoCanvas");
