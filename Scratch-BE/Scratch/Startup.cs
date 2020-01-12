@@ -25,6 +25,7 @@ using Microsoft.Extensions.Options;
 using Persistence.DataAccess;
 using Persistence.Repositories;
 using Scratch.Extensions;
+using Scratch.Models.ConfigurationModels;
 
 namespace Scratch
 {
@@ -33,14 +34,17 @@ namespace Scratch
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+			_corsConfiguration = GetCorsConfiguration();
+			_signalRConfig = GetSignalRConfiguration();
         }
 
         public IConfiguration Configuration { get; }
+		public CorsConfiguration _corsConfiguration { get; set; }
+		public SignalRConfiguration _signalRConfig { get; set; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-			var databaseSetting = GetApplicationConfiguration();
+			var databaseSetting = GetDatabaseConfiguration();
 			services.AddSingleton(databaseSetting);
 
             services.AddControllers();
@@ -72,31 +76,32 @@ namespace Scratch
             services.AddUseCase<CreateExampleRequst, ExampleResponse, CreateExampleUseCase>();
             services.AddUseCase<GetExampleCollecionRequest, CollectionResponse<ExampleResponse>, GetExampleCollectionUseCase>();
             #endregion
-
+			#region SignalR
+			services.AddSignalR();
+			services.AddSingleton<IDrawingBoardMessageBroker,DrawingBoardMessageBroker>();
+			#endregion
 
 			services.AddCors(options =>
 			{
-				options.AddPolicy("MyAllowSpecificOrigins",
+				options.AddPolicy(_corsConfiguration.Name,
 				builder =>
 				{
-					builder.WithOrigins("http://localhost:4200", "http://localhost:7000")
+					builder.WithOrigins(_corsConfiguration.Origins.ToArray())
 					.AllowAnyHeader()
 					.AllowAnyMethod()
 					.AllowCredentials();
 				});
 			});
-			services.AddSignalR();
+			
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
-			app.UseCors("MyAllowSpecificOrigins");
-            //app.UseHttpsRedirection();
+			app.UseCors(_corsConfiguration.Name);
 
             app.UseRouting();
 
@@ -105,27 +110,43 @@ namespace Scratch
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-				endpoints.MapHub<DrawingBoardHub>("/DrawingBoard");
+				endpoints.MapHub<DrawingBoardHub>(_signalRConfig.DrawingBoardHubAddres);
             });
         }
-		public static IConfigurationRoot GetIConfigurationRoot(string outputPath = "")
+		public static IConfigurationRoot GetIConfigurationRoot()
 		{            
 			return new ConfigurationBuilder()
-				//.SetBasePath("outputPath")
 				.AddJsonFile("appsettings.json", optional: true)
 				.AddEnvironmentVariables()
 				.Build();
 		}
 
-		public static DatabaseSettings GetApplicationConfiguration(string outputPath = "")
+		public static DatabaseSettings GetDatabaseConfiguration()
 		{
 			var configuration = new DatabaseSettings();
 
-			var iConfig = GetIConfigurationRoot(outputPath);
+			var iConfig = GetIConfigurationRoot();
 
 			iConfig
 				.GetSection(nameof(DatabaseSettings))
 				.Bind(configuration);
+
+			return configuration;
+		}
+		public static CorsConfiguration GetCorsConfiguration()
+		{
+			var iConfig = GetIConfigurationRoot();
+			var configuration = new CorsConfiguration();
+			iConfig.GetSection(nameof(CorsConfiguration)).Bind(configuration);;
+
+			return configuration;
+		}
+
+		public static SignalRConfiguration GetSignalRConfiguration()
+		{
+			var iConfig = GetIConfigurationRoot();
+			var configuration = new SignalRConfiguration();
+			iConfig.GetSection(nameof(SignalRConfiguration)).Bind(configuration);;
 
 			return configuration;
 		}

@@ -1,7 +1,5 @@
 ﻿using Kernel.Response;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Boundary.UserContext.Response
 {
