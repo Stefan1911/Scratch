@@ -12,7 +12,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Boundary\Boundary.csproj" />
     <ProjectReference Include="..\Kernel\Kernel.csproj" />
-    <ProjectReference Include="..\MessagingService\MessagingService.csproj" />
   </ItemGroup>
 
 </Project>

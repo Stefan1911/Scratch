@@ -6,16 +6,21 @@ using Business.ShapeContext.Extension;
 using Kernel;
 using System.Linq;
 using System.Threading.Tasks;
+using Boundary.UserContext.Request;
+using System.Linq;
+using Microsoft.AspNetCore.SignalR;
+using MessagingService;
 
 namespace Business.ShapeContext.UseCases
 {
     public class CreateShapeUseCase : IHandle<CreateShapeRequest, ShapeResponse>
     {
         private IShapeRepository _repository;
-
-        public CreateShapeUseCase(IShapeRepository repository)
+		private IDrawingBoardMessageBroker _messageBroker;
+        public CreateShapeUseCase(IShapeRepository repository, IDrawingBoardMessageBroker broker)
         {
             _repository = repository;
+			_messageBroker = broker;
         }
         public async Task<ShapeResponse> HandleAsync(CreateShapeRequest request)
         {
@@ -32,6 +37,7 @@ namespace Business.ShapeContext.UseCases
 				}).ToList()
             };
             var returnShape = await _repository.AddAsync(shape,request.TableId);
+			await _messageBroker.PushShape(request.TableId,returnShape);
             return returnShape.ToResponse();
         }
 
