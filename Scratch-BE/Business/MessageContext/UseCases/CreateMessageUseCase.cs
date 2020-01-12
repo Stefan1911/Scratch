@@ -4,6 +4,7 @@ using Business.Contracts;
 using Business.Models;
 using Business.UserContext.Extension;
 using Kernel;
+using System;
 using System.Threading.Tasks;
 
 namespace Business.UserContext.UseCases
@@ -16,7 +17,7 @@ namespace Business.UserContext.UseCases
         {
             _repository = repository;
         }
-        public async Task<MessageResponse> HandleAsync(CreateMessageRequest request)
+        public  Task<MessageResponse> HandleAsync(CreateMessageRequest request)
         {
             //var message = new MessageModel
             //{

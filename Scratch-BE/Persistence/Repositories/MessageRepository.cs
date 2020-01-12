@@ -20,24 +20,13 @@ namespace Persistence.Repositories
         }
 
         public async Task<MessageModel> AddAsync(MessageModel message, string boardId)
-        { 
-            var filter2 = Builders<ProjectModel>.Filter.ElemMatch(_project => _project.DrawingBoards, _board => _board.Id.Equals(boardId));
-            var project = await _context.Projects
-                                                .Find(filter2)
-                                                .FirstOrDefaultAsync();
-            var prom = project.DrawingBoards
-                                  .Where(_board => _board.Id.Equals(boardId))
-                                  .FirstOrDefault()
-                                  .Chat;
-            var filter = Builders<ProjectModel>.Filter.Where(_project => _project.DrawingBoards.Find(_board => _board.Id.Equals(boardId)).Chat.Id.Equals( prom.Id));
+        {
             message.Id = ObjectId.GenerateNewId().ToString();
-            
-            var update = Builders<ProjectModel>.Update.Push("DrawingBoards.Chat.$.Messages", message);
-            //var pr = _context.Projects.Find(filter).FirstOrDefault();
+            var filter = Builders<ProjectModel>.Filter.ElemMatch(_project => _project.DrawingBoards, _board => _board.Id.Equals(boardId));
+            var update = Builders<ProjectModel>.Update.Push("DrawingBoards.$.Chat.Messages", message);
+
             await _context.Projects.UpdateOneAsync(filter, update);
             return message;
-
-            
         }
    
         Task<MessageModel> IMessageRepository.GetAsync(string id)
@@ -51,3 +40,4 @@ namespace Persistence.Repositories
         }
     }
 }
+\

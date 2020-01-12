@@ -47,15 +47,12 @@ namespace appTests.PersistenceTests
                     return new List<MessageModel>();
                 });
 
-
             var chat = A.New<ChatModel>();
             chat = await chatRepository.AddAsync(chat, board.Id);
-
 
             A.Configure<MessageModel>()
              .Fill(c => c.Id, () => { return null; })
              .Fill(c => c.UserID, () => { return null; });
-
 
             var message = A.New<MessageModel>();
             message = await messageRepository.AddAsync(message, board.Id);
