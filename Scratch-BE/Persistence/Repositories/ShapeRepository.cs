@@ -25,7 +25,6 @@ namespace Persistence.Repositories
 			shape.Id = ObjectId.GenerateNewId().ToString();
 			var filter = Builders<ProjectModel>.Filter.ElemMatch(_project => _project.DrawingBoards, _board => _board.Id.Equals(DrawingBoardId));
 			var update = Builders<ProjectModel>.Update.Push("DrawingBoards.$.Shapes",shape);
-			//var pr = await _context.Projects.Find(filter).FirstOrDefaultAsync();
 			await _context.Projects.UpdateOneAsync(filter,update);
 			return shape;
 		}

@@ -10,16 +10,21 @@ using Kernel;
 using System.Threading.Tasks;
 using Boundary.UserContext.Request;
 using System.Linq;
+using Microsoft.AspNetCore.SignalR;
+using MessagingService;
 
 namespace Business.UserContext.UseCases
 {
     public class CreateShapeUseCase : IHandle<CreateShapeRequest, ShapeResponse>
     {
         private IShapeRepository _repository;
+		private IHubContext<DrawingBoardHub> _messagingHub;
 
-        public CreateShapeUseCase(IShapeRepository repository)
+
+        public CreateShapeUseCase(IShapeRepository repository, IHubContext<DrawingBoardHub> hub)
         {
             _repository = repository;
+			_messagingHub = hub;
         }
         public async Task<ShapeResponse> HandleAsync(CreateShapeRequest request)
         {
@@ -36,6 +41,7 @@ namespace Business.UserContext.UseCases
 				}).ToList()
             };
             var returnShape = await _repository.AddAsync(shape,request.TableId);
+			await _messagingHub.Clients.All.SendAsync(request.TableId,returnShape);
             return returnShape.ToResponse();
         }
 
