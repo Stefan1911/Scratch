@@ -2,8 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Boundary.MessageContext.Response;
 
-namespace Boundary.UserContext.Response
+namespace Boundary.ChatContext.Response
 {
     public class ChatResponse : IResponseContext
     {

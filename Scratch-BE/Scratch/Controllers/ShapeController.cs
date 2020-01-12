@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Boundary.ShapeContext.Request;
-using Boundary.UserContext.Request;
-using Boundary.UserContext.Response;
+﻿using Boundary.ShapeContext.Request;
+using Boundary.ShapeContext.Response;
 using Kernel;
 using Kernel.Response;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Scratch.Models;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Scratch.Controllers
 {
@@ -23,7 +19,7 @@ namespace Scratch.Controllers
         {
             var request = new CreateShapeRequest
             {
-				TableId = shapeModel.tableId,
+				TableId = shapeModel.TableId,
                 FillColor = shapeModel.FillColor,
                 StrockColor = shapeModel.StrockColor,
                 Type = shapeModel.Type,
@@ -33,6 +29,28 @@ namespace Scratch.Controllers
 						Y = point.Y
 					};
 				})
+            };
+            var response = await handle.HandleAsync(request);
+            return Ok(response);
+        }
+        [HttpPut]
+        public async Task<IActionResult> Put([FromServices] IHandle<UpdateShapeRequest, ShapeResponse> handle,
+            [FromBody]ShapeModel shapeModel)
+        {
+            var request = new UpdateShapeRequest
+            {
+                Index=shapeModel.Index,
+                TableId = shapeModel.TableId,
+                FillColor = shapeModel.FillColor,
+                StrockColor = shapeModel.StrockColor,
+                Type = shapeModel.Type,
+                Points = shapeModel.Points.Select((point) => {
+                    return new CreatePointRequest
+                    {
+                        X = point.X,
+                        Y = point.Y
+                    };
+                })
             };
             var response = await handle.HandleAsync(request);
             return Ok(response);

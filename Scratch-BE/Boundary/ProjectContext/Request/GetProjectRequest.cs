@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Kernel.Request;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Boundary.UserContext.Request
+namespace Boundary.ProjectContext.Request
 {
-    public class GetProjectRequest
+    public class GetProjectRequest : IRequestContext
     {
     }
 }

@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Boundary.UserContext.Request
+namespace Boundary.MessageContext.Request
 {
    public  class GetMessageCollectionRequest : IRequestContext
     {

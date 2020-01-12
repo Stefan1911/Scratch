@@ -1,5 +1,5 @@
 using System.Linq;
-using Boundary.UserContext.Response;
+using Boundary.ChatContext.Response;
 using Business.Models;
 using Business.UserContext.Extension;
 

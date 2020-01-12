@@ -1,8 +1,9 @@
 ﻿using Business.UserContext.Extension;
-using Boundary.UserContext.Response;
 using Business.Models;
 using Business.MessageContext.Extensions;
 using System.Linq;
+using Boundary.ShapeContext.Response;
+using Business.ShapeContext.Extension;
 
 namespace Business.DrawingBoardContext.Extension
 {

@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Boundary.UserContext;
-using Boundary.UserContext.Response;
+﻿using Boundary.MessageContext.Request;
+using Boundary.MessageContext.Response;
 using Business.Contracts;
-using Business.UserContext.Extension;
 using Business.Models;
+using Business.UserContext.Extension;
 using Kernel;
 using System.Threading.Tasks;
-using Boundary.UserContext.Request;
 
 namespace Business.UserContext.UseCases
 {

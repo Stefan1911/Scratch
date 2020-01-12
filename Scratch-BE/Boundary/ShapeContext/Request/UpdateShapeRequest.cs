@@ -1,12 +1,15 @@
+﻿using Kernel.Request;
+using System;
 using System.Collections.Generic;
+using System.Text;
 
-namespace Scratch.Models
+namespace Boundary.ShapeContext.Request
 {
-    public class ShapeModel
+    public class UpdateShapeRequest : IRequestContext
     {
         public int Index { get; set; }
         public string TableId { get; set; }
-        public List<PointModel> Points { get; set; }
+        public IEnumerable<CreatePointRequest> Points { get; set; }
         public string FillColor { get; set; }
         public string StrockColor { get; set; }
         public string Type { get; set; }

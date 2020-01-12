@@ -2,8 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Boundary.ChatContext.Response;
 
-namespace Boundary.UserContext.Response
+namespace Boundary.ShapeContext.Response
 {
     public class DrawingBoardResponse : IResponseContext
     {

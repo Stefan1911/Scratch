@@ -1,9 +1,10 @@
-﻿using Kernel.Response;
+﻿using Boundary.ShapeContext.Response;
+using Kernel.Response;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Boundary.UserContext.Response
+namespace Boundary.ProjectContext.Response
 {
     public class ProjectResponse : IResponseContext
     {

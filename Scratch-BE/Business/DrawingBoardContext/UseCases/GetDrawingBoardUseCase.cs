@@ -1,12 +1,12 @@
-using Boundary.UserContext.Request;
-using Boundary.UserContext.Response;
+using Boundary.DrawingBoardContext.Request;
+using Boundary.ShapeContext.Response;
 using Business.Contracts;
 using Business.DrawingBoardContext.Extension;
 using Kernel;
 
 namespace Business.DrawingBoardContext.UseCases
 {
-    public class GetDrawingBoardUseCase : IHandle<GetDrawingBoardRequest, DrawingBoardResponse>
+	public class GetDrawingBoardUseCase : IHandle<GetDrawingBoardRequest, DrawingBoardResponse>
     {
 		private IDrawingBoardRepository _repository;
 

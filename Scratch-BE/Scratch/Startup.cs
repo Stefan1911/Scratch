@@ -2,14 +2,22 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Boundary.DrawingBoardContext.Request;
 using Boundary.ExampleContext.Request;
 using Boundary.ExampleContext.Response;
+using Boundary.MessageContext.Request;
+using Boundary.MessageContext.Response;
+using Boundary.ProjectContext.Request;
+using Boundary.ProjectContext.Response;
+using Boundary.ShapeContext.Request;
+using Boundary.ShapeContext.Response;
 using Boundary.UserContext;
 using Boundary.UserContext.Request;
 using Boundary.UserContext.Response;
 using Business.Contracts;
 using Business.DrawingBoardContext.UseCases;
 using Business.ExampleContext.UseCases;
+using Business.ShapeContext.UseCases;
 using Business.UserContext.UseCases;
 using Kernel.Response;
 using Microsoft.AspNetCore.Builder;
@@ -47,6 +55,7 @@ namespace Scratch
             #region Shape
             services.AddSingleton<IShapeRepository, ShapeRepository>();
             services.AddUseCase<CreateShapeRequest, ShapeResponse, CreateShapeUseCase>();
+            services.AddUseCase<UpdateShapeRequest, ShapeResponse, UpdateShapeUseCase>();
             #endregion
             #region Message
             services.AddSingleton<IMessageRepository, MessageRepository>();

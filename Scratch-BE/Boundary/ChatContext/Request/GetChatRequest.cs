@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Kernel.Request;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Boundary.UserContext.Request
+namespace Boundary.ChatContext.Request
 {
-    public class GetChatRequest
+    public class GetChatRequest : IRequestContext
     {
     }
 }

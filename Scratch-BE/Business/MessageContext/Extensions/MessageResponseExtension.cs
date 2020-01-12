@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Boundary.UserContext.Response;
+﻿using Boundary.MessageContext.Response;
 using Business.Models;
 
 namespace Business.UserContext.Extension

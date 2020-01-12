@@ -6,5 +6,6 @@ namespace Kernel.Request
 {
     public interface IRequestContext
     {
+
     }
 }

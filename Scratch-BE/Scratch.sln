@@ -11,9 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Boundary", "Boundary\Bounda
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Business", "Business\Business.csproj", "{9BA26831-3664-402B-A3C5-24F78BF10A48}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persistence", "Persistence\Persistence.csproj", "{1ADCAEEE-708A-46FD-8636-D17C1BE11B4C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Persistence", "Persistence\Persistence.csproj", "{1ADCAEEE-708A-46FD-8636-D17C1BE11B4C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "appTests", "appTests\appTests.csproj", "{1C3B764B-51BB-4564-A1CB-DB93D9B1C035}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "appTests", "appTests\appTests.csproj", "{1C3B764B-51BB-4564-A1CB-DB93D9B1C035}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

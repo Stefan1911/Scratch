@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Boundary.UserContext;
-using Boundary.UserContext.Response;
+﻿using Boundary.DrawingBoardContext.Request;
+using Boundary.ShapeContext.Response;
 using Business.Contracts;
-using Business.UserContext.Extension;
+using Business.DrawingBoardContext.Extension;
 using Business.Models;
+using Business.UserContext.Extension;
 using Kernel;
 using System.Threading.Tasks;
-using Boundary.UserContext.Request;
-using Business.DrawingBoardContext.Extension;
 
 namespace Business.UserContext.UseCases
 {

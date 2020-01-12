@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Kernel.Request;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Boundary.UserContext.Request
+namespace Boundary.MessageContext.Request
 {
-    public class GetMessageRequest
+    public class GetMessageRequest : IRequestContext
     {
     }
 }

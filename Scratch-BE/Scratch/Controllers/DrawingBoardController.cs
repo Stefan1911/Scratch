@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Boundary.UserContext.Request;
-using Boundary.UserContext.Response;
+﻿using Boundary.DrawingBoardContext.Request;
+using Boundary.ShapeContext.Response;
 using Kernel;
 using Kernel.Response;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Scratch.Models;
+using System.Threading.Tasks;
 
 namespace Scratch.Controllers
 {

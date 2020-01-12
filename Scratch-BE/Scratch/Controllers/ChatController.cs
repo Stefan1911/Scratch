@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Boundary.UserContext.Request;
-using Boundary.UserContext.Response;
+﻿using Boundary.ChatContext.Request;
+using Boundary.ChatContext.Response;
 using Business.Models;
 using Kernel;
 using Kernel.Response;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace Scratch.Controllers
 {

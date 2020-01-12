@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Boundary.UserContext.Response
+namespace Boundary.ShapeContext.Response
 {
     public class ShapeResponse : IResponseContext
     {

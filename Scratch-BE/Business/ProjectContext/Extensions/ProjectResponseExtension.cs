@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Boundary.UserContext.Response;
+﻿using Boundary.ProjectContext.Response;
 using Business.DrawingBoardContext.Extension;
 using Business.Models;
 using Kernel.Response.Extensions;
+using System.Linq;
 
 namespace Business.UserContext.Extension
 {

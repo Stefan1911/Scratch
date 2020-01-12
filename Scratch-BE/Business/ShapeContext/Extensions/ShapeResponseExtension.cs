@@ -1,8 +1,8 @@
 ﻿using System.Linq;
-using Boundary.UserContext.Response;
+using Boundary.ShapeContext.Response;
 using Business.Models;
 
-namespace Business.UserContext.Extension
+namespace Business.ShapeContext.Extension
 {
     public static class ShapeResponseExtension
     {
