@@ -1,9 +1,11 @@
 ﻿using Boundary.ChatContext.Request;
 using Boundary.ChatContext.Response;
-using Business.Models;
+using Boundary.MessageContext.Request;
 using Kernel;
 using Kernel.Response;
 using Microsoft.AspNetCore.Mvc;
+using Scratch.Models;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Scratch.Controllers

@@ -1,9 +1,9 @@
 ﻿using Boundary.MessageContext.Request;
 using Boundary.MessageContext.Response;
-using Business.Models;
 using Kernel;
 using Kernel.Response;
 using Microsoft.AspNetCore.Mvc;
+using Scratch.Models;
 using System.Threading.Tasks;
 
 namespace Scratch.Controllers
@@ -19,8 +19,8 @@ namespace Scratch.Controllers
             var request = new CreateMessageRequest
             {
                 TimeStamp = messageModel.TimeStamp,
-                UserID = messageModel.UserID
-
+                UserID = messageModel.UserId,
+                TableId = messageModel.TableId
             };
             var response = await handle.HandleAsync(request);
             return Ok(response);

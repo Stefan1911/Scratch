@@ -7,5 +7,6 @@ namespace Boundary.MessageContext.Request
 {
    public  class GetMessageCollectionRequest : IRequestContext
     {
+
     }
 }

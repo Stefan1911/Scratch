@@ -4,6 +4,7 @@ using Business.Contracts;
 using Business.Models;
 using Business.UserContext.Extension;
 using Kernel;
+using System;
 using System.Threading.Tasks;
 
 namespace Business.UserContext.UseCases
@@ -22,9 +23,8 @@ namespace Business.UserContext.UseCases
             {
                 TimeStamp = request.TimeStamp,
                 UserID = request.UserID
-
             };
-            var returnMessage = await _repository.AddAsync(message);
+            var returnMessage = await _repository.AddAsync(message, request.TableId);
             return returnMessage.ToResponse();
         }
 

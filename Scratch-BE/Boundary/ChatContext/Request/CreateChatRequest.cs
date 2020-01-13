@@ -8,6 +8,7 @@ namespace Boundary.ChatContext.Request
 {
     public class CreateChatRequest : IRequestContext
     {
+        public string TableId { get; set; }
         public List<CreateMessageRequest> Messages { get; set; }
     }
 }

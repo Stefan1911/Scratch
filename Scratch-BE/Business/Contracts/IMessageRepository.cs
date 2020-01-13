@@ -8,8 +8,7 @@ namespace Business.Contracts
 {
     public interface IMessageRepository
     {
-        Task<MessageModel> AddAsync(MessageModel message);
-        Task<MessageModel> GetAsync(string id);
-        Task<IEnumerable<MessageModel>> GetCollecionAsync();
+        Task<MessageModel> AddAsync(MessageModel message, string boardId);
+        Task<IEnumerable<MessageModel>> GetCollecionAsync(string DrawingBoardId);
     }
 }
