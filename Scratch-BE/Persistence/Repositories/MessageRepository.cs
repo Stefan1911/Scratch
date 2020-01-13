@@ -28,16 +28,18 @@ namespace Persistence.Repositories
             await _context.Projects.UpdateOneAsync(filter, update);
             return message;
         }
-   
-        Task<MessageModel> IMessageRepository.GetAsync(string id)
-        {
-            throw new NotImplementedException();
-        }
 
-        Task<IEnumerable<MessageModel>> IMessageRepository.GetCollecionAsync()
+       public async Task<IEnumerable<MessageModel>> GetCollecionAsync(string DrawingBoardId)
         {
-            throw new NotImplementedException();
+            var filter = Builders<ProjectModel>.Filter.ElemMatch(_project => _project.DrawingBoards, _board => _board.Id.Equals(DrawingBoardId));
+            var project = await _context.Projects
+                                                .Find(filter)
+                                                .FirstOrDefaultAsync();
+
+            return project.DrawingBoards
+                                    .Where(_board => _board.Id.Equals(DrawingBoardId))
+                                    .FirstOrDefault()
+                                    .Chat.Messages;
         }
     }
 }
-\

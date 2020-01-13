@@ -17,17 +17,15 @@ namespace Business.UserContext.UseCases
         {
             _repository = repository;
         }
-        public  Task<MessageResponse> HandleAsync(CreateMessageRequest request)
+        public async Task<MessageResponse> HandleAsync(CreateMessageRequest request)
         {
-            //var message = new MessageModel
-            //{
-            //    TimeStamp = request.TimeStamp,
-            //    UserID = request.UserID
-
-            //};
-            //var returnMessage = await _repository.AddAsync(message,);
-            //return returnMessage.ToResponse();
-            throw new NotImplementedException();
+            var message = new MessageModel
+            {
+                TimeStamp = request.TimeStamp,
+                UserID = request.UserID
+            };
+            var returnMessage = await _repository.AddAsync(message, request.TableId);
+            return returnMessage.ToResponse();
         }
 
     }

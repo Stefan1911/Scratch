@@ -15,7 +15,7 @@ namespace appTests.PersistenceTests
     public class MessageRepositoryTest
     {
         [Fact]
-        public async void AddAsyncTest()
+        public async void Add_Get_AsyncTest()
         {
 
             var boardRepository = appTestDependencyHelper.drawingBoardRepository;
@@ -51,15 +51,22 @@ namespace appTests.PersistenceTests
             chat = await chatRepository.AddAsync(chat, board.Id);
 
             A.Configure<MessageModel>()
-             .Fill(c => c.Id, () => { return null; })
-             .Fill(c => c.UserID, () => { return null; });
+             .Fill(c => c.Id, () => { return null; });
+            // .Fill(c => c.UserID, () => { return null; });
 
-            var message = A.New<MessageModel>();
-            message = await messageRepository.AddAsync(message, board.Id);
+            var messages = A.ListOf<MessageModel>(5);
+            foreach(MessageModel message in messages)
+                 await messageRepository.AddAsync(message, board.Id);
 
             board = await boardRepository.GetAsync(board.Id);
-            
-            Assert.True(board.Chat.Messages.Count>0);
+
+            //Assert.True(board.Chat.Messages.Count>0);
+
+            var getMessages = await messageRepository.GetCollecionAsync(board.Id);
+
+            for(int i=0;i<messages.Count;i++)
+                Assert.Equal(getMessages.ToList()[i].UserID,messages[i].UserID);
+
         }
 
 
