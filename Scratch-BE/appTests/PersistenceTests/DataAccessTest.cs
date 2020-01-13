@@ -16,7 +16,7 @@ namespace appTests.PersistenceTests
         }
 
 		private DatabaseSettings GetDatabaseSettings(){
-			return Scratch.Startup.GetApplicationConfiguration();
+			return Scratch.Startup.GetDatabaseConfiguration();
 		}
     }
 }

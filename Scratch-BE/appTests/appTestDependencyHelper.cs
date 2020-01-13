@@ -39,7 +39,7 @@ namespace appTests
 
 		private static DatabaseSettings GetDatabaseSettings()
         {
-            return Scratch.Startup.GetApplicationConfiguration();
+            return Scratch.Startup.GetDatabaseConfiguration();
         }
     }
 }
