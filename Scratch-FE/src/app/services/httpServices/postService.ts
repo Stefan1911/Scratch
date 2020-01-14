@@ -10,31 +10,9 @@ export class PostService{
 	constructor(private http : HttpClient ) {
 	}
 
-	sendMove(move){
-		console.log( move.givenFigure);
-		this.http.post("http://localhost:5000/api/GameState",this.transformMove(move))
-			.subscribe((response) => {
-				console.log(response);
-			});
-	}
-
-	private transformMove(move){
-		move.previousGameState.gameBoard.forEach(row => {
-			while (row.length < 4) {
-				row.push(null);
-			}
-		});
-
-		move.nextGameState.gameBoard.forEach(row => {
-			while (row.length < 4) {
-				row.push(null);
-			}
-		});
-		return move;
-	}
-
-	sendShape(shape : ShapeModel){
-		console.log("shape has been send");
+	sendShape(connecionID:string ,shape : ShapeModel){
+		console.log("log from sendShape: " + connecionID);
+		shape.sendingClientID = connecionID;
 		this.http.post("http://localhost:5000/api/Shape",shape)
 			.subscribe( (response) => {
 				console.log(response);

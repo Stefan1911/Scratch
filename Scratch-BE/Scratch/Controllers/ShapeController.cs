@@ -20,6 +20,7 @@ namespace Scratch.Controllers
             var request = new CreateShapeRequest
             {
 				TableId = shapeModel.TableId,
+				SenderClientId = shapeModel.sendingClientID,
                 FillColor = shapeModel.FillColor,
                 StrockColor = shapeModel.StrockColor,
                 Type = shapeModel.Type,

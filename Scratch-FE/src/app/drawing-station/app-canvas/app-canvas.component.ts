@@ -4,6 +4,9 @@ import { MouseStrategyFactory, MouseStrategyEnum } from 'src/app/services/mousSt
 import { ShapeSubjectService } from 'src/app/services/ShapeSubjectService';
 import { PostService } from 'src/app/services/httpServices/postService';
 import { SignalRResiver } from 'src/app/services/httpServices/signalRReciver';
+import { GetService } from 'src/app/services/httpServices/getService';
+import { DrawingBoardModel } from 'src/app/models/DrawingBoardModel';
+import { ShapeModel } from 'src/app/models/ShapeModel';
 
 @Component({
   selector: 'app-canvas',
@@ -18,70 +21,69 @@ export class AppCanvasComponent implements OnInit {
 	mousDownListener;
 	mousMoveListener;
 	mousUpListener;
-	drawingBoardId = "5e19a1a48a5c6b319f4b8890"
-
+	drawingBoardId = "5e19a1a48a5c6b319f4b8890";
+	projectId = "5e02109ba8137e40119e51b6";
+	drawingBoard : DrawingBoardModel
 	shapeSubjects = new ShapeSubjectService();
+	conncionID : string ;
   
   constructor(private strategyFactory : MouseStrategyFactory
 			,private postService: PostService
-			,private reciver : SignalRResiver ) { }
+			,private reciver : SignalRResiver 
+			,private getService : GetService
+			) { }
 
   ngOnInit() {
-	this.reciver.registerDrawingStation(this);
+	this.getService.getTable(this.projectId,this.drawingBoardId)
+	.subscribe((drawingBoard: DrawingBoardModel) => {
+		this.DrawAllShapes(drawingBoard.shapes);
+	})
+	this.reciver.registerDrawingStation(this).then( (mightBeTheId) =>{
+		this.conncionID = mightBeTheId
+	})
 	this.strategyFactory.setShapeSubject(this.shapeSubjects);
 	this.setUpShapeSubscriptions();
     this.stage = new createjs.Stage("demoCanvas");
 	this.setTool(MouseStrategyEnum.selector);
 	this.stage.addEventListener("added", (event) => console.log(event));
-
-    let circle = new createjs.Shape();
-    circle.graphics.beginFill("DeepSkyBlue").beginStroke("#000000").drawCircle(100, 100, 50);
-
-    let rect = new createjs.Shape();
-    rect.graphics.beginFill("DeepSkyBlue").beginStroke("#000000").drawRect(50, 190,100,100);
-
-    let circle3 = new createjs.Shape();
-    circle3.graphics.beginFill("DeepSkyBlue").beginStroke("#000000").drawPolyStar(100,400,20,6,6,(360/6));
-
-    // let myLine = new createjs.Shape();
-    // myLine.graphics.moveTo(500,500);
-    // myLine.graphics.setStrokeStyle(40).beginFill("DeepSkyBlue").beginStroke("#000000").lineTo(600,600).lineTo(600,700);
-
-    this.stage.addChild(circle);
-    this.stage.addChild(rect);
-    this.stage.addChild(circle3);
-    //this.stage.addChild(myLine)
- 
     this.stage.update();
- 
-    // createjs.Tween.get(circle, { loop: true })
-    // .to({ x: 400 }, 1000, createjs.Ease.getPowInOut(4))
-    // .to({ alpha: 0, y: 175 }, 500, createjs.Ease.getPowInOut(2))
-    // .to({ alpha: 0, y: 225 }, 100)
-    // .to({ alpha: 1, y: 200 }, 500, createjs.Ease.getPowInOut(2))
-    // .to({ x: 100 }, 800, createjs.Ease.getPowInOut(2));
- 
-    // createjs.Ticker.setFPS(60);
-    // createjs.Ticker.addEventListener("tick", stage);
-
   }
+  
   setTool( tool:MouseStrategyEnum){
-    this.stage.removeEventListener("stagemousedown", this.mousDownListener);
-    this.stage.removeEventListener("stagemousemove", this.mousDownListener);
-    this.stage.removeEventListener("stagemouseup", this.mousDownListener);
+	this.stage.removeAllEventListeners("stagemousedown");
+	this.stage.removeAllEventListeners("stagemousemove");
+	this.stage.removeAllEventListeners("stagemouseup");
 
     this.mouseStrategy = this.strategyFactory.getMousStrategy(tool,this.stage);
 
-    this.mousDownListener = this.stage.addEventListener("stagemousedown" , (event) => {this.mouseStrategy.onMousDown(event)});
-    this.mousMoveListener = this.stage.addEventListener("stagemousemove" , (event) => {this.mouseStrategy.onMouseMove(event)});
-    this.mousUpListener = this.stage.addEventListener("stagemouseup" , (event) => {this.mouseStrategy.onMouseUp(event)});
+	this.stage.addEventListener("stagemousedown" , (event) => {this.mouseStrategy.onMousDown(event)});
+	this.stage.addEventListener("stagemousemove" , (event) => {this.mouseStrategy.onMouseMove(event)});
+    this.stage.addEventListener("stagemouseup" , (event) => {this.mouseStrategy.onMouseUp(event)});
   }
 
   setUpShapeSubscriptions(){
 	this.shapeSubjects.shapeCreatedSubject.subscribe( shape => {
 		shape.tableId = this.drawingBoardId;
-		this.postService.sendShape(shape);
+		this.postService.sendShape(this.conncionID,shape);
 	})
 	}
 
+	DrawAllShapes( shapes:ShapeModel[]){
+		shapes.forEach((shape) =>{
+			this.drawShape(shape);
+		})
+	}
+
+	drawShape(shape:ShapeModel){
+		let newShape = new createjs.Shape();
+		if(shape.type == "Rectangle"){
+			let pointOne = shape.points[0];
+			let pointTwo = shape.points[1];
+			let width = pointTwo.x - pointOne.x;
+			let heigth = pointTwo.y - pointOne.y;
+			newShape.graphics.beginFill("DeepSkyBlue").beginStroke("#000000").drawRect(pointOne.x,pointOne.y,width,heigth);
+			this.stage.addChild(newShape)
+		}
+		this.stage.update();
+	}
 }

@@ -3,8 +3,9 @@ import { PointModel } from './PointModel';
 export class ShapeModel{
 	shapeIndex : number;
 	tableId : string;
-	Points : PointModel[];
-	FillColor : string;
-	StrockColor : string;
-	Type : string;
+	points : PointModel[];
+	fillColor : string;
+	strockColor : string;
+	type : string;
+	sendingClientID :string
 }

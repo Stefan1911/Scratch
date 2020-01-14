@@ -10,5 +10,6 @@ namespace Scratch.Models
         public string FillColor { get; set; }
         public string StrockColor { get; set; }
         public string Type { get; set; }
+		public string sendingClientID { get; set; }
     }
 }

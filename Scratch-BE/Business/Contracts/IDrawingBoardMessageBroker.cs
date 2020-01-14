@@ -5,6 +5,6 @@ namespace Business.Contracts
 {
     public interface IDrawingBoardMessageBroker
     {
-         Task PushShape(string MessageName,ShapeModel shape);
+         Task PushShape(string MessageName,string excludedClientID,ShapeModel shape);
     }
 }

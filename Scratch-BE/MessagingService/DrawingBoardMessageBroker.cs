@@ -13,9 +13,9 @@ namespace MessagingService
 			_messagingHub = messagingHub;
 		}
 
-		public async Task PushShape(string MessageName, ShapeModel shape)
+		public async Task PushShape(string MessageName, string excludedClientId,ShapeModel shape)
 		{
-			await _messagingHub.Clients.All.SendAsync(MessageName,shape);
+			await _messagingHub.Clients.AllExcept(excludedClientId).SendAsync(MessageName,shape);
 		}
 	}
 }

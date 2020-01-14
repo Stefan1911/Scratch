@@ -9,6 +9,7 @@ namespace Boundary.ShapeContext.Request
     public class CreateShapeRequest : IRequestContext
     {
 		public string TableId { get; set; }	
+		public string SenderClientId { get; set; }
         public IEnumerable<CreatePointRequest> Points { get; set; }
         public string FillColor { get; set; }
         public string StrockColor { get; set; }
