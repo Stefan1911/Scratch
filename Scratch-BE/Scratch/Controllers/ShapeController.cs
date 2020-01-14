@@ -40,7 +40,8 @@ namespace Scratch.Controllers
         {
             var request = new UpdateShapeRequest
             {
-                Index=shapeModel.Index,
+                Index=shapeModel.ShapeIndex,
+				SenderClientId = shapeModel.sendingClientID,
                 TableId = shapeModel.TableId,
                 FillColor = shapeModel.FillColor,
                 StrockColor = shapeModel.StrockColor,

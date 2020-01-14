@@ -11,11 +11,14 @@ export class PostService{
 	}
 
 	sendShape(connecionID:string ,shape : ShapeModel){
-		console.log("log from sendShape: " + connecionID);
 		shape.sendingClientID = connecionID;
 		this.http.post("http://localhost:5000/api/Shape",shape)
-			.subscribe( (response) => {
-				console.log(response);
-			})
+			.subscribe();
+	}
+
+	updateShape(connecionID:string ,shape : ShapeModel){
+		shape.sendingClientID = connecionID;
+		this.http.put("http://localhost:5000/api/Shape",shape)
+			.subscribe();
 	}
 }

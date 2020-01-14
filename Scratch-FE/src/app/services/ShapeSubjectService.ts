@@ -8,6 +8,7 @@ import { Shape } from 'createjs-module';
 })
 export class ShapeSubjectService{
 	shapeCreatedSubject = new Subject<ShapeModel>();
+	moveSubject = new Subject<{shapeIndex:number,xMovement:number,yMovement:number}>()
 	shapeUpdatedSubject = new Subject<ShapeModel>();
 	shapeDeletedSubject = new Subject<ShapeModel>();
 

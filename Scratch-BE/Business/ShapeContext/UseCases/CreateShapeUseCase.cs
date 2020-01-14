@@ -33,7 +33,7 @@ namespace Business.ShapeContext.UseCases
 				}).ToList()
             };
             var returnShape = await _repository.AddAsync(shape,request.TableId);
-			await _messageBroker.PushShape(request.TableId,request.SenderClientId,returnShape);
+			await _messageBroker.PushShapeAsync(request.TableId,request.SenderClientId,returnShape);
             return returnShape.ToResponse();
         }
 

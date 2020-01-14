@@ -13,5 +13,6 @@ namespace Boundary.ShapeContext.Request
         public string FillColor { get; set; }
         public string StrockColor { get; set; }
         public string Type { get; set; }
+		public string SenderClientId { get; set; }
     }
 }

@@ -11,9 +11,7 @@ export class SignalRResiver {
 	private connetionURL : string
 	private id:string
 	private promis;
-	constructor() {
-		console.log("construktor se moziva");
-		
+	constructor() {		
 		this.hubConnection = new signalR.HubConnectionBuilder()
 			.withUrl('http://localhost:5000/DrawingBoard')
 			.build();
@@ -35,8 +33,9 @@ export class SignalRResiver {
 			canvas.drawShape(data);
 			});
 		let id = await this.promis;
-		//let r = /.*\=(.*)/;
-		//let connectionId = r.exec(this.connetionURL)[1]
+		this.hubConnection.on(canvas.drawingBoardId + "/updateShape", (shape, shapeIndex) =>{
+			canvas.updateShape(shape,shapeIndex);
+		})
 		return id;
 	}
 
