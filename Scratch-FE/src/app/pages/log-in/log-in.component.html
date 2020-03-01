@@ -1,0 +1,46 @@
+<div class="bg">
+    <div class="verticalContainer">
+        <mat-card class="example-card">
+            <mat-card-content>
+                <mat-tab-group (selectedIndexChange)="this.selectionChanged($event)">
+                    <mat-tab label="Login"> 
+                            <form class="example-form">
+                                <mat-form-field class="example-full-width">
+                                  <mat-label>Username</mat-label>
+                                  <input matInput (input)="username = $event.target.value">
+                                </mat-form-field>
+                              
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>password</mat-label>
+                                    <input matInput (input)="password = $event.target.value" >
+                                  </mat-form-field>
+                              </form>
+                    </mat-tab>
+                    <mat-tab label="Register"> 
+                            <form class="example-form">
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>E-Mail</mat-label>
+                                    <input matInput (input)="email = $event.target.value">
+                                  </mat-form-field>
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Full Name</mat-label>
+                                    <input matInput (input)="fullName = $event.target.value" >
+                                  </mat-form-field>
+    
+                                <mat-form-field class="example-full-width">
+                                  <mat-label>Username</mat-label>
+                                  <input matInput (input)="registerUsername = $event.target.value">
+                                </mat-form-field>
+                              
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>password</mat-label>
+                                    <input matInput (input)="registerPassword = $event.target.value" >
+                                  </mat-form-field>
+                            </form>
+                    </mat-tab>
+                  </mat-tab-group>
+            </mat-card-content>
+            <button class="okButton" mat-stroked-button (click)="submit()" >{{buttonText}}</button>
+        </mat-card>
+    </div>
+</div>

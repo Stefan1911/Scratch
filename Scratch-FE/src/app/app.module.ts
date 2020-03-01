@@ -12,12 +12,17 @@ import {MatIconModule} from '@angular/material/icon';
 import { HttpClientModule } from "@angular/common/http";
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import { LogInComponent } from './pages/log-in/log-in.component';
+import {MatCardModule} from '@angular/material/card';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatInputModule} from '@angular/material/input';
 @NgModule({
   declarations: [
     AppComponent,
     AppCanvasComponent,
     DrawingStationComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    LogInComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +31,11 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     MatButtonModule,
     MatIconModule,
     HttpClientModule,
-    MatGridListModule,MatSidenavModule
+    MatGridListModule,
+    MatSidenavModule,
+    MatCardModule,
+    MatTabsModule,
+    MatInputModule
 
   ],
   providers: [],
