@@ -11,6 +11,7 @@ namespace Business.Contracts
         Task<UserModel> AddAsync(UserModel instance);
         Task<IEnumerable<UserModel>> GetRangeAsync(IEnumerable<string> userIDs);
         Task<IEnumerable<UserModel>> AddRangeAsync(IEnumerable<UserModel> users);
+        Task<UserModel> GetByUsername(string username);
         Task<UserModel> GetAsync(string id);
         Task<IEnumerable<UserModel>> GetCollecionAsync();
     }

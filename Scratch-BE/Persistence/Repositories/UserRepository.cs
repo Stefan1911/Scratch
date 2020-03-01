@@ -22,9 +22,12 @@ namespace Persistence.Repositories
 
         public async Task<UserModel> AddAsync(UserModel user)
         {
+            var dbUser = await this.GetByUsername(user.Username);
+            if(dbUser != null)
+                throw new Exception("username already exists");
+                
             await _context.Users.InsertOneAsync(user);
             return user;
-
         }
 
         public async Task<IEnumerable<UserModel>> AddRangeAsync(IEnumerable<UserModel> users)
@@ -38,6 +41,12 @@ namespace Persistence.Repositories
             var user = await _context.Users.FindAsync(i => i.Id.Equals(id));
             return await user.FirstOrDefaultAsync();    
            
+        }
+
+        public async Task<UserModel> GetByUsername(string username)
+        {
+            var user = await _context.Users.FindAsync(i => i.Username.Equals(username));
+            return await user.FirstOrDefaultAsync();  
         }
 
         public async Task<IEnumerable<UserModel>> GetCollecionAsync()

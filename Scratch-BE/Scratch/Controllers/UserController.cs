@@ -13,17 +13,29 @@ namespace Scratch.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        [HttpPost]
-        public async Task<IActionResult> Post([FromServices] IHandle<CreateUserRequest, UserResponse> handle,
+        [HttpPost("register")]
+        public async Task<IActionResult> Register([FromServices] IHandle<CreateUserRequest, UserResponse> handle,
             [FromBody]UserModel userModel)
         {
             var request = new CreateUserRequest
             {
                 Name = userModel.Name,
+                Username = userModel.Username,
                 Password = userModel.Password,
-                PictureUrl = userModel.PictureUrl,
-                ProjectIDs = userModel.ProjectIDs
+                PictureUrl = userModel.PictureUrl
+            };
+            var response = await handle.HandleAsync(request);
+            return Ok(response);
+        }
 
+        [HttpPost("login")]
+        public async Task<IActionResult> LogIn([FromServices] IHandle<LogInRequest, LogInResponse> handle,
+            [FromBody]UserModel userModel)
+        {
+            var request = new LogInRequest
+            {
+                Username = userModel.Username,
+                Password = userModel.Password
             };
             var response = await handle.HandleAsync(request);
             return Ok(response);

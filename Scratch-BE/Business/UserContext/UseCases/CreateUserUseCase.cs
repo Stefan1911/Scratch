@@ -25,12 +25,12 @@ namespace Business.UserContext.UseCases
             var user = new UserModel
             {
                 Name = request.Name,
+                Username = request.Username,
                 Password = request.Password,
-                PictureUrl = request.PictureUrl,
-                ProjectIDs = request.ProjectIDs
-
+                PictureUrl = request.PictureUrl
             };
             var returnUser = await _repository.AddAsync(user);
+            
             return returnUser.ToResponse();
         }
 
