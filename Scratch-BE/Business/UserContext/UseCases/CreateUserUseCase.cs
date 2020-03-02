@@ -24,6 +24,7 @@ namespace Business.UserContext.UseCases
         {
             var user = new UserModel
             {
+                Email = request.Email,
                 Name = request.Name,
                 Username = request.Username,
                 Password = request.Password,

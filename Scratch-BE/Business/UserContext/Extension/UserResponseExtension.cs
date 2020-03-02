@@ -14,7 +14,9 @@ namespace Business.UserContext.Extension
             return new UserResponse
             {
                 Id = user.Id,
+                Email = user.Email,
                 Name = user.Name,
+                Username = user.Username,
                 Password = user.Password,
                 PictureUrl=user.PictureUrl,
                 ProjectIDs=user.ProjectIDs

@@ -19,6 +19,7 @@ namespace Scratch.Controllers
         {
             var request = new CreateUserRequest
             {
+                Email = userModel.Email,
                 Name = userModel.Name,
                 Username = userModel.Username,
                 Password = userModel.Password,

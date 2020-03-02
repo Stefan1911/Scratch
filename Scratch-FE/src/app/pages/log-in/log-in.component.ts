@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { LogInService } from 'src/app/services/httpServices/LogInService';
+import { UserModel } from 'src/app/models/UserModel';
 
 @Component({
   selector: 'app-log-in',
@@ -7,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LogInComponent implements OnInit {
 
-  constructor() { }
+  constructor(private logInService : LogInService) { }
 
 
   buttonText : String = "LogIn"
@@ -30,7 +32,15 @@ export class LogInComponent implements OnInit {
   }
 
   submit(){
-    console.table({emal : this.email , fullName : this.fullName , username : this.username , password : this.password, regUsername : this.registerUsername, regPass : this.registerPassword})
-
+    //console.table({emal : this.email , fullName : this.fullName , username : this.username , password : this.password, regUsername : this.registerUsername, regPass : this.registerPassword})
+    let user : UserModel = new UserModel();
+    user.email  = this.email;
+    user.name = this.fullName;
+    user.username = (this.isLogin)? this.username : this.registerUsername;
+    user.password = (this.isLogin)? this.password : this.registerPassword;
+    
+    this.logInService.PostUser(user,this.isLogin).subscribe((response) => {
+      console.log(response);
+    });
   }
 }
