@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import {MatToolbarModule} from '@angular/material/toolbar';
 import { AppComponent } from './app.component';
 import { AppCanvasComponent } from './drawing-station/app-canvas/app-canvas.component';
 import { DrawingStationComponent } from './drawing-station/drawing-station.component';
@@ -16,13 +16,18 @@ import { LogInComponent } from './pages/log-in/log-in.component';
 import {MatCardModule} from '@angular/material/card';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatInputModule} from '@angular/material/input';
+import { ProjectsComponent } from './pages/projects/projects.component';
+import {MatMenuModule} from '@angular/material/menu';
+import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 @NgModule({
   declarations: [
     AppComponent,
     AppCanvasComponent,
     DrawingStationComponent,
     ToolbarComponent,
-    LogInComponent
+    LogInComponent,
+    ProjectsComponent,
+    NavBarComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +40,9 @@ import {MatInputModule} from '@angular/material/input';
     MatSidenavModule,
     MatCardModule,
     MatTabsModule,
-    MatInputModule
+    MatInputModule,
+    MatToolbarModule,
+    MatMenuModule
 
   ],
   providers: [],

@@ -1,0 +1,14 @@
+<mat-toolbar color="primary" class="toolbar" >Scratch Projects
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" class="sideButton">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>
+           <mat-icon>trending_flat</mat-icon> 
+          <span>Log out</span>
+        </button>
+      </mat-menu>
+      <p class="name">{{name}}</p>
+      <img src={{pictureUrl}} class="pictureBox">
+
+</mat-toolbar> 
