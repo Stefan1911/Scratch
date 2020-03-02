@@ -16,22 +16,39 @@ import { LogInComponent } from './pages/log-in/log-in.component';
 import {MatCardModule} from '@angular/material/card';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatInputModule} from '@angular/material/input';
+<<<<<<< HEAD
 import { ProjectsComponent } from './pages/projects/projects.component';
 import {MatMenuModule} from '@angular/material/menu';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { FirstPageComponent } from './pages/first-page/first-page.component';
 import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
+=======
+import { RouterModule, Routes } from '@angular/router';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
+
+const appRoutes: Routes = [
+  { path: 'login', component: LogInComponent },
+  { path: 'notfount', component: NotFoundComponent },
+  { path: '**', redirectTo: '/login', pathMatch: 'full' }
+];
+
+>>>>>>> feat angulare routing
 @NgModule({
   declarations: [
     AppComponent,
     AppCanvasComponent,
     DrawingStationComponent,
+<<<<<<< HEAD
     ToolbarComponent,
     LogInComponent,
     ProjectsComponent,
     NavBarComponent,
     FirstPageComponent,
     ProfilePageComponent
+=======
+    ToolbarComponent,NotFoundComponent,
+    LogInComponent
+>>>>>>> feat angulare routing
   ],
   imports: [
     BrowserModule,
@@ -45,9 +62,15 @@ import { ProfilePageComponent } from './pages/profile-page/profile-page.componen
     MatCardModule,
     MatTabsModule,
     MatInputModule,
+<<<<<<< HEAD
     MatToolbarModule,
     MatMenuModule
 
+=======
+    RouterModule.forRoot(
+      appRoutes
+    )
+>>>>>>> feat angulare routing
   ],
   providers: [],
   bootstrap: [AppComponent]
