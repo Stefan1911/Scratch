@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { LogInService } from 'src/app/services/httpServices/LogInService';
 import { UserModel } from 'src/app/models/UserModel';
+import { UserStore } from 'src/app/services/userStoreService';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-log-in',
@@ -9,7 +11,7 @@ import { UserModel } from 'src/app/models/UserModel';
 })
 export class LogInComponent implements OnInit {
 
-  constructor(private logInService : LogInService) { }
+  constructor(private logInService : LogInService, private userStore : UserStore,private router : Router) { }
 
 
   buttonText : String = "LogIn"
@@ -39,8 +41,14 @@ export class LogInComponent implements OnInit {
     user.username = (this.isLogin)? this.username : this.registerUsername;
     user.password = (this.isLogin)? this.password : this.registerPassword;
     
-    this.logInService.PostUser(user,this.isLogin).subscribe((response) => {
-      console.log(response);
+    this.logInService.PostUser(user,this.isLogin).subscribe((response : {user : UserModel,usernameIncorrect : boolean}) => {
+      if(response.user != null && response.user != undefined){
+        this.userStore.user = response.user;
+        this.router.navigate(["drawingStation"])
+      }
+      else{
+        console.log("login or register faild");
+      }
     });
   }
 }
