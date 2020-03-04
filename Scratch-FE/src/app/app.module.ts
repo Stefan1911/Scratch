@@ -57,7 +57,7 @@ const appRoutes: Routes = [
     MatTabsModule,
     MatInputModule,
     MatToolbarModule,
-    MatMenuModule
+    MatMenuModule,
 
     RouterModule.forRoot(
       appRoutes
