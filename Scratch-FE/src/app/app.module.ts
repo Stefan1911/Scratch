@@ -19,6 +19,8 @@ import {MatInputModule} from '@angular/material/input';
 import { ProjectsComponent } from './pages/projects/projects.component';
 import {MatMenuModule} from '@angular/material/menu';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { FirstPageComponent } from './pages/first-page/first-page.component';
+import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +29,9 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
     ToolbarComponent,
     LogInComponent,
     ProjectsComponent,
-    NavBarComponent
+    NavBarComponent,
+    FirstPageComponent,
+    ProfilePageComponent
   ],
   imports: [
     BrowserModule,

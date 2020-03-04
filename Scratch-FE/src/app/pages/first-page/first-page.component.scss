@@ -1,0 +1,36 @@
+.bg {
+    /* The image used */
+    background-image: url("https://mewallpaper.com/thumbnail/abstract/4363-colorful-shapes-black-background-free-download-image.jpg");
+    /* Full height */
+    height: 100vh;
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    // display: flex;
+    // justify-content: center;
+
+}
+.title{
+    color:rgb(245, 245, 245);
+    font-family: cursive;
+    font-size: 50px;
+    margin-left: 10%;
+    margin-top: 8%;
+}
+.name{
+    color:rgb(250, 248, 248);
+    font-family: cursive;
+    font-size: 90px;
+    margin-left: 12%;
+    margin-bottom: 12%;
+}
+.unvisible{
+    visibility: hidden;
+}
+.text{
+    color:rgb(243, 196, 229);
+    font-family: serif;
+    font-size: 20px;
+    margin-left: 5%;
+}

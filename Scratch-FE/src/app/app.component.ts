@@ -10,7 +10,7 @@ import { ShapeModel } from './models/ShapeModel';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'Scratch-FE';
+  title = 'Scratch';
   /**
    *
    */

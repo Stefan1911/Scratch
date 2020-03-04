@@ -4,6 +4,8 @@
 }
 .toolbar{  
     font-family :Georgia;
+    font-size: 25px;
+    margin-left: 45px;
 }
 .name{
     font-family :Georgia;
@@ -14,6 +16,12 @@
     border-radius: 50%;
     position: absolute;
     right:220px;
+    width: 45px;
+    height: 45px;
+}
+.pictureLogo{
+    border-radius: 50%;
+    position: absolute;
     width: 45px;
     height: 45px;
 }

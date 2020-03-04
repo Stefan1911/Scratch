@@ -1,5 +1,11 @@
 .div{
-    height: 100vh;
+    height: 160vh;
+    background-image: url("https://ipack.info/wp-content/uploads/2015/11/star-sky-video-background.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    //  display: flex;
+    //  justify-content: center;
 }
   
 .newProjectBtn{
@@ -9,14 +15,14 @@
 }
 
 .example-card {
-    max-width: 200px;
-    border-radius: 4%;
+    max-width: 280px;
+    margin-left: 1%;
+    margin-bottom: 5%;
     top:100px;
-  }
+    box-shadow: 14px 13px 8px -1px rgba(43, 42, 43, 0.45);
+}
  .picture{
-    border-radius: 5%;
-    margin-left: 0px;
-    max-width: 160px;
-    margin-left: 5px;
+     height: 150px;
+    // margin-left: 5px;
  } 
  
