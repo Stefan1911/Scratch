@@ -1,6 +1,14 @@
-.sideButton{  
-    position: absolute;
-    right:0px;
+.mytoolbar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.buttonPanel{
+    position: relative;
+    width: 300px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 .toolbar{  
     font-family :Georgia;
@@ -9,13 +17,12 @@
 }
 .name{
     font-family :Georgia;
-    position: absolute;
-    right:150px;
+    margin-left: 10%;;
+    //position: absolute;
+    //right:150px;
 }
 .pictureBox{
     border-radius: 50%;
-    position: absolute;
-    right:220px;
     width: 45px;
     height: 45px;
 }
@@ -24,4 +31,9 @@
     position: absolute;
     width: 45px;
     height: 45px;
+}
+
+.profileBox{
+    display: flex;
+    flex-direction: row;;
 }

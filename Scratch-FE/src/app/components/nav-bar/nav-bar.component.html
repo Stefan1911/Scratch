@@ -1,17 +1,31 @@
-<mat-toolbar  >
-  
-  <img src="https://cdn.iconscout.com/icon/premium/png-256-thumb/shapes-29-800203.png" class="pictureLogo">
- <p class="toolbar" > Scratch Projects</p>
-    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" class="sideButton">
-        <mat-icon>more_vert</mat-icon>
+<mat-toolbar  class="mytoolbar">
+<img src="https://cdn.iconscout.com/icon/premium/png-256-thumb/shapes-29-800203.png" class="pictureLogo">
+<p class="toolbar" > Scratch Projects</p>
+
+<div class="buttonPanle">
+
+  <div *ngIf="IsLogedIn" class="profileBox">
+    <img src={{pictureUrl}} class="pictureBox">
+    <p class="name">{{name}}</p>
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" class="">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>
+          <mat-icon>trending_flat</mat-icon> 
+        <span>Log out</span>
       </button>
-      <mat-menu #menu="matMenu">
-        <button mat-menu-item>
-           <mat-icon>trending_flat</mat-icon> 
-          <span>Log out</span>
-        </button>
-      </mat-menu>
-      <p class="name">{{name}}</p>
-      <img src={{pictureUrl}} class="pictureBox">
+    </mat-menu>
+
+  </div>
+  <div *ngIf="!IsLogedIn">
+    <div class="buttonPanel">
+      <button color="primary" mat-flat-button (click)="redirectToLogin()">LogIn</button>
+      <button mat-flat-button color="primary" (click)="redirectToLogin()">Register</button>
+    </div>
+  </div>
+</div>
+
+
 
 </mat-toolbar> 

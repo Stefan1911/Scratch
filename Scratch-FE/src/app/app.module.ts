@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { AppComponent } from './app.component';
 import { AppCanvasComponent } from './drawing-station/app-canvas/app-canvas.component';
@@ -24,9 +24,11 @@ import { ProfilePageComponent } from './pages/profile-page/profile-page.componen
 import { RouterModule, Routes } from '@angular/router';
 import {LoginGuardService} from 'src/app/services/authGuards/loginGuardService'
 const appRoutes: Routes = [
+  { path: 'home', component: FirstPageComponent },
   { path: 'login', component: LogInComponent },
+  {path: 'projects' , component : ProjectsComponent , canActivate:[LoginGuardService]},
   {path: 'drawingStation', component: DrawingStationComponent, canActivate:[LoginGuardService]},
-  { path: '**', redirectTo: '/login', pathMatch: 'full' }
+  { path: '**', redirectTo: '/home', pathMatch: 'full' }
 ];
 
 @NgModule({

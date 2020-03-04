@@ -3,6 +3,7 @@ import { PostService } from './services/httpServices/postService';
 import { ShapeSubjectService } from './services/ShapeSubjectService';
 import { Shape } from 'createjs-module';
 import { ShapeModel } from './models/ShapeModel';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +15,7 @@ export class AppComponent {
   /**
    *
    */
-  constructor() {
+  constructor(private titleService: Title) {
+    this.titleService.setTitle(this.title);
   }
 }
