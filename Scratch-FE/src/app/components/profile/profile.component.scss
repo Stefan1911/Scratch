@@ -1,0 +1,49 @@
+.card{
+    margin-left: 30%;
+    margin-right: 20%;
+    margin-top: 3%;
+    background-color: rgb(48, 47, 47);
+    height: 650px;
+    width: 650px;
+    border-radius: 2%;
+    display: flex;
+    flex-direction: row;
+}
+.exit{
+    position: absolute;
+    right: 0;
+    background-color: rgb(48, 47, 47);
+}
+.txt{
+    font-family: Georgia;
+    color: seashell;
+    margin-left: 5%;
+    margin-top: 4%;
+}
+.div1{
+    display: flex;
+    flex-direction: column;
+}
+.div2{
+    margin-top: 10%;
+    margin-left: 12%;
+   
+}
+.full-width {
+    width: 300px;
+    color:seashell;
+    margin-left: 10px;
+}
+.image{
+    height: 200px;
+    width: 200px;
+    margin-bottom: 10%;
+}
+.div3{
+    margin-top: 90%;
+    position: absolute;
+    right: 30px;
+}
+.cancel{
+    margin-right: 10px;
+}
