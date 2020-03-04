@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, Component } from '@angular/core';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatDialogModule} from '@angular/material/dialog';
 import { AppComponent } from './app.component';
 import { AppCanvasComponent } from './drawing-station/app-canvas/app-canvas.component';
 import { DrawingStationComponent } from './drawing-station/drawing-station.component';
@@ -20,9 +21,10 @@ import { ProjectsComponent } from './pages/projects/projects.component';
 import {MatMenuModule} from '@angular/material/menu';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { FirstPageComponent } from './pages/first-page/first-page.component';
-import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
 import { RouterModule, Routes } from '@angular/router';
 import {LoginGuardService} from 'src/app/services/authGuards/loginGuardService'
+import { ProfileComponent } from './components/profile/profile.component';
+import { NewProjectComponent } from './components/new-project/new-project.component';
 const appRoutes: Routes = [
   { path: 'home', component: FirstPageComponent },
   { path: 'login', component: LogInComponent },
@@ -41,10 +43,11 @@ const appRoutes: Routes = [
     ProjectsComponent,
     NavBarComponent,
     FirstPageComponent,
-    ProfilePageComponent,
+    ProfileComponent,
     ToolbarComponent,
     ToolbarComponent,
-    LogInComponent
+    LogInComponent,
+    NewProjectComponent
   ],
   imports: [
     BrowserModule,
@@ -60,7 +63,7 @@ const appRoutes: Routes = [
     MatInputModule,
     MatToolbarModule,
     MatMenuModule,
-
+    MatDialogModule,
     RouterModule.forRoot(
       appRoutes
     )

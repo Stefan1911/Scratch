@@ -1,0 +1,39 @@
+<div class="card">
+    <button mat-flat-button class="exit">
+        <mat-icon>close</mat-icon> 
+    </button>
+    <div class="div1">
+        <h3 class="txt">Edit Your profile</h3>
+        <p class="txt">Full name:</p>
+            <mat-form-field class="full-width">
+              <input matInput placeholder={{name}}>
+            </mat-form-field>
+        <p class="txt">E-mail:</p>
+        <mat-form-field class="full-width">
+            <input matInput placeholder={{email}}>
+          </mat-form-field>
+        <p class="txt">Username:</p>
+        <mat-form-field class="full-width">
+            <input matInput placeholder={{username}}>
+          </mat-form-field>
+        <p class="txt">Password:</p>
+        <mat-form-field class="full-width">
+            <input matInput placeholder={{password}}>
+          </mat-form-field>
+    </div>
+    <div class="div2">
+        <p class="txt">Profile photo</p>
+        <div *ngIf="showPicture()==false">
+          <img  class="image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTCLOZsVruJFX7xiQWSNi3xUw69qMojGbSo2REuqgGHMFzjlYJc">
+        </div>
+        <div *ngIf="showPicture()==true">
+            <img class="image"src={{pictureUrl}}>
+        </div>
+        <button mat-flat-button color="primary">Upload an image</button>
+    </div>
+    <div class="div3">
+        <button mat-flat-button class="cancel">Cancel</button>
+    <button mat-flat-button color="primary">Save Changes</button> 
+    </div>
+   
+</div>
