@@ -5,21 +5,22 @@
 }
 .buttonPanel{
     position: relative;
-    width: 300px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
-.toolbar{  
+.buttonPanel button{
+    margin-right: 2%;
+    margin-left: 2%;;
+}
+.toolbarTitle{  
     font-family :Georgia;
     font-size: 25px;
     margin-left: 45px;
 }
 .name{
     font-family :Georgia;
-    margin-left: 10%;;
-    //position: absolute;
-    //right:150px;
+    margin-left: 4%;
 }
 .pictureBox{
     border-radius: 50%;
@@ -28,12 +29,15 @@
 }
 .pictureLogo{
     border-radius: 50%;
-    position: absolute;
     width: 45px;
     height: 45px;
 }
 
 .profileBox{
     display: flex;
-    flex-direction: row;;
+    flex-direction: row;
+    //width: 100%;
+    justify-content: right;
+    //margin-right: 4%;
+    //min-width: 600px;
 }

@@ -44,7 +44,7 @@ export class LogInComponent implements OnInit {
     this.logInService.PostUser(user,this.isLogin).subscribe((response : {user : UserModel,usernameIncorrect : boolean}) => {
       if(response.user != null && response.user != undefined){
         this.userStore.user = response.user;
-        this.router.navigate(["projects"])
+        this.router.navigate(["projects"]);
       }
       else{
         console.log("login or register faild");
