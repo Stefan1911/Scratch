@@ -3,44 +3,26 @@
   <img src="https://cdn.iconscout.com/icon/premium/png-256-thumb/shapes-29-800203.png" class="pictureLogo">
   <p class="toolbarTitle" > Scratch Projects</p>
 </div>
-
-
-  <div *ngIf="IsLogedIn" class="profileBox">
-    <img src={{pictureUrl}} class="pictureBox">
-    <p class="name">{{name}}</p>
-    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" >
-      <mat-icon>more_vert</mat-icon>
-    </button>
-    <mat-menu #menu="matMenu">
-      <button mat-menu-item>
-        <mat-icon><img src="https://img.icons8.com/ios/24/000000/edit-user-male.png"></mat-icon> 
-      <span>Edit Profile</span>
-      </button>
-      <hr color="white">
-      <button mat-menu-item>
-        <mat-icon> <img src="https://img.icons8.com/material-outlined/24/000000/exit.png"></mat-icon> <!-- <mat-icon>trending_flat</mat-icon>  -->    
-        <span>Log out</span>
-    </button>
-    </mat-menu>
-
 <div *ngIf="IsLogedIn" class="profileBox">
   <img src={{pictureUrl}} class="pictureBox">
   <p class="name">{{name}}</p>
-  <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" class="">
+  <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" >
     <mat-icon>more_vert</mat-icon>
   </button>
   <mat-menu #menu="matMenu">
-    <button mat-menu-item (click)="onLogout()">
-        <mat-icon>trending_flat</mat-icon> 
-      <span>Log out</span>
+    <button mat-menu-item>
+      <mat-icon><img src="https://img.icons8.com/ios/24/000000/edit-user-male.png"></mat-icon> 
+    <span>Edit Profile</span>
     </button>
+    <hr color="white">
+    <button mat-menu-item (click)="onLogout()">
+      <mat-icon> <img src="https://img.icons8.com/material-outlined/24/000000/exit.png"></mat-icon>
+      <span>Log out</span>
+  </button>
   </mat-menu>
 </div>
 <div *ngIf="!IsLogedIn" class="buttonPanel">
   <button color="primary" mat-flat-button (click)="redirectToLogin()">LogIn</button>
   <button mat-flat-button color="primary" (click)="redirectToLogin()">Register</button>
 </div>
-
-
-
 </mat-toolbar> 
