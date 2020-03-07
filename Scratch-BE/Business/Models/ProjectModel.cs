@@ -12,6 +12,8 @@ namespace Business.Models
         [BsonRepresentation(BsonType.ObjectId)]
         public String Id { get; set; }
         public String  Name { get; set; }
+        public String Description { get; set; }
+        public String PictureUrl { get; set; }
         public List<DrawingBoardModel> DrawingBoards { get; set; }
         public List<String> UserIDs { get; set; }
 

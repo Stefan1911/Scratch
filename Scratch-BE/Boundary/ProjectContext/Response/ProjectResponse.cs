@@ -10,6 +10,8 @@ namespace Boundary.ProjectContext.Response
     {
         public String Id { get; set; }
         public String Name { get; set; }
+        public String Description { get; set; }
+        public String PictureUrl { get; set; }
         public CollectionResponse<DrawingBoardResponse> DrawingBoards { get; set; }
         public List<String> UserIDs { get; set; }
     }

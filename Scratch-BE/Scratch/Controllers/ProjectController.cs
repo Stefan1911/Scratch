@@ -25,7 +25,9 @@ namespace Scratch.Controllers
             var request = new CreateProjectRequest
             {
                 Name = projectModel.Name,
-                UserIDs = projectModel.UserIDs
+                UserIDs = projectModel.UserIDs,
+                Description=projectModel.Description,
+                PictureUrl=projectModel.PictureUrl
             };
             var response = await handle.HandleAsync(request);
             return Ok(response);
