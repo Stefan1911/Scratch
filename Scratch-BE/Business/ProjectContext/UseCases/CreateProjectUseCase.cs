@@ -29,9 +29,7 @@ namespace Business.UserContext.UseCases
             };
             var returnProject = await _projectRepository.AddAsync(project);
 
-            IEnumerable<UserModel> users = await _userRepository.GetRangeAsync(request.UserIDs);
-            users.Select(user => { user.ProjectIDs.Add(returnProject.Id); return user; });
-            await _userRepository.AddRangeAsync(users);
+            await _userRepository.UpdateRangeAsync(request.UserIDs, project.Id );
             return returnProject.ToResponse();
         }
 

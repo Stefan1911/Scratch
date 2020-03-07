@@ -7,6 +7,6 @@ namespace Boundary.UserContext.Request
 {
    public class GetUserRequest : IRequestContext
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
     }
 }

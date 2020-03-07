@@ -60,5 +60,19 @@ namespace Persistence.Repositories
             var users= await _context.Users.FindAsync(x => userIDs.Contains(x.Id));         
             return users.ToList();
         }
+
+        public async Task UpdateAsync(UserModel user)
+        {
+            var filter = Builders<UserModel>.Filter.Eq(_user => _user.Id, user.Id);
+            var update = Builders<UserModel>.Update.Set(_user => _user, user);
+            await _context.Users.UpdateOneAsync(filter, update);
+        }
+
+        public async Task UpdateRangeAsync(IEnumerable<string> users,string projectId)
+        {
+            var filter = Builders<UserModel>.Filter.Where(user => users.Contains(user.Id));
+            var update = Builders<UserModel>.Update.Push(user => user.ProjectIDs, projectId);
+            await _context.Users.UpdateManyAsync(filter, update);
+        }
     }
 }

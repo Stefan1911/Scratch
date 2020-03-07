@@ -17,6 +17,7 @@ using Boundary.UserContext.Response;
 using Business.Contracts;
 using Business.DrawingBoardContext.UseCases;
 using Business.ExampleContext.UseCases;
+using Business.ProjectContext.UseCases;
 using Business.ShapeContext.UseCases;
 using Business.UserContext.UseCases;
 using Kernel.Response;
@@ -74,9 +75,10 @@ namespace Scratch
             #region Project
             services.AddSingleton<IProjectRepository, ProjectRepository>();
             services.AddUseCase<CreateProjectRequest, ProjectResponse, CreateProjectUseCase>();
-            #endregion
-            #region User
-            services.AddSingleton<IUserRepository, UserRepository>();
+			services.AddUseCase<GetUserProjectsRequest, CollectionResponse<ProjectResponse>, GetUserProjectsUseCase>();
+			#endregion
+			#region User
+			services.AddSingleton<IUserRepository, UserRepository>();
 			services.AddUseCase<LogInRequest,LogInResponse,LogInUseCase>();
             services.AddUseCase<CreateUserRequest, UserResponse, CreateUserUseCase>();
             services.AddUseCase<GetUserCollectionRequest, CollectionResponse<UserResponse>, GetUserCollectionUseCase > ();
