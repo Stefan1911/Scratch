@@ -3,18 +3,19 @@ import { UserStore } from 'src/app/services/userStoreService';
 import { Router } from '@angular/router';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog'; 
 import { ProfileComponent } from '../profile/profile.component';
+import {ViewEncapsulation} from '@angular/core';
 
 @Component({
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
-  styleUrls: ['./nav-bar.component.scss']
+  styleUrls: ['./nav-bar.component.scss'],
+  encapsulation: ViewEncapsulation.None 
 })
 export class NavBarComponent implements OnInit {
 
   name: String;
   pictureUrl: String;
   constructor(private userStore: UserStore, private Router : Router,public dialog: MatDialog) {
-    this.name="Minja fsdfafaasdasdasdasdsad";
     this.pictureUrl="https://images.pexels.com/photos/300857/pexels-photo-300857.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940";
    }
 
@@ -25,11 +26,18 @@ export class NavBarComponent implements OnInit {
   get IsLogedIn(){
     if(this.userStore.isLogedIn){
       this.name = this.userStore.user.name;
+      this.setPicture();
       return true;
     }
     return false;
   }
-
+  
+  setPicture(){
+    this.pictureUrl=this.userStore.user.pictureUrL;
+    if(this.pictureUrl=="" || this.pictureUrl==null || this.pictureUrl==undefined)
+      this.pictureUrl="https://img.icons8.com/plasticine/2x/gender-neutral-user.png";
+  }
+  
   redirectToLogin(){
     this.Router.navigate(["login"]);
   }
@@ -41,8 +49,7 @@ export class NavBarComponent implements OnInit {
 
   openDialog(): void {
     const dialogRef = this.dialog.open(ProfileComponent, {
-
-      data: {name: this.name}
+      panelClass: 'my-dialog'
     });
 
     dialogRef.afterClosed().subscribe(result => {

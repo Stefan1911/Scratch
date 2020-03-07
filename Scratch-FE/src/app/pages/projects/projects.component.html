@@ -1,5 +1,5 @@
 <div class="div">
-    <button mat-flat-button color="primary"class="newProjectBtn"><mat-icon>add</mat-icon> New Project</button>
+    <button mat-flat-button color="primary"class="newProjectBtn" (click)="onNewProject()"><mat-icon>add</mat-icon> New Project</button>
     <div class="container">
     <div class="row justify-content-around">    
     <mat-card class="example-card col-3" *ngFor="let project of projects" > 
