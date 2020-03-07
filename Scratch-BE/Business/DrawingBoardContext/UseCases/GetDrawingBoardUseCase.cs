@@ -3,6 +3,7 @@ using Boundary.ShapeContext.Response;
 using Business.Contracts;
 using Business.DrawingBoardContext.Extension;
 using Kernel;
+using System.Threading.Tasks;
 
 namespace Business.DrawingBoardContext.UseCases
 {
@@ -15,7 +16,7 @@ namespace Business.DrawingBoardContext.UseCases
 			_repository = repository;
         }
 
-		public async System.Threading.Tasks.Task<DrawingBoardResponse> HandleAsync(GetDrawingBoardRequest request)
+		public async Task<DrawingBoardResponse> HandleAsync(GetDrawingBoardRequest request)
 		{
 			var drawingBoard = await _repository.GetAsync(request.boardId);
 			return drawingBoard.ToResponse();

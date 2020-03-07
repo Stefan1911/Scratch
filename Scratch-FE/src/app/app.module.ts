@@ -28,9 +28,10 @@ import { NewProjectComponent } from './components/new-project/new-project.compon
 const appRoutes: Routes = [
   { path: 'home', component: FirstPageComponent },
   { path: 'login', component: LogInComponent },
+  { path: 'test', component: ProfileComponent },
   {path: 'projects' , component : ProjectsComponent , canActivate:[LoginGuardService]},
   {path: 'drawingStation', component: DrawingStationComponent, canActivate:[LoginGuardService]},
-  { path: '**', redirectTo: '/home', pathMatch: 'full' }
+  { path: '**', redirectTo: '/test', pathMatch: 'full' }
 ];
 
 @NgModule({
