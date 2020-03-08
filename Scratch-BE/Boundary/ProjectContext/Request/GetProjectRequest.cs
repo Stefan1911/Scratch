@@ -7,5 +7,6 @@ namespace Boundary.ProjectContext.Request
 {
     public class GetProjectRequest : IRequestContext
     {
+        public string ProjectId { get; set; }
     }
 }

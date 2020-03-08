@@ -23,8 +23,6 @@ export class UserStore
             return this._user
         }
         this._user = JSON.parse(localStorage.getItem(this.userKay));
-        console.log("user on get");
-        console.log(this._user);
         
         
         return this._user

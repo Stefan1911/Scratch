@@ -41,6 +41,16 @@ namespace Scratch.Controllers
 
             return Ok(response);
         }
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get([FromServices] IHandle<GetProjectRequest, ProjectResponse> handle,string id)
+        {
+            var request = new GetProjectRequest{
+                ProjectId = id
+            };
+            var response = await handle.HandleAsync(request);
+
+            return Ok(response);
+        }
         [HttpGet("userProjects/{userId}")]
         public async Task<IActionResult> GetUserProjects([FromServices] IHandle<GetUserProjectsRequest, CollectionResponse<ProjectResponse>> handle, string userId)
         {

@@ -30,7 +30,7 @@ const appRoutes: Routes = [
   { path: 'login', component: LogInComponent },
   { path: 'test', component: ProfileComponent },
   {path: 'projects' , component : ProjectsComponent , canActivate:[LoginGuardService]},
-  {path: 'drawingStation', component: DrawingStationComponent, canActivate:[LoginGuardService]},
+  {path: 'drawingStation/:projectId', component: DrawingStationComponent, canActivate:[LoginGuardService]},
   { path: '**', redirectTo: '/test', pathMatch: 'full' }
 ];
 

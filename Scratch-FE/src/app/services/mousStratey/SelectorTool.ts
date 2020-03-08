@@ -12,6 +12,7 @@ export class SelectorTool{
     constructor(private stage : createjs.Stage,private shapeSubjects : ShapeSubjectService) {
     }
     onMousDown(event : MouseEvent){
+        
         this.SelectedObject = this.stage.getObjectUnderPoint(event.stageX,event.stageY,0);
         this.previousPoint = new Point(event.stageX,event.stageY);        
 		this.isMousDown = true;

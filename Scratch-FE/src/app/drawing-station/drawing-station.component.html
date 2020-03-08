@@ -10,6 +10,19 @@
 </div> -->
 
 <mat-drawer-container class="example-container">
-    <mat-drawer-content><app-canvas #canvas class=""></app-canvas></mat-drawer-content>
-    <mat-drawer class="toolBar" mode="side" opened><app-toolbar (toolChage)="onToolChange($event)" class=""></app-toolbar></mat-drawer>
+    <mat-drawer class="toolBar" mode="side" opened>
+        <mat-tab-group class="tabSize">
+            <mat-tab label="Tables">
+                <button (click)="onAddTable()" mat-button style="margin-top:4%;"><mat-icon aria-hidden="false">add</mat-icon> New Table</button>
+                <hr color="white">
+                <div class="boardButton" *ngFor="let board of drawingBoards" (click)="onBoardChange(board.id)">
+                    <label ># {{board.name}}</label>
+                </div>
+            </mat-tab>
+            <mat-tab label="Tools">
+                <app-toolbar (toolChage)="onToolChange($event)" class=""></app-toolbar>        
+            </mat-tab>
+        </mat-tab-group>
+    </mat-drawer>
+    <mat-drawer-content><app-canvas [drawingBoardId]="selectedBoardId" [projectId]="selectedBoardId" #canvas class=""></app-canvas></mat-drawer-content>
   </mat-drawer-container>
