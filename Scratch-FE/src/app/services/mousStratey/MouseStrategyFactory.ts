@@ -3,31 +3,29 @@ import { DrawRectStrategy } from './DrawRectStrategy';
 import { SelectorTool } from './SelectorTool';
 import { PencilTool } from './PencilTool';
 import { ShapeSubjectService } from '../ShapeSubjectService';
+import { AppCanvasComponent } from 'src/app/drawing-station/app-canvas/app-canvas.component';
 
 @Injectable()
 export class MouseStrategyFactory {
     constructor(private shapeSubjects : ShapeSubjectService){}
 
-    getMousStrategy(strategy :MouseStrategyEnum , stage:createjs.Stage){
+    getMousStrategy(strategy :MouseStrategyEnum , canvas : AppCanvasComponent){
         let retStrategy:any;
         switch (strategy) {
             case MouseStrategyEnum.drawRect:
-                retStrategy = new DrawRectStrategy(stage,this.shapeSubjects);
+                retStrategy = new DrawRectStrategy(canvas);
                 break;
             case MouseStrategyEnum.selector:
-                retStrategy = new SelectorTool(stage,this.shapeSubjects);
+                retStrategy = new SelectorTool(canvas);
             break;
             case MouseStrategyEnum.pencil:
-                retStrategy = new PencilTool(stage,this.shapeSubjects);
+                //retStrategy = new PencilTool(stage,this.shapeSubjects);
             default:
                 break;
         }
         return retStrategy;
 	}
-	
-	setShapeSubject(subject : ShapeSubjectService){
-		this.shapeSubjects = subject
-	}
+    
 }
 
 

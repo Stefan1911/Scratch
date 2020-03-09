@@ -3,6 +3,7 @@ import { Subject } from 'rxjs';
 import { ShapeModel } from 'src/app/models/ShapeModel';
 import { ShapeSubjectService } from '../ShapeSubjectService';
 import { PointModel } from 'src/app/models/PointModel';
+import { AppCanvasComponent } from 'src/app/drawing-station/app-canvas/app-canvas.component';
 
 export class DrawRectStrategy{
     isMousDown : boolean = false;
@@ -13,9 +14,10 @@ export class DrawRectStrategy{
     defaultHeigth = 100;
 	CurrentlyDrawingShape : createjs.Shape;
 	currentShapeModel :ShapeModel;
+    stage : createjs.Stage;
 
-
-    constructor(private stage : createjs.Stage, private shapeSubjects : ShapeSubjectService) {
+    constructor(private canvas: AppCanvasComponent) {
+        this.stage = canvas.stage;
 		this.currentShapeModel = new ShapeModel();
 		this.currentShapeModel.fillColor = "#000000";
 		this.currentShapeModel.strockColor = "DeepSkyBlue";
@@ -48,8 +50,13 @@ export class DrawRectStrategy{
 			this.currentShapeModel.points[0] = new PointModel(this.topLeftCorner.x,this.topLeftCorner.y);
 			this.currentShapeModel.points[1] = new PointModel(this.topLeftCorner.x+this.defaultWidth,this.topLeftCorner.y+this.defaultHeigth);
 			this.stage.update();
-		}		
-		this.shapeSubjects.shapeCreatedSubject.next(this.currentShapeModel);
+        }	
+        this.currentShapeModel.tableId = this.canvas.drawingBoardId;
+        this.canvas.shapes.push(this.currentShapeModel);
+        this.canvas.postService.sendShape(this.canvas.conncionID,this.currentShapeModel);	
+        
+        
+        //this.shapeSubjects.shapeCreatedSubject.next(this.currentShapeModel);
     }
     onMouseMove(event : MouseEvent){
         if(this.isMousDown){

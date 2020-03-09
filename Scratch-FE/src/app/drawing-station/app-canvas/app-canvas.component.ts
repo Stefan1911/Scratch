@@ -20,7 +20,7 @@ import { Subscription } from 'rxjs';
 export class AppCanvasComponent implements OnInit {
 
 	mouseStrategy : any;
-	stage;
+	stage : createjs.Stage;
 	mousDownListener;
 	mousMoveListener;
 	mousUpListener;
@@ -28,17 +28,16 @@ export class AppCanvasComponent implements OnInit {
 	drawingBoardId : string;
 	@Input()
 	projectId :string;
-	drawingBoard : DrawingBoardModel
-	shapeSubjects = new ShapeSubjectService();
+	drawingBoard : DrawingBoardModel;
 	conncionID : string ;
 	shapes: ShapeModel[];
 
 	subscriptions : Subscription[];
   
-  constructor(private strategyFactory : MouseStrategyFactory
-			,private postService: PostService
-			,private reciver : SignalRResiver 
-			,private getService : GetService
+  constructor(public strategyFactory : MouseStrategyFactory
+			,public postService: PostService
+			,public reciver : SignalRResiver 
+			,public getService : GetService
 			) { 
 				this.shapes = new Array();
 			}
@@ -48,9 +47,8 @@ export class AppCanvasComponent implements OnInit {
 	}
 
 	initShapes(boardId : string){
-	//	console.log("init shape has been called for the table " + boardId);
-		
 		this.drawingBoardId = boardId;
+		this.shapes = new Array();
 		if(this.checkString(this.drawingBoardId)&& this.checkString(this.projectId)){
 			this.getService.getTable(this.projectId,this.drawingBoardId)
 			.subscribe((drawingBoard: DrawingBoardModel) => {
@@ -60,12 +58,11 @@ export class AppCanvasComponent implements OnInit {
 				.registerDrawingStation(this)
 				.then( (mightBeTheId) =>{
 					this.conncionID = mightBeTheId
-				})
-			this.strategyFactory.setShapeSubject(this.shapeSubjects);
-			this.setUpShapeSubscriptions();
+			});
+			this.removeStageEventListeners();
 			this.stage = new createjs.Stage("demoCanvas");
 			this.setTool(MouseStrategyEnum.selector);
-			this.stage.addEventListener("added", (event) => console.log(event));
+			//this.stage.addEventListener("added", (event) => console.log(event));
 			this.stage.update();
 		}
 	}
@@ -75,41 +72,20 @@ export class AppCanvasComponent implements OnInit {
 		this.stage.removeAllEventListeners("stagemousemove");
 		this.stage.removeAllEventListeners("stagemouseup");
 
-		this.mouseStrategy = this.strategyFactory.getMousStrategy(tool,this.stage);
+		this.mouseStrategy = this.strategyFactory.getMousStrategy(tool,this);
 
 		this.stage.addEventListener("stagemousedown" , (event) => {this.mouseStrategy.onMousDown(event)});
 		this.stage.addEventListener("stagemousemove" , (event) => {this.mouseStrategy.onMouseMove(event)});
 		this.stage.addEventListener("stagemouseup" , (event) => {this.mouseStrategy.onMouseUp(event)});
 	}
 
-	setUpShapeSubscriptions(){
-		this.subscriptions = new Array();
-		let temp = this.shapeSubjects.shapeCreatedSubject.subscribe( shape => {
-			shape.tableId = this.drawingBoardId;
-			this.shapes.push(shape);
-			this.postService.sendShape(this.conncionID,shape);
-		});
-		this.subscriptions.push(temp);
-
-		temp = this.shapeSubjects.moveSubject.subscribe ( movemant => {
-			console.log(movemant);
-			
-			this.shapes[movemant.shapeIndex].shapeIndex = movemant.shapeIndex;
-			for (let index = 0; index < this.shapes[movemant.shapeIndex].points.length; index++) {
-				const element = this.shapes[movemant.shapeIndex].points[index];
-				let newPoint = new PointModel(element.x + movemant.xMovement,element.y + movemant.yMovement);
-				this.shapes[movemant.shapeIndex].points[index] = newPoint;
-			}			
-			this.postService.updateShape(this.conncionID,this.shapes[movemant.shapeIndex]);
-		});
-		this.subscriptions.push(temp);
-	}
-	killSubscrioption(){
-		if(this.subscriptions != null && this.subscriptions != undefined){
-			this.subscriptions.forEach(subscription => {
-				subscription.unsubscribe();
-			});
+	removeStageEventListeners(){
+		if(this.stage != null){
+			this.stage.removeAllEventListeners("stagemousedown");
+			this.stage.removeAllEventListeners("stagemousemove");
+			this.stage.removeAllEventListeners("stagemouseup");
 		}
+
 	}
 
 	DrawAllShapes( shapes:ShapeModel[]){
@@ -142,7 +118,7 @@ export class AppCanvasComponent implements OnInit {
 			let heigth = pointTwo.y - pointOne.y;
 			newShape.graphics.beginFill("DeepSkyBlue").beginStroke("#000000").drawRect(pointOne.x,pointOne.y,width,heigth);
 			this.stage.removeChildAt(shapeIndex);
-			this.stage.addChildAt(newShape,shapeIndex)
+			this.stage.addChildAt(newShape,shapeIndex);
 		}
 		this.stage.update();
 	}
