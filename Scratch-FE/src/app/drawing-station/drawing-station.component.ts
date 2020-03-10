@@ -5,6 +5,8 @@ import { DrawingBoardModel } from '../models/DrawingBoardModel';
 import { ActivatedRoute } from '@angular/router';
 import { ProjectService } from '../services/httpServices/projectService';
 import { AppCanvasComponent } from './app-canvas/app-canvas.component';
+import { MatDialog } from '@angular/material/dialog';
+import { NewTableDialogComponent } from '../components/new-table-dialog/new-table-dialog.component';
 
 @Component({
   selector: 'app-drawing-station',
@@ -19,10 +21,7 @@ export class DrawingStationComponent implements OnInit {
   selectedBoardId: string;
 
   drawingBoards : DrawingBoardModel[];
-  constructor(private router : ActivatedRoute,private projectService : ProjectService) {
-
-    
-   }
+  constructor(private router : ActivatedRoute,private projectService : ProjectService,public dialog: MatDialog) { }
 
   ngOnInit() {
     let projectId = this.router.snapshot.params["projectId"];  
@@ -45,9 +44,19 @@ export class DrawingStationComponent implements OnInit {
   }
 
   onAddTable(){
-    this.projectService.addDrawingBoard(this.Project.id).subscribe((Response)=>{
-      console.log(Response);
-    })
+    const dialogRef = this.dialog.open(NewTableDialogComponent, {
+      width: '250px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result != null && result != undefined){
+        this.projectService.addDrawingBoard(this.Project.id,result).subscribe((response : DrawingBoardModel)=>{
+          this.drawingBoards.push(response);
+        });
+      }
+    });
+
+  
   }
 
 }

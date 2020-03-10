@@ -14,6 +14,7 @@ namespace Business.DrawingBoardContext.Extension
             return new DrawingBoardResponse
             {
                 Id = drawingBoard.Id,
+                Name = drawingBoard.Name,
 				Chat = drawingBoard.Chat.ToResponse(),
 				Shapes = drawingBoard.Shapes.Select(shape => {
 					return shape.ToResponse();

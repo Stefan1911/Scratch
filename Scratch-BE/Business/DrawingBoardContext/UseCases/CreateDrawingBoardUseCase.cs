@@ -19,7 +19,9 @@ namespace Business.UserContext.UseCases
         }
         public async Task<DrawingBoardResponse> HandleAsync(CreateDrawingBoardRequest request)
         {
-			var drawingBoard = new DrawingBoardModel();
+			var drawingBoard = new DrawingBoardModel{
+                Name = request.Name
+            };
 			var returnDrawingBoard = await _repository.AddAsync(drawingBoard, request.ProjectId	);
 			return returnDrawingBoard.ToResponse();
         }

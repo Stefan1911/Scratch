@@ -9,6 +9,7 @@ namespace Boundary.ShapeContext.Response
     public class DrawingBoardResponse : IResponseContext
     {
         public string Id { get; set; }
+        public string Name { get; set; }
         public ChatResponse Chat { get; set; }
         public List<ShapeResponse> Shapes { get; set; }
     }

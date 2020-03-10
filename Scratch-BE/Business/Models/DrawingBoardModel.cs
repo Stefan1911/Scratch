@@ -11,6 +11,7 @@ namespace Business.Models
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }
+        public string Name { get; set; }
         public ChatModel Chat { get; set; }
         public List<ShapeModel> Shapes { get; set; }
 

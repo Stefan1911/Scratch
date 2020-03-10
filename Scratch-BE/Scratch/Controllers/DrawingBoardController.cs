@@ -17,7 +17,8 @@ namespace Scratch.Controllers
             [FromBody]DrawingBoardModel drawingBoard)
         {
             var request = new CreateDrawingBoardRequest(){
-				ProjectId = drawingBoard.ProjectId
+				ProjectId = drawingBoard.ProjectId,
+                Name = drawingBoard.Name
 			};
             var response = await handle.HandleAsync(request);
             return Ok(response);

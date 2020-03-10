@@ -25,6 +25,8 @@ import { RouterModule, Routes } from '@angular/router';
 import {LoginGuardService} from 'src/app/services/authGuards/loginGuardService'
 import { ProfileComponent } from './components/profile/profile.component';
 import { NewProjectComponent } from './components/new-project/new-project.component';
+import { NewTableDialogComponent } from './components/new-table-dialog/new-table-dialog.component';
+import { FormsModule } from '@angular/forms';
 const appRoutes: Routes = [
   { path: 'home', component: FirstPageComponent },
   { path: 'login', component: LogInComponent },
@@ -48,7 +50,8 @@ const appRoutes: Routes = [
     ToolbarComponent,
     ToolbarComponent,
     LogInComponent,
-    NewProjectComponent
+    NewProjectComponent,
+    NewTableDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -65,10 +68,12 @@ const appRoutes: Routes = [
     MatToolbarModule,
     MatMenuModule,
     MatDialogModule,
+    FormsModule,
     RouterModule.forRoot(
       appRoutes
     )
   ],
+  entryComponents: [NewTableDialogComponent],
   providers: [],
   bootstrap: [AppComponent]
 })
