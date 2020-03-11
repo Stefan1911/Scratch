@@ -5,7 +5,6 @@
   /* margin: 10px; */
   border: 1px solid #555;
 }
-
 .toolBar{
   width: 10%;
 }
@@ -17,10 +16,29 @@
  }
 
  .boardButton{
-  max-height: 25px;
+   background-color: transparent;
+   background-image: none;
+   background-repeat:no-repeat;
+   border: none;
+   cursor: pointer;
+  max-height: 20px;
   padding-left: 3%;
+  display: flex;
+  justify-content: space-between;
+  overflow: hidden;
  }
 
+ .boardButton label{
+   width: 100%;
+ }
+
+ .boardButton mat-icon{
+   margin: 0;
+  font-size: medium;
+ }
+ .boardButton button{
+  padding:0;
+ }
  .boardButton:hover{
   background: gray; /* make this whatever you want */
   }
