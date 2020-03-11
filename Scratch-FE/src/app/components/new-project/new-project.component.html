@@ -1,1 +1,32 @@
-<p>new-project works!</p>
+<div  class="card">
+    <button mat-flat-button class="exit" (click)="onNoClick()">
+        <mat-icon>close</mat-icon> 
+    </button>
+    <div class="div1">
+        <h3 class="txt">Create new project</h3>
+        <p class="txt">Name of project:</p>
+            <mat-form-field class="full-width">
+              <input matInput (input)="name = $event.target.value">
+            </mat-form-field>
+        <p class="txt">Description:</p>
+        <mat-form-field class="full-width">
+            <input matInput  #message maxlength="256" (input)="description = $event.target.value">
+            <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+          </mat-form-field>
+    </div>
+    <div class="div2">
+        <p class="txt">Project photo</p>
+        <div *ngIf="showPicture()==false">
+          <img  class="image" src="https://previews.123rf.com/images/rawpixel/rawpixel1603/rawpixel160315905/53950623-project-word-operation-plan-job-concept.jpg">
+        </div>
+        <div *ngIf="showPicture()==true">
+            <img class="image"src={{pictureUrl}}>
+        </div>
+        <button mat-flat-button color="primary">Upload an image</button>
+    </div>
+    <div class="div3">
+        <button mat-flat-button class="cancel" (click)="onNoClick()">Cancel</button>
+    <button mat-flat-button color="primary" (click)="submit()">Save Changes</button> 
+    </div>
+   
+</div>

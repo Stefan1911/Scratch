@@ -1,6 +1,6 @@
  .card{
-    background-color: rgb(48, 47, 47);
-    height: 650px;
+    background-color: rgb(27, 27, 27);
+    height: 550px;
     width: 650px;
     border-radius: 2%;
     display: flex;
@@ -9,7 +9,7 @@
 .exit{
     position: absolute;
     right: 0;
-    background-color: rgb(48, 47, 47);
+    background-color: rgb(27, 27, 27);
 }
 .txt{
     font-family: Georgia;
@@ -22,9 +22,8 @@
     flex-direction: column;
 }
 .div2{
-    margin-top: 10%;
-    margin-left: 12%;
-   
+    margin-top: 13%;
+    margin-left: 12%; 
 }
 .full-width {
     width: 300px;
@@ -37,7 +36,7 @@
     margin-bottom: 10%;
 }
 .div3{
-    margin-top: 90%;
+    margin-top: 75%;
     position: absolute;
     right: 30px;
 }

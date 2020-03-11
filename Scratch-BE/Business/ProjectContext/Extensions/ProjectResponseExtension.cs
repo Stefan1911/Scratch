@@ -13,6 +13,8 @@ namespace Business.UserContext.Extension
             return new ProjectResponse
             {
                 Id = project.Id,
+                Description=project.Description,
+                PictureUrl=project.PictureUrl,
                 Name = project.Name,
                 PictureUrl=project.PictureUrl,
                 Description=project.Description,
