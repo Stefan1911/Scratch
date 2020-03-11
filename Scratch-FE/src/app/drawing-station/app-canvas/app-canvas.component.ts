@@ -42,11 +42,11 @@ export class AppCanvasComponent implements OnInit {
 				this.shapes = new Array();
 			}
 
-	ngOnInit() {
+	ngOnInit() {		
 		this.initShapes(this.drawingBoardId);
 	}
 
-	initShapes(boardId : string){
+	initShapes(boardId : string){		
 		this.drawingBoardId = boardId;
 		this.shapes = new Array();
 		if(this.checkString(this.drawingBoardId)&& this.checkString(this.projectId)){
@@ -55,14 +55,13 @@ export class AppCanvasComponent implements OnInit {
 				this.DrawAllShapes(drawingBoard.shapes);
 			})
 			this.reciver
-				.registerDrawingStation(this)
+				.registerCanvas(this)
 				.then( (mightBeTheId) =>{
 					this.conncionID = mightBeTheId
 			});
 			this.removeStageEventListeners();
 			this.stage = new createjs.Stage("demoCanvas");
 			this.setTool(MouseStrategyEnum.selector);
-			//this.stage.addEventListener("added", (event) => console.log(event));
 			this.stage.update();
 		}
 	}

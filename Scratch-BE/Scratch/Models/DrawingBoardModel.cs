@@ -4,5 +4,7 @@ namespace Scratch.Models
     {
         public string ProjectId { get; set; }
         public string Name { get; set; }
+
+        public string ExcludedClientId { get; set; }
     }
 }

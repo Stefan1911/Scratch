@@ -2,6 +2,10 @@ import { Injectable } from '@angular/core';
 import * as signalR from "@aspnet/signalr";
 import { AppCanvasComponent } from 'src/app/drawing-station/app-canvas/app-canvas.component';
 import { LogInComponent } from 'src/app/pages/log-in/log-in.component';
+import { DrawingBoardModel } from 'src/app/models/DrawingBoardModel';
+import { ThrowStmt } from '@angular/compiler';
+import { promise } from 'protractor';
+import { DrawingStationComponent } from 'src/app/drawing-station/drawing-station.component';
 
 @Injectable({
 	providedIn: 'root'
@@ -28,18 +32,24 @@ export class SignalRResiver {
 			})
 			.catch(err => console.log('Error while starting connection: ' + err))
 	}
+
+	async registerDrawingStation(drawingStatino : DrawingStationComponent): Promise<string>{
+		this.hubConnection.on(drawingStatino.Project.id+"/add",(drawingBoard: DrawingBoardModel)=>{
+			drawingStatino.drawingBoards.push(drawingBoard);
+		})
+		let id = await this.promis;
+		return id;
+	}
 	
-	async registerDrawingStation(canvas :AppCanvasComponent): Promise<string>{
+	async registerCanvas(canvas :AppCanvasComponent): Promise<string>{
 		this.removeAllHubs(canvas)
 		this.hubConnection.on(canvas.drawingBoardId, (data) => {
-			console.log("shape recived");
 			canvas.drawShape(data);
 			});
-		let id = await this.promis;
 		this.hubConnection.on(canvas.drawingBoardId + "/updateShape", (shape, shapeIndex) =>{
-			console.log("updeat recived " + shapeIndex + " number");
 			canvas.updateShape(shape,shapeIndex);
 		})
+		let id = await this.promis;
 		return id;
 	}
 

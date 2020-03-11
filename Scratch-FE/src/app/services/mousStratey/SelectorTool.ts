@@ -24,7 +24,6 @@ export class SelectorTool{
     onMouseUp(event : MouseEvent){
         
         let shapeIndex = this.canvas.stage.getChildIndex(this.SelectedObject);
-        console.log({log:"onMousUp at selector tool",shapes: this.canvas.shapes,shapeIndex});
         this.updateShapePoints(shapeIndex,this.totalXDistance,this.totalYDistance);
         this.isMousDown = false;
         this.SelectedObject = null;

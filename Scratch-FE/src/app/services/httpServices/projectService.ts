@@ -11,7 +11,7 @@ export class ProjectService {
 	getProject(projetId:string){
 		return this.http.get("http://localhost:5000/api/Project/"+projetId)
     }
-    addDrawingBoard(projetId:string, boardName:string){
-        return this.http.post("http://localhost:5000/api/DrawingBoard",{ProjectId : projetId, Name : boardName})
+    addDrawingBoard(projetId:string, boardName:string,clientID :string){		
+        return this.http.post("http://localhost:5000/api/DrawingBoard",{ProjectId : projetId, Name : boardName, ExcludedClientId: clientID})
     }
 }

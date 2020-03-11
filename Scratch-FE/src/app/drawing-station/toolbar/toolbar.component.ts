@@ -78,7 +78,7 @@ export class ToolbarComponent implements OnInit {
     iconRegistry.addSvgIcon(
       'Coming soon...',
       sanitizer.bypassSecurityTrustResourceUrl('assets/img/fav-icons/not-found.svg'));
-    console.log(TREE_DATA);
+
     
   }
   
@@ -98,7 +98,6 @@ export class ToolbarComponent implements OnInit {
     this.changeTool(MouseStrategyEnum.drawRect);
   }
   someHandler(param){
-    console.log(param);
     
   }
 }

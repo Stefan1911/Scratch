@@ -9,5 +9,7 @@ namespace Boundary.DrawingBoardContext.Request
     {
   		public string ProjectId { get; set; }
       public string Name { get; set; }
+
+      public string ExcludedClientId { get; set; }
     }
 }

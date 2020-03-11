@@ -13,7 +13,17 @@ namespace MessagingService
 			_messagingHub = messagingHub;
 		}
 
-		public async Task PushShapeAsync(string MessageName, string excludedClientId,ShapeModel shape)
+        public async Task AddDrawingBoard(string MessageName, string excludedClientID, DrawingBoardModel drawingBoard)
+        {
+            await _messagingHub.Clients.AllExcept(excludedClientID).SendAsync(MessageName+"/add",drawingBoard);
+        }
+
+        public async Task DeleteDrawingBoard(string MessageName, string excludedClientID, string boardId)
+        {
+            await _messagingHub.Clients.AllExcept(excludedClientID).SendAsync(MessageName +"/delete",boardId);
+        }
+
+        public async Task PushShapeAsync(string MessageName, string excludedClientId,ShapeModel shape)
 		{
 			await _messagingHub.Clients.AllExcept(excludedClientId).SendAsync(MessageName,shape);
 		}
@@ -22,5 +32,6 @@ namespace MessagingService
 		{
 			await _messagingHub.Clients.AllExcept(excludedClientID).SendAsync(MessageName+"/updateShape",ShapeModel,shapeIndex);
 		}
+
 	}
 }

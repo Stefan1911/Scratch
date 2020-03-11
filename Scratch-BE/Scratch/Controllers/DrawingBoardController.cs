@@ -18,7 +18,8 @@ namespace Scratch.Controllers
         {
             var request = new CreateDrawingBoardRequest(){
 				ProjectId = drawingBoard.ProjectId,
-                Name = drawingBoard.Name
+                Name = drawingBoard.Name,
+                ExcludedClientId = drawingBoard.ExcludedClientId
 			};
             var response = await handle.HandleAsync(request);
             return Ok(response);

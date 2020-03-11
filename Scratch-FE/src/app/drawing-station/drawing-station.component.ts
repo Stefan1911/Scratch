@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { MouseStrategyFactory, MouseStrategyEnum } from '../services/mousStratey/MouseStrategyFactory';
 import { ProjectModel } from '../models/ProjectModel';
 import { DrawingBoardModel } from '../models/DrawingBoardModel';
@@ -7,6 +7,7 @@ import { ProjectService } from '../services/httpServices/projectService';
 import { AppCanvasComponent } from './app-canvas/app-canvas.component';
 import { MatDialog } from '@angular/material/dialog';
 import { NewTableDialogComponent } from '../components/new-table-dialog/new-table-dialog.component';
+import { SignalRResiver } from '../services/httpServices/signalRReciver';
 
 @Component({
   selector: 'app-drawing-station',
@@ -20,18 +21,26 @@ export class DrawingStationComponent implements OnInit {
   Project : ProjectModel;
   selectedBoardId: string;
 
-  drawingBoards : DrawingBoardModel[];
-  constructor(private router : ActivatedRoute,private projectService : ProjectService,public dialog: MatDialog) { }
-
-  ngOnInit() {
-    let projectId = this.router.snapshot.params["projectId"];  
+  connectionID:string
+  public drawingBoards : DrawingBoardModel[];
+  constructor(private router : ActivatedRoute,private projectService : ProjectService,public dialog: MatDialog, public reciver : SignalRResiver) {
+    let projectId = this.router.snapshot.params["projectId"]; 
     this.projectService.getProject(projectId).subscribe((Response : any)=>{      
       this.Project = Response;
       this.drawingBoards = Response.drawingBoards;
-      this.selectedBoardId = this.drawingBoards[0].id;
-      console.log(this.drawingBoards);
-      
+      this.selectedBoardId = this.drawingBoards[0].id; 
+      this.drawignBoard.projectId = projectId 
+      this.drawignBoard.initShapes(this.selectedBoardId);   
+      this.reciver.registerDrawingStation(this).then( (mightBeTheId) =>{
+        this.connectionID = mightBeTheId
+      });
+    this
     })
+   }
+
+
+  ngOnInit() {
+ 
   }
 
   onToolChange(tool){
@@ -50,7 +59,7 @@ export class DrawingStationComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if(result != null && result != undefined){
-        this.projectService.addDrawingBoard(this.Project.id,result).subscribe((response : DrawingBoardModel)=>{
+        this.projectService.addDrawingBoard(this.Project.id,result,this.connectionID ).subscribe((response : DrawingBoardModel)=>{
           this.drawingBoards.push(response);
         });
       }

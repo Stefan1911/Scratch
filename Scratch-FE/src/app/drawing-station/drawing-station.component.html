@@ -16,7 +16,8 @@
                 <button (click)="onAddTable()" mat-button style="margin-top:4%;"><mat-icon aria-hidden="false">add</mat-icon> New Table</button>
                 <hr color="white">
                 <div class="boardButton" *ngFor="let board of drawingBoards" (click)="onBoardChange(board.id)">
-                    <label ># {{board.name}}</label>
+                    <label *ngIf="board.id == selectedBoardId"  style="color: orange;"># {{board.name}}</label>
+                    <label *ngIf="board.id != selectedBoardId"># {{board.name}}</label>
                 </div>
             </mat-tab>
             <mat-tab label="Tools">
