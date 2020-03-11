@@ -1,24 +1,21 @@
 <div  class="card">
-    <button mat-flat-button class="exit">
+    <button mat-flat-button class="exit" (click)="onNoClick()">
         <mat-icon>close</mat-icon> 
     </button>
     <div class="div1">
         <h3 class="txt">Edit Your profile</h3>
         <p class="txt">Full name:</p>
             <mat-form-field class="full-width">
-              <input matInput placeholder={{name}}>
+                <mat-label>{{oldName}}</mat-label>
+              <input matInput (input)="name = $event.target.value">
             </mat-form-field>
         <p class="txt">E-mail:</p>
         <mat-form-field class="full-width">
-            <input matInput placeholder={{email}}>
+            <input matInput placeholder={{oldEmail}} (input)="email = $event.target.value">
           </mat-form-field>
         <p class="txt">Username:</p>
         <mat-form-field class="full-width">
-            <input matInput placeholder={{username}}>
-          </mat-form-field>
-        <p class="txt">Password:</p>
-        <mat-form-field class="full-width">
-            <input matInput placeholder={{password}}>
+            <input matInput placeholder={{oldUsername}} (input)="username = $event.target.value">
           </mat-form-field>
     </div>
     <div class="div2">
@@ -32,8 +29,8 @@
         <button mat-flat-button color="primary">Upload an image</button>
     </div>
     <div class="div3">
-        <button mat-flat-button class="cancel">Cancel</button>
-    <button mat-flat-button color="primary">Save Changes</button> 
+        <button mat-flat-button class="cancel" (click)="onNoClick()">Cancel</button>
+    <button mat-flat-button color="primary" (click)="submit()">Save Changes</button> 
     </div>
    
 </div>

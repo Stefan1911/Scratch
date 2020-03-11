@@ -61,11 +61,15 @@ namespace Persistence.Repositories
             return users.ToList();
         }
 
-        public async Task UpdateAsync(UserModel user)
+        public async Task<UserModel> UpdateAsync(UserModel user)
         {
             var filter = Builders<UserModel>.Filter.Eq(_user => _user.Id, user.Id);
-            var update = Builders<UserModel>.Update.Set(_user => _user, user);
+            var builder = Builders<UserModel>.Update;
+            var update = builder.Set(_user => _user.Name, user.Name).Set(_user => _user.Username, user.Username)
+                .Set(_user => _user.PictureUrl, user.PictureUrl).Set(_user => _user.Email, user.Email);
+
             await _context.Users.UpdateOneAsync(filter, update);
+            return user;
         }
 
         public async Task UpdateRangeAsync(IEnumerable<string> users,string projectId)

@@ -42,6 +42,23 @@ namespace Scratch.Controllers
             return Ok(response);
         }
 
+        [HttpPut]
+        public async Task<IActionResult> Put([FromServices] IHandle<UpdateUserRequest, UserResponse> handle,
+            [FromBody]UserModel userModel)
+        {
+            var request = new UpdateUserRequest
+            {
+                Id=userModel.Id,
+                Email = userModel.Email,
+                Name = userModel.Name,
+                Username = userModel.Username,
+                Password = userModel.Password,
+                PictureUrl = userModel.PictureUrl
+            };
+            var response = await handle.HandleAsync(request);
+            return Ok(response);
+        }
+
         [HttpGet]
         public async Task<IActionResult> Get([FromServices] IHandle<GetUserCollectionRequest, CollectionResponse<UserResponse>> handle)
         {
@@ -50,5 +67,6 @@ namespace Scratch.Controllers
 
             return Ok(response);
         }
+
     }
 }

@@ -13,7 +13,7 @@ namespace Business.Contracts
         Task<IEnumerable<UserModel>> AddRangeAsync(IEnumerable<UserModel> users);
         Task<UserModel> GetByUsername(string username);
         Task<UserModel> GetAsync(string id);
-        Task UpdateAsync( UserModel user);
+        Task<UserModel> UpdateAsync( UserModel user);
         Task UpdateRangeAsync(IEnumerable<string> users, string projectId);
         Task<IEnumerable<UserModel>> GetCollecionAsync();
     }

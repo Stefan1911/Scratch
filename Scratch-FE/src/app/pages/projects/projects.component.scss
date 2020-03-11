@@ -4,8 +4,6 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    //  display: flex;
-    //  justify-content: center;
 }
   
 .newProjectBtn{
@@ -13,17 +11,21 @@
     right:30px;
     top:100px;
 }
-
+.buttons{
+    position: absolute;
+    bottom: 20px;
+    margin-top: 20px;
+}
 .example-card {
     max-width: 280px;
+    height: 400px;
     margin-left: 1%;
     margin-bottom: 5%;
     top:100px;
-    box-shadow: 14px 13px 8px -1px rgba(43, 42, 43, 0.45);
+    background-color:rgb(20, 20, 20);
 }
  .picture{
      height: 150px;
-    // margin-left: 5px;
  } 
  .my-dialog {
     .mat-dialog-container {

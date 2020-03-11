@@ -26,8 +26,8 @@ namespace Business.UserContext.UseCases
             {
                 Name = request.Name,
                 Description=request.Description,
-                DrawingBoards=new List<DrawingBoardModel>(),
                 PictureUrl=request.PictureUrl,
+                DrawingBoards=new List<DrawingBoardModel>(),
                 UserIDs = request.UserIDs
             };
             var returnProject = await _projectRepository.AddAsync(project);

@@ -82,7 +82,8 @@ namespace Scratch
 			services.AddSingleton<IUserRepository, UserRepository>();
 			services.AddUseCase<LogInRequest,LogInResponse,LogInUseCase>();
             services.AddUseCase<CreateUserRequest, UserResponse, CreateUserUseCase>();
-            services.AddUseCase<GetUserCollectionRequest, CollectionResponse<UserResponse>, GetUserCollectionUseCase > ();
+			services.AddUseCase<UpdateUserRequest, UserResponse, UpdateUserUseCase>();
+			services.AddUseCase<GetUserCollectionRequest, CollectionResponse<UserResponse>, GetUserCollectionUseCase > ();
             #endregion
             #region Example
             services.AddSingleton<IExampleRepository, ExampleRepository>();

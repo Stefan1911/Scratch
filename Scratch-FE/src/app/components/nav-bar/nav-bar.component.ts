@@ -51,7 +51,9 @@ export class NavBarComponent implements OnInit {
     const dialogRef = this.dialog.open(ProfileComponent, {
       panelClass: 'my-dialog'
     });
-
+  dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
     dialogRef.afterClosed().subscribe(result => {
 
     });
