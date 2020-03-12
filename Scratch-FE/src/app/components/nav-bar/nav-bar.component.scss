@@ -1,7 +1,14 @@
 .mytoolbar{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+     justify-content: space-between;
+    // background-color: #b00c8a;
+    // box-shadow: inset 69px 9px 110px 38px rgba(0,0,0,0.96);
+ 
+    background-image: url("https://www.xmple.com/wallpaper/gradient-black-purple-linear-1920x1080-c2-000000-8b008b-a-0-f-14.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 .buttonPanel{
     position: relative;
@@ -36,10 +43,7 @@
 .profileBox{
     display: flex;
     flex-direction: row;
-    //width: 100%;
     justify-content: right;
-    //margin-right: 4%;
-    //min-width: 600px;
 }
 .my-dialog {
     .mat-dialog-container {

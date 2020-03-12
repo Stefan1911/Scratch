@@ -11,8 +11,11 @@
                                 </mat-form-field>
                               
                                 <mat-form-field class="example-full-width">
-                                    <mat-label>password</mat-label>
-                                    <input matInput (input)="password = $event.target.value" >
+                                    <mat-label>Password</mat-label>
+                                    <input matInput [type]="hide ? 'password' : 'text'" (input)="password = $event.target.value" >
+                                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                      </button>
                                   </mat-form-field>
                               </form>
                     </mat-tab>
@@ -20,7 +23,7 @@
                             <form class="example-form">
                                 <mat-form-field class="example-full-width">
                                     <mat-label>E-Mail</mat-label>
-                                    <input matInput (input)="email = $event.target.value">
+                                    <input matInput placeholder="pat@example.com" (input)="email = $event.target.value" required>
                                   </mat-form-field>
                                 <mat-form-field class="example-full-width">
                                     <mat-label>Full Name</mat-label>
@@ -29,12 +32,15 @@
     
                                 <mat-form-field class="example-full-width">
                                   <mat-label>Username</mat-label>
-                                  <input matInput (input)="registerUsername = $event.target.value">
+                                  <input matInput required (input)="registerUsername = $event.target.value">
                                 </mat-form-field>
                               
                                 <mat-form-field class="example-full-width">
-                                    <mat-label>password</mat-label>
-                                    <input matInput (input)="registerPassword = $event.target.value" >
+                                    <mat-label>Password</mat-label>
+                                    <input matInput required [type]="hide ? 'password' : 'text'" (input)="registerPassword = $event.target.value" >
+                                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                      </button>
                                   </mat-form-field>
                             </form>
                     </mat-tab>
