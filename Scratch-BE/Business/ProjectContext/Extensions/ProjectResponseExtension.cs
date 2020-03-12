@@ -16,8 +16,6 @@ namespace Business.UserContext.Extension
                 Description=project.Description,
                 PictureUrl=project.PictureUrl,
                 Name = project.Name,
-                PictureUrl=project.PictureUrl,
-                Description=project.Description,
                 DrawingBoards = project.DrawingBoards.Select(drawingBoard => drawingBoard.ToResponse()).ToCollecionResponse(),
                 UserIDs = project.UserIDs  
             };
