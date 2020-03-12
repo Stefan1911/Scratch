@@ -1,0 +1,31 @@
+<mat-drawer-container class="example-container" autosize >
+    <mat-drawer #drawer class="example-sidenav" mode="side">
+        <button mat-button (click)="drawer.toggle()" class="chatBtn">
+            <mat-icon>chat</mat-icon>
+          </button>
+        <hr color="violet" style="margin-top: 40px;"> 
+            <mat-list >
+                <mat-list-item *ngFor="let user of users" class="list" >
+                  <img src={{user.pictureUrL}} class="picture" >
+                  <p  class="name"> {{user.name}} </p>
+                </mat-list-item>
+              </mat-list>    
+    
+    </mat-drawer>
+  
+    <div class="example-sidenav-content">
+      <button mat-button (click)="drawer.toggle()" class="groupBtn" >
+       <mat-icon>group</mat-icon>
+      </button>
+      <div class="inputAndBtn">
+        <mat-form-field appearance="fill" class="input">
+            <mat-label>Text</mat-label>
+            <input matInput>
+          </mat-form-field>
+          <button mat-button>
+            <mat-icon>send</mat-icon>
+           </button>
+      </div>
+      
+    </div> 
+  </mat-drawer-container>

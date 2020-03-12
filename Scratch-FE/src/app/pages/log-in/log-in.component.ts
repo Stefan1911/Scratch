@@ -13,7 +13,7 @@ export class LogInComponent implements OnInit {
 
   constructor(private logInService : LogInService, private userStore : UserStore,private router : Router) { }
 
-
+  hide = true;
   buttonText : String = "LogIn"
   isLogin : boolean = true;
 

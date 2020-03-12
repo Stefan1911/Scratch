@@ -27,10 +27,14 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { NewProjectComponent } from './components/new-project/new-project.component';
 import { NewTableDialogComponent } from './components/new-table-dialog/new-table-dialog.component';
 import { FormsModule } from '@angular/forms';
+import { ChatComponentComponent } from './components/chat-component/chat-component.component';
+import {MatListModule} from '@angular/material/list';
+
 const appRoutes: Routes = [
   { path: 'home', component: FirstPageComponent },
   { path: 'login', component: LogInComponent },
-  {path: 'drawingStation/:projectId', component: DrawingStationComponent, canActivate:[LoginGuardService]},
+  { path: 'chat', component: ChatComponentComponent },
+  { path: 'drawingStation/:projectId', component: DrawingStationComponent, canActivate:[LoginGuardService]},
   { path: 'profile', component: ProfileComponent },
   { path: 'newProject', component: NewProjectComponent },
   { path: 'projects' , component : ProjectsComponent , canActivate:[LoginGuardService]},
@@ -53,7 +57,8 @@ const appRoutes: Routes = [
     ToolbarComponent,
     LogInComponent,
     NewProjectComponent,
-    NewTableDialogComponent
+    NewTableDialogComponent,
+    ChatComponentComponent
   ],
   imports: [
     BrowserModule,
@@ -71,6 +76,7 @@ const appRoutes: Routes = [
     MatMenuModule,
     MatDialogModule,
     FormsModule,
+    MatListModule,
     RouterModule.forRoot(
       appRoutes
     )
