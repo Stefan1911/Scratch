@@ -6,6 +6,8 @@ import { DrawingBoardModel } from 'src/app/models/DrawingBoardModel';
 import { ThrowStmt } from '@angular/compiler';
 import { promise } from 'protractor';
 import { DrawingStationComponent } from 'src/app/drawing-station/drawing-station.component';
+import { ShapeHelperModel } from 'src/app/models/HelperModels/shapeHelperModel';
+import { ShapeModel } from 'src/app/models/ShapeModel';
 
 @Injectable({
 	providedIn: 'root'
@@ -34,6 +36,7 @@ export class SignalRResiver {
 	}
 
 	async registerDrawingStation(drawingStatino : DrawingStationComponent): Promise<string>{
+		this.hubConnection.off(drawingStatino.Project.id+"/add");
 		this.hubConnection.on(drawingStatino.Project.id+"/add",(drawingBoard: DrawingBoardModel)=>{
 			drawingStatino.drawingBoards.push(drawingBoard);
 		})
@@ -43,11 +46,16 @@ export class SignalRResiver {
 	
 	async registerCanvas(canvas :AppCanvasComponent): Promise<string>{
 		this.removeAllHubs(canvas)
-		this.hubConnection.on(canvas.drawingBoardId, (data) => {
-			canvas.drawShape(data);
+		this.hubConnection.on(canvas.drawingBoardId, (shape : ShapeHelperModel) => {
+			let newShape = new ShapeModel();
+			newShape.fromShapeHelper(shape);
+			newShape.tableId = canvas.drawingBoardId;
+			canvas.shapes.push(newShape);
+			canvas.drawShape(newShape);
 			});
-		this.hubConnection.on(canvas.drawingBoardId + "/updateShape", (shape, shapeIndex) =>{
-			canvas.updateShape(shape,shapeIndex);
+		this.hubConnection.on(canvas.drawingBoardId + "/updateShape", (shape : ShapeHelperModel, shapeIndex) =>{
+			canvas.shapes[shapeIndex].fromShapeHelper(shape);
+			canvas.reDrawShape(canvas.shapes[shapeIndex]);
 		})
 		let id = await this.promis;
 		return id;

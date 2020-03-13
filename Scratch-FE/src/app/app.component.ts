@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { PostService } from './services/httpServices/postService';
+import { ShapeService } from './services/httpServices/ShapeService';
 import { ShapeSubjectService } from './services/ShapeSubjectService';
 import { Shape } from 'createjs-module';
 import { ShapeModel } from './models/ShapeModel';

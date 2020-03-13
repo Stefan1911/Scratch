@@ -2,7 +2,7 @@ import { Point, MouseEvent, Shape, DisplayObject } from 'createjs-module';
 import { ShapeSubjectService } from '../ShapeSubjectService';
 import { AppCanvasComponent } from 'src/app/drawing-station/app-canvas/app-canvas.component';
 import { PointModel } from 'src/app/models/PointModel';
-import { PostService } from '../httpServices/postService';
+import { ShapeService } from '../httpServices/ShapeService';
 
 export class SelectorTool{
     isMousDown : boolean = false;
@@ -44,6 +44,8 @@ export class SelectorTool{
 
 
     updateShapePoints(shapeIndex:number, xMovement:number, yMovement:number){
+ //       console.log({shapeIndex,shapes: this.canvas.shapes, shape: this.canvas.shapes[shapeIndex]});
+        
         this.canvas.shapes[shapeIndex].shapeIndex = shapeIndex;
         this.canvas.shapes[shapeIndex].points.map((point)=>{
             point.x += xMovement;

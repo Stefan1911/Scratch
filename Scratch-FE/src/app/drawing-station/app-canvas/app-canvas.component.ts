@@ -2,9 +2,9 @@ import { Component, OnInit, Input } from '@angular/core';
 import * as createjs from 'createjs-module';
 import { MouseStrategyFactory, MouseStrategyEnum } from 'src/app/services/mousStratey/MouseStrategyFactory';
 import { ShapeSubjectService } from 'src/app/services/ShapeSubjectService';
-import { PostService } from 'src/app/services/httpServices/postService';
+import { ShapeService } from 'src/app/services/httpServices/ShapeService';
 import { SignalRResiver } from 'src/app/services/httpServices/signalRReciver';
-import { GetService } from 'src/app/services/httpServices/getService';
+import { TableService } from 'src/app/services/httpServices/TableService';
 import { DrawingBoardModel } from 'src/app/models/DrawingBoardModel';
 import { ShapeModel } from 'src/app/models/ShapeModel';
 import { PointModel } from 'src/app/models/PointModel';
@@ -35,9 +35,9 @@ export class AppCanvasComponent implements OnInit {
 	subscriptions : Subscription[];
   
   constructor(public strategyFactory : MouseStrategyFactory
-			,public postService: PostService
+			,public postService: ShapeService
 			,public reciver : SignalRResiver 
-			,public getService : GetService
+			,public getService : TableService
 			) { 
 				this.shapes = new Array();
 			}
@@ -90,35 +90,35 @@ export class AppCanvasComponent implements OnInit {
 	DrawAllShapes( shapes:ShapeModel[]){
 		shapes.forEach((shape) =>{
 			shape.tableId = this.drawingBoardId;
-			this.shapes.push(shape);
-			this.drawShape(shape);
+			let tempShape = new ShapeModel();
+			tempShape.shapeIndex = shape.shapeIndex;
+			tempShape.tableId = shape.tableId;
+			tempShape.points = shape.points;
+			tempShape.fillColor = shape.fillColor;
+			tempShape.strockColor = shape.strockColor;
+			tempShape.type = shape.type;
+			this.shapes.push(tempShape);
+			this.drawShape(tempShape);
 		})
+
 	}
 
-	drawShape(shape:ShapeModel){
-		let newShape = new createjs.Shape();
-		if(shape.type == "Rectangle"){
-			let pointOne = shape.points[0];
-			let pointTwo = shape.points[1];
-			let width = pointTwo.x - pointOne.x;
-			let heigth = pointTwo.y - pointOne.y;
-			newShape.graphics.beginFill("DeepSkyBlue").beginStroke("#000000").drawRect(pointOne.x,pointOne.y,width,heigth);
-			this.stage.addChild(newShape)
-		}
+	reDrawAllShapes(){
+		this.stage.clear()
+		this.shapes.forEach( (shape : ShapeModel )=> {
+			this.drawShape(shape);
+		});
 		this.stage.update();
 	}
 
-	updateShape(shape:ShapeModel, shapeIndex:number){
-		let newShape = new createjs.Shape();
-		if(shape.type == "Rectangle"){
-			let pointOne = shape.points[0];
-			let pointTwo = shape.points[1];
-			let width = pointTwo.x - pointOne.x;
-			let heigth = pointTwo.y - pointOne.y;
-			newShape.graphics.beginFill("DeepSkyBlue").beginStroke("#000000").drawRect(pointOne.x,pointOne.y,width,heigth);
-			this.stage.removeChildAt(shapeIndex);
-			this.stage.addChildAt(newShape,shapeIndex);
-		}
+	reDrawShape(shape : ShapeModel){
+		shape.initializeDrowing();
+		this.stage.update();
+	}
+	
+	drawShape(shape:ShapeModel){
+		shape.initializeDrowing();
+		this.stage.addChild(shape);
 		this.stage.update();
 	}
 
