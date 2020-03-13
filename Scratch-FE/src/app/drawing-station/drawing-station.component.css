@@ -42,4 +42,11 @@
  .boardButton:hover{
   background: gray; /* make this whatever you want */
   }
-  
+  .canvas{
+    height: 95vh;
+    background-color: rgb(19, 17, 18);
+  }
+.nesto{
+  display: flex;
+  flex-direction: row;
+}

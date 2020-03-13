@@ -28,7 +28,8 @@ import { NewProjectComponent } from './components/new-project/new-project.compon
 import { NewTableDialogComponent } from './components/new-table-dialog/new-table-dialog.component';
 import { FormsModule } from '@angular/forms';
 import { ChatComponentComponent } from './components/chat-component/chat-component.component';
-import {MatListModule} from '@angular/material/list';
+import { MatListModule } from '@angular/material/list';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 const appRoutes: Routes = [
   { path: 'home', component: FirstPageComponent },
@@ -77,6 +78,7 @@ const appRoutes: Routes = [
     MatDialogModule,
     FormsModule,
     MatListModule,
+    MatSnackBarModule,
     RouterModule.forRoot(
       appRoutes
     )

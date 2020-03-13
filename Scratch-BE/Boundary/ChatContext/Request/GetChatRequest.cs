@@ -7,5 +7,6 @@ namespace Boundary.ChatContext.Request
 {
     public class GetChatRequest : IRequestContext
     {
+        public string BoardId { get; set; }
     }
 }

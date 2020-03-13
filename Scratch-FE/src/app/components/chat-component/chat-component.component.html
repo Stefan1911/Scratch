@@ -26,6 +26,14 @@
             <mat-icon>send</mat-icon>
            </button>
       </div>
-      
+      <div class="messages">
+          <div *ngFor="let message of chat.messages" class="list" >
+              <img src={{message.userPictureUrl}} class="picture" >  
+              <div class="nameAndContent">
+                <p class="name"> {{message.userName}} </p>
+                <p> {{message.content}} </p>
+              </div>            
+          </div> 
+      </div>
     </div> 
   </mat-drawer-container>
