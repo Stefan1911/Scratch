@@ -3,6 +3,7 @@ import { LogInService } from 'src/app/services/httpServices/LogInService';
 import { UserModel } from 'src/app/models/UserModel';
 import { UserStore } from 'src/app/services/userStoreService';
 import { Router } from '@angular/router';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-log-in',
@@ -11,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class LogInComponent implements OnInit {
 
-  constructor(private logInService : LogInService, private userStore : UserStore,private router : Router) { }
+  constructor(private logInService : LogInService, private userStore : UserStore,private router : Router, private _snackBar: MatSnackBar) { }
 
   hide = true;
   buttonText : String = "LogIn"
@@ -47,7 +48,10 @@ export class LogInComponent implements OnInit {
         this.router.navigate(["projects"]);
       }
       else{
-        console.log("login or register faild");
+          this._snackBar.open("Incorrect password or username","", {
+            duration: 2500,
+          });
+        
       }
     });
   }

@@ -10,5 +10,6 @@ namespace Boundary.ChatContext.Request
     {
         public string TableId { get; set; }
         public List<CreateMessageRequest> Messages { get; set; }
+        public string ExcludedClientId { get; set; }
     }
 }

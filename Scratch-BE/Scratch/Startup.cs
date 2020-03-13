@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Boundary.ChatContext.Request;
+using Boundary.ChatContext.Response;
 using Boundary.DrawingBoardContext.Request;
 using Boundary.ExampleContext.Request;
 using Boundary.ExampleContext.Response;
@@ -14,6 +16,7 @@ using Boundary.ShapeContext.Response;
 using Boundary.UserContext;
 using Boundary.UserContext.Request;
 using Boundary.UserContext.Response;
+using Business.ChatContext.UseCases;
 using Business.Contracts;
 using Business.DrawingBoardContext.UseCases;
 using Business.ExampleContext.UseCases;
@@ -22,6 +25,7 @@ using Business.ShapeContext.UseCases;
 using Business.UserContext.UseCases;
 using Kernel.Response;
 using MessagingService;
+using MessagingService.Hubs;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -62,13 +66,18 @@ namespace Scratch
             services.AddSingleton<IShapeRepository, ShapeRepository>();
             services.AddUseCase<CreateShapeRequest, ShapeResponse, CreateShapeUseCase>();
             services.AddUseCase<UpdateShapeRequest, ShapeResponse, UpdateShapeUseCase>();
-            #endregion
-            #region Message
-            services.AddSingleton<IMessageRepository, MessageRepository>();
+			#endregion
+			#region Chat
+			services.AddSingleton<IChatRepository, ChatRepository>();
+			services.AddUseCase<CreateChatRequest, ChatResponse, CreateChatUseCase>();
+			services.AddUseCase<GetChatRequest, ChatResponse, GetChatUseCase>();
+			#endregion
+			#region Message
+			services.AddSingleton<IMessageRepository, MessageRepository>();
             services.AddUseCase<CreateMessageRequest, MessageResponse, CreateMessageUseCase>();
-            #endregion
-            #region DrawingBoard
-            services.AddSingleton<IDrawingBoardRepository, DrawingBoardRepository>();
+			#endregion
+			#region DrawingBoard
+			services.AddSingleton<IDrawingBoardRepository, DrawingBoardRepository>();
             services.AddUseCase<CreateDrawingBoardRequest, DrawingBoardResponse, CreateDrawingBoardUseCase>();
 			services.AddUseCase<GetDrawingBoardRequest, DrawingBoardResponse, GetDrawingBoardUseCase>();
             #endregion
@@ -93,6 +102,7 @@ namespace Scratch
 			#region SignalR
 			services.AddSignalR();
 			services.AddSingleton<IDrawingBoardMessageBroker,DrawingBoardMessageBroker>();
+			services.AddSingleton<IChatMessageBroker, ChatMessageBroker>();
 			#endregion
 
 			services.AddCors(options =>
@@ -125,7 +135,8 @@ namespace Scratch
             {
                 endpoints.MapControllers();
 				endpoints.MapHub<DrawingBoardHub>(_signalRConfig.DrawingBoardHubAddres);
-            });
+				endpoints.MapHub<ChatHub>(_signalRConfig.ChatHubAddress);
+			});
         }
 		public static IConfigurationRoot GetIConfigurationRoot()
 		{            

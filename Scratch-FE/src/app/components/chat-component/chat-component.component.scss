@@ -1,6 +1,6 @@
 .example-container {
   width: 300px;
-  height: 91.2vh;
+  height: 93vh;
   border: 1px solid rgba(0, 0, 0, 0.5);
 }
 .example-sidenav-content {
@@ -38,10 +38,19 @@
     flex-direction: row;
 }
 .name{
-    margin-left:35px;
+    font-size: small;
+    color:rgb(247, 180, 253);
+    margin-bottom: 0px;
+    margin-left: 0px;
 }
 .list{
-  margin-bottom: 10px;
+  margin-bottom: 12px;
+  border-bottom: 0.5px solid rgb(53, 4, 51)!important;
+}
+.nameAndContent{
+  margin-left:58px;
+  display: flex;
+  flex-direction: column;
 }
 .inputAndBtn{
   position: absolute;
@@ -51,4 +60,23 @@
 }
 .input{
   width: 230px;
+}
+.messages{
+  position: absolute;
+  top: 35px;
+  overflow: auto;
+  height: 73vh;
+  width: 295px;
+}
+::-webkit-scrollbar {
+  width: 9px;
+}
+::-webkit-scrollbar-track {
+  background: #1d0015; 
+} 
+::-webkit-scrollbar-thumb {
+  background: rgb(73, 2, 50); 
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(207, 105, 168); 
 }

@@ -3,6 +3,8 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog
 import { UserModel } from 'src/app/models/UserModel';
 import { LogInService } from 'src/app/services/httpServices/LogInService';
 import { UserStore } from 'src/app/services/userStoreService';
+import {MatSnackBar} from '@angular/material/snack-bar';
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -18,7 +20,7 @@ export class ProfileComponent implements OnInit {
   oldUsername:String;
   oldEmail:String;
 
-  constructor(private logInService : LogInService,private userStore : UserStore, public dialogRef: MatDialogRef<ProfileComponent>) { 
+  constructor(private logInService : LogInService,private userStore : UserStore, public dialogRef: MatDialogRef<ProfileComponent>, private _snackBar: MatSnackBar) { 
     this.name=userStore.user.name;
     this.email=userStore.user.email;
     this.username=userStore.user.username;
@@ -40,11 +42,17 @@ export class ProfileComponent implements OnInit {
         this.userStore.user = response;
       }
     });
+    this.openSnackBar();
   }
   showPicture(){
     if(this.pictureUrl=="" || this.pictureUrl==null || this.pictureUrl==undefined)
       return false;
     return true;
+  }
+  openSnackBar() {
+    this._snackBar.open("User updated","", {
+      duration: 2500,
+    });
   }
   ngOnInit() {
   }
