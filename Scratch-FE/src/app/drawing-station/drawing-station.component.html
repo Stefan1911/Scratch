@@ -5,18 +5,19 @@
                 <button (click)="onAddTable()" mat-button style="margin-top:4%;"><mat-icon aria-hidden="false">add</mat-icon> New Table</button>
                 <hr color="white">
                 <div class="boardButton" *ngFor="let board of drawingBoards" (click)="onBoardChange(board.id)">
-                    <label *ngIf="board.id == selectedBoardId"  style="color: orange;"># {{board.name}}</label>
+                    <label *ngIf="board.id == selectedBoardId"  style="color: rgb(224, 123, 194);"># {{board.name}}</label>
                     <label *ngIf="board.id != selectedBoardId"># {{board.name}}</label>
                     <a *ngIf="board.id == selectedBoardId" [matMenuTriggerFor]="menu">
                          <mat-icon>more_vert</mat-icon>
                     </a>
                     <mat-menu #menu="matMenu">
                         <button mat-menu-item >
-                          <mat-icon><img src="https://img.icons8.com/ios/24/000000/edit-user-male.png"></mat-icon> 
+                          <mat-icon><img src="https://img.icons8.com/material-outlined/24/000000/edit-file.png"/></mat-icon> 
                         <span>Rename</span>
                         </button>
+                        <hr color="magenta">
                         <button mat-menu-item (click)="onLogout()">
-                          <mat-icon> <img src="https://img.icons8.com/material-outlined/24/000000/exit.png"></mat-icon>
+                          <mat-icon><img src="https://img.icons8.com/metro/26/000000/delete-sign.png"/></mat-icon>
                           <span>Delete</span>
                         </button>
                     </mat-menu>
@@ -26,11 +27,13 @@
                 <app-toolbar (toolChage)="onToolChange($event)" class=""></app-toolbar>        
             </mat-tab>
         </mat-tab-group>
+        <div class="image"> </div>
     </mat-drawer>
     <mat-drawer-content>
         <div class="nesto">
             <app-canvas [drawingBoardId]="selectedBoardId" [projectId]="selectedBoardId" #canvas class="canvas"> </app-canvas>
-            <app-chat-component></app-chat-component>
+            <app-chat-component #chat ></app-chat-component>
         </div>     
 </mat-drawer-content>
   </mat-drawer-container>
+ 

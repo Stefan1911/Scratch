@@ -11,7 +11,10 @@ namespace Business.UserContext.Extension
             {
                 Id = message.Id,
                 TimeStamp = message.TimeStamp,
-                UserID = message.UserID
+                UserID = message.UserID,
+                UserName=message.UserName,
+                UserPictureUrl=message.UserPictureUrl,
+                Content=message.Content
             };
         }
     }
