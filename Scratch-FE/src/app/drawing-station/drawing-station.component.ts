@@ -8,6 +8,7 @@ import { AppCanvasComponent } from './app-canvas/app-canvas.component';
 import { MatDialog } from '@angular/material/dialog';
 import { NewTableDialogComponent } from '../components/new-table-dialog/new-table-dialog.component';
 import { SignalRResiver } from '../services/httpServices/signalRReciver';
+import { ChatComponentComponent } from '../components/chat-component/chat-component.component';
 
 @Component({
   selector: 'app-drawing-station',
@@ -17,6 +18,8 @@ import { SignalRResiver } from '../services/httpServices/signalRReciver';
 export class DrawingStationComponent implements OnInit {
   @ViewChild("canvas", {static: false})
   drawignBoard : AppCanvasComponent;
+  @ViewChild("chat", {static: false})
+  chat : ChatComponentComponent;
 
   Project : ProjectModel;
   selectedBoardId: string;
@@ -25,17 +28,20 @@ export class DrawingStationComponent implements OnInit {
   public drawingBoards : DrawingBoardModel[];
   constructor(private router : ActivatedRoute,private projectService : ProjectService,public dialog: MatDialog, public reciver : SignalRResiver) {
     let projectId = this.router.snapshot.params["projectId"]; 
-    this.projectService.getProject(projectId).subscribe((Response : any)=>{      
+    this.projectService.getProject(projectId).subscribe((Response : any)=>{  
       this.Project = Response;
       this.drawingBoards = Response.drawingBoards;
-      this.selectedBoardId = this.drawingBoards[0].id; 
+      this.selectedBoardId = this.drawingBoards[0].id;
+      this.chat.boardId=this.selectedBoardId;    
       this.drawignBoard.projectId = projectId 
       this.drawignBoard.initShapes(this.selectedBoardId);   
+      this.chat.chatInit(this.selectedBoardId);
       this.reciver.registerDrawingStation(this).then( (mightBeTheId) =>{
         this.connectionID = mightBeTheId
       });
     this
     })
+
    }
 
 
@@ -49,8 +55,12 @@ export class DrawingStationComponent implements OnInit {
 
   onBoardChange(boardId :string){
     this.reciver.removeAllCanvasHubs(this.drawignBoard);
+    this.reciver.removeChat(this.chat);
     this.selectedBoardId = boardId;
     this.drawignBoard.initShapes(boardId);
+    this.chat.boardId=this.selectedBoardId;
+    this.chat.chatInit(boardId);
+
   }
 
   onAddTable(){

@@ -17,9 +17,9 @@ namespace MessagingService
 			_messagingHub = messagingHub;
 		}
 
-		public async Task AddChat(string MessageName, string excludedClientID, ChatModel chat)
+		public async Task AddChat(string MessageName, MessageModel message)
 		{
-			await _messagingHub.Clients.AllExcept(excludedClientID).SendAsync(MessageName + "/add", chat);
+			await _messagingHub.Clients.All.SendAsync(MessageName + "/chat/add", message);
 		}
 	}
 }

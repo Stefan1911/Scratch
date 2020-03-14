@@ -8,6 +8,6 @@ namespace Business.Contracts
 {
     public interface IChatMessageBroker
     {
-        Task AddChat(string MessageName, string excludedClientID, ChatModel chat);
+        Task AddChat(string MessageName, MessageModel mes);
     }
 }

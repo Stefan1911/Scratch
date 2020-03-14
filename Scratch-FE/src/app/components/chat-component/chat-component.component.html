@@ -20,9 +20,9 @@
       <div class="inputAndBtn">
         <mat-form-field appearance="fill" class="input">
             <mat-label>Text</mat-label>
-            <input matInput>
+            <input matInput [value]="content" (input)="content = $event.target.value">
           </mat-form-field>
-          <button mat-button>
+          <button mat-button (click)="send()">
             <mat-icon>send</mat-icon>
            </button>
       </div>

@@ -12,19 +12,25 @@ namespace Business.UserContext.UseCases
     public class CreateMessageUseCase : IHandle<CreateMessageRequest, MessageResponse>
     {
         private IMessageRepository _repository;
+        private IChatMessageBroker _broker;
 
-        public CreateMessageUseCase(IMessageRepository repository)
+        public CreateMessageUseCase(IMessageRepository repository, IChatMessageBroker broker)
         {
             _repository = repository;
+            _broker = broker;
         }
         public async Task<MessageResponse> HandleAsync(CreateMessageRequest request)
         {
             var message = new MessageModel
             {
                 TimeStamp = request.TimeStamp,
-                UserID = request.UserID
+                UserID = request.UserID,
+                UserPictureUrl=request.UserPictureUrl,
+                UserName=request.UserName,
+                Content=request.Content
             };
             var returnMessage = await _repository.AddAsync(message, request.TableId);
+            await _broker.AddChat(request.TableId, message);
             return returnMessage.ToResponse();
         }
 

@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { UserModel } from 'src/app/models/UserModel';
 import { ChatModel } from 'src/app/models/ChatModel';
 import { MessageModel } from 'src/app/models/MessageModel';
+import { UserStore } from 'src/app/services/userStoreService';
+import { MessageService } from 'src/app/services/httpServices/messageService';
+import { SignalRResiver } from 'src/app/services/httpServices/signalRReciver';
 
 @Component({
   selector: 'app-chat-component',
@@ -12,45 +15,43 @@ export class ChatComponentComponent implements OnInit {
   
   chat:ChatModel;
   users: UserModel[];
- 
-  constructor() { 
+  content:String;
+  boardId:String;
+
+  constructor(private messageService:MessageService,private userStore : UserStore, public reciver : SignalRResiver) { 
     var proj=new UserModel();
-    proj.pictureUrL="https://akcreativedesign.com/wp-content/uploads/2018/09/3screens-1024x683.jpg";
-    proj.name="ma ddsddsdfb re";
     this.users=new Array();
-    this.users.push(proj);
-    this.users.push(proj);
-    this.users.push(proj);
-    this.users.push(proj);
     this.chat=new ChatModel();
     var mes=new MessageModel();
-    
-    var ms=new MessageModel();
-    ms.userName="ime2";
-    ms.userPictureUrl="https://akcreativedesign.com/wp-content/uploads/2018/09/3screens-1024x683.jpg";
-  ms.content="hshacdddddddddd   dddddddddddd dddddddddd dddddddddd  f";
-
-  this.chat.messages=new Array();
-    mes.userName="ime";
-    mes.userPictureUrl="https://akcreativedesign.com/wp-content/uploads/2018/09/3screens-1024x683.jpg";
-  mes.content="111111";
-    this.chat.messages.push(mes);
-    this.chat.messages.push(mes);
-    this.chat.messages.push(ms);
-    this.chat.messages.push(mes);
-    this.chat.messages.push(mes);
-    this.chat.messages.push(mes);
-    this.chat.messages.push(mes);
-    this.chat.messages.push(mes);
-    this.chat.messages.push(mes);
-    this.chat.messages.push(mes);
-    this.chat.messages.push(mes);
-    this.chat.messages.push(mes);
-    this.chat.messages.push(mes);
-    this.chat.messages.push(mes);
-    
+    this.content = "";
   }
 
+  chatInit(boardId: string){
+    this.boardId=boardId;
+    this.messageService.GetChat(boardId).subscribe((response : ChatModel) => {
+      if(response != null && response != undefined){
+       this.chat=response;
+      }
+    });
+    this.reciver.registerChat(this);
+  }
+  send(){
+    console.log(this.content);
+    
+    let message : MessageModel = new MessageModel();
+    // message.timeStamp=Date.now;
+    message.tableId=this.boardId;
+    message.content=this.content;
+    message.userId=this.userStore.user.id;
+    message.userName=this.userStore.user.name;
+    message.userPictureUrl=this.userStore.user.pictureUrL;
+    this.messageService.PostMessage(message).subscribe((response : MessageModel) => {
+      if(response != null && response != undefined){
+        //this.chat.messages.push(response);
+      }
+    });
+    this.content = "";
+  }
   ngOnInit() {
   }
   

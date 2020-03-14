@@ -6,9 +6,21 @@
   border: 1px solid #555;
 }
 .toolBar{
-  width: 10%;
+  /* background-color: rgb(170, 21, 170); */
+  /* background-color: rgb(247, 244, 241); */
+  box-shadow: inset -28px -95px 107px 29px rgba(0,0,0,0.8);
+  width: 160px;
 }
-
+.image{
+  position: absolute;
+  bottom: 0;
+  background-image: url("https://cdn.designbyhumans.com/file/module/store/144/34144/hero/4926802.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 260px;
+  width: 158px;
+}
 ::ng-deep.mat-tab-label, ::ng-deep.mat-tab-label-active{
   min-width: 0!important;
   padding: 3px!important;
@@ -44,7 +56,9 @@
   }
   .canvas{
     height: 95vh;
-    background-color: rgb(19, 17, 18);
+    /* background-color: rgb(19, 17, 18);
+    background-color: rgb(247, 244, 241); */
+    box-shadow: inset -28px -95px 107px 29px rgba(0,0,0,0.8);
   }
 .nesto{
   display: flex;

@@ -1,10 +1,11 @@
 export class MessageModel {
-	id:string;
-	userId:string;
-	userName:string;
-	userPictureUrl:string;
+	id:String;
+	userId:String;
+	userName:String;
+	userPictureUrl:String;
 	timeStamp:Date;
-	content:string;
+	content:String;
+	tableId:String;
 	constructor() {
 		
 	}

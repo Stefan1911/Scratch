@@ -20,6 +20,9 @@ namespace Scratch.Controllers
             {
                 TimeStamp = messageModel.TimeStamp,
                 UserID = messageModel.UserId,
+                Content=messageModel.Content,
+                UserName=messageModel.UserName,
+                UserPictureUrl=messageModel.UserPictureUrl,
                 TableId = messageModel.TableId
             };
             var response = await handle.HandleAsync(request);

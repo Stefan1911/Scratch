@@ -14,12 +14,10 @@ namespace Business.ChatContext.UseCases
     public class CreateChatUseCase : IHandle<CreateChatRequest, ChatResponse>
     {
         private IChatRepository _repository;
-        private IChatMessageBroker _messageBroker;
 
-        public CreateChatUseCase(IChatRepository repository, IChatMessageBroker broker)
+        public CreateChatUseCase(IChatRepository repository)
         {
             _repository = repository;
-           _messageBroker = broker;
         }
         public async Task<ChatResponse> HandleAsync(CreateChatRequest request)
         {
@@ -28,7 +26,6 @@ namespace Business.ChatContext.UseCases
                  
             };
             var returnChat = await _repository.AddAsync(chat, request.TableId);
-            await _messageBroker.AddChat(request.TableId, request.ExcludedClientId, returnChat);
             return returnChat.ToResponse();
         }
     }

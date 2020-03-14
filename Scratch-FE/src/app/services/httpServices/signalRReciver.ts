@@ -8,6 +8,8 @@ import { promise } from 'protractor';
 import { DrawingStationComponent } from 'src/app/drawing-station/drawing-station.component';
 import { ShapeHelperModel } from 'src/app/models/HelperModels/shapeHelperModel';
 import { ShapeModel } from 'src/app/models/ShapeModel';
+import { ChatComponentComponent } from 'src/app/components/chat-component/chat-component.component';
+import { MessageModel } from 'src/app/models/MessageModel';
 
 @Injectable({
 	providedIn: 'root'
@@ -15,6 +17,7 @@ import { ShapeModel } from 'src/app/models/ShapeModel';
 export class SignalRResiver {
 
 	private hubConnection: signalR.HubConnection
+	private hubConnectionChat: signalR.HubConnection
 	private connetionURL : string
 	private id:string
 	private promis;
@@ -22,6 +25,10 @@ export class SignalRResiver {
 		this.hubConnection = new signalR.HubConnectionBuilder()
 			.withUrl('http://localhost:5000/DrawingBoard')
 			.build();
+		this.hubConnectionChat = new signalR.HubConnectionBuilder()
+			.withUrl('http://localhost:5000/Chat')
+			.build();
+		this.hubConnectionChat.start();
 		this.promis= this.hubConnection
 			.start()
 			.then( () =>{
@@ -43,7 +50,16 @@ export class SignalRResiver {
 		let id = await this.promis;
 		return id;
 	}
-	
+	async registerChat(chat:ChatComponentComponent){
+		console.log("hi");
+		this.hubConnectionChat.on(chat.boardId+"/chat/add",(message )=>{
+			console.log("hello" + chat.boardId);
+			chat.chat.messages.push(message);
+		})
+	}
+	async removeChat(chat:ChatComponentComponent){
+		this.hubConnectionChat.off(chat.boardId+"/chat/add");
+	}
 	async registerCanvas(canvas :AppCanvasComponent): Promise<string>{
 		//this.removeCanvasAllHubs(canvas)
 		this.hubConnection.on(canvas.drawingBoardId, (shape : ShapeHelperModel) => {

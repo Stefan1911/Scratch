@@ -8,6 +8,9 @@ namespace Boundary.MessageContext.Request
     public class CreateMessageRequest : IRequestContext
     {
         public string TableId { get; set; }
+        public string UserName { get; set; }
+        public string UserPictureUrl { get; set; }
+        public string Content { get; set; }
         public string UserID { get; set; }
         public DateTime TimeStamp { get; set; }
     }
