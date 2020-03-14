@@ -45,7 +45,7 @@ export class SignalRResiver {
 	}
 	
 	async registerCanvas(canvas :AppCanvasComponent): Promise<string>{
-		this.removeAllHubs(canvas)
+		//this.removeCanvasAllHubs(canvas)
 		this.hubConnection.on(canvas.drawingBoardId, (shape : ShapeHelperModel) => {
 			let newShape = new ShapeModel();
 			newShape.fromShapeHelper(shape);
@@ -61,7 +61,7 @@ export class SignalRResiver {
 		return id;
 	}
 
-	removeAllHubs(canvas :AppCanvasComponent){
+	removeAllCanvasHubs(canvas :AppCanvasComponent){
 		this.hubConnection.off(canvas.drawingBoardId);
 		this.hubConnection.off(canvas.drawingBoardId + "/updateShape");
 	}

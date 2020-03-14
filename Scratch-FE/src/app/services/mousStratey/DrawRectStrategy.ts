@@ -17,22 +17,17 @@ export class DrawRectStrategy{
 
     constructor(private canvas: AppCanvasComponent) {
         this.stage = canvas.stage;
-		this.currentShapeModel = new ShapeModel();
-		this.currentShapeModel.fillColor = "#000000";
-		this.currentShapeModel.strockColor = "DeepSkyBlue";
-        this.currentShapeModel.type = "Rectangle";
-        this.currentShapeModel.tableId = canvas.drawingBoardId;
-        this.currentShapeModel.points = new Array();
-        this.currentShapeModel.points.push(new PointModel(0,0));
-        this.currentShapeModel.points.push(new PointModel(0,0));
     }
     onMousDown(event : MouseEvent){
+        this.createDefaultShape();
         this.topLeftCorner = new Point(event.stageX,event.stageY);
         this.currentShapeModel.points[0] = new PointModel(this.topLeftCorner.x,this.topLeftCorner.y);
         this.currentShapeModel.points[1] = new PointModel(this.topLeftCorner.x+this.defaultWidth,this.topLeftCorner.y+this.defaultHeigth);
         this.canvas.shapes.push(this.currentShapeModel);
         this.stage.addChild(this.currentShapeModel);
         this.isMousDown = true;
+        console.log(this.canvas.shapes);
+        
     }
     onMouseUp(event : MouseEvent){
         this.isMousDown = false;
@@ -56,5 +51,16 @@ export class DrawRectStrategy{
                 this.canvas.reDrawShape(this.currentShapeModel);
             }
         }
+    }
+
+    createDefaultShape(){
+        this.currentShapeModel = new ShapeModel();
+		this.currentShapeModel.fillColor = "#000000";
+		this.currentShapeModel.strockColor = "DeepSkyBlue";
+        this.currentShapeModel.type = "Rectangle";
+        this.currentShapeModel.tableId = this.canvas.drawingBoardId;
+        this.currentShapeModel.points = new Array();
+        this.currentShapeModel.points.push(new PointModel(0,0));
+        this.currentShapeModel.points.push(new PointModel(0,0));
     }
 }

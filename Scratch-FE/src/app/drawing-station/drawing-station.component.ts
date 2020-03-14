@@ -48,6 +48,7 @@ export class DrawingStationComponent implements OnInit {
   }
 
   onBoardChange(boardId :string){
+    this.reciver.removeAllCanvasHubs(this.drawignBoard);
     this.selectedBoardId = boardId;
     this.drawignBoard.initShapes(boardId);
   }
