@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ShapeModel } from 'src/app/models/ShapeModel';
 import { ShapeHelperModel } from 'src/app/models/HelperModels/shapeHelperModel';
+import { Drawable } from 'src/app/models/interfaces/initializable';
 
 const str = '{ "GivenFigure" : null, "PreviousGameState" : null, "NextGameState" : null }';
 @Injectable({
@@ -19,7 +20,7 @@ export class ShapeService{
 			.subscribe();
 	}
 
-	updateShape(connecionID:string ,shape : ShapeModel){
+	updateShape(connecionID:string ,shape : Drawable){
 		let newShape = new ShapeHelperModel();
 		newShape.fromShapeModel(shape);
 		newShape.sendingClientID = connecionID;

@@ -1,8 +1,9 @@
 import { PointModel } from './PointModel';
 import * as createjs from 'createjs-module';
 import { ShapeHelperModel } from './HelperModels/shapeHelperModel';
+import { Drawable } from './interfaces/initializable';
 
-export class ShapeModel extends createjs.Shape{
+export class ShapeModel extends createjs.Shape implements Drawable{
 	shapeIndex : number;
 	tableId : string;
 	points : PointModel[];
@@ -16,6 +17,9 @@ export class ShapeModel extends createjs.Shape{
 	 */
 	constructor() {
 		super();
+	}
+	peelDecoration() : Drawable {
+		return this;
 	}
 	public fromShapeHelper(shape : ShapeHelperModel){
 		this.shapeIndex = shape.shapeIndex;

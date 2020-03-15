@@ -10,6 +10,7 @@ import { ShapeModel } from 'src/app/models/ShapeModel';
 import { PointModel } from 'src/app/models/PointModel';
 import { MAT_LABEL_GLOBAL_OPTIONS } from '@angular/material/core';
 import { Subscription } from 'rxjs';
+import { Drawable } from 'src/app/models/interfaces/initializable';
 
 @Component({
   selector: 'app-canvas',
@@ -21,16 +22,14 @@ export class AppCanvasComponent implements OnInit {
 
 	mouseStrategy : any;
 	stage : createjs.Stage;
-	mousDownListener;
-	mousMoveListener;
-	mousUpListener;
 	@Input()
 	drawingBoardId : string;
 	@Input()
 	projectId :string;
 	drawingBoard : DrawingBoardModel;
 	conncionID : string ;
-	shapes: ShapeModel[];
+	shapes: Drawable[];
+	selectedShape: Drawable;
 
 	subscriptions : Subscription[];
   
@@ -111,12 +110,12 @@ export class AppCanvasComponent implements OnInit {
 		this.stage.update();
 	}
 
-	reDrawShape(shape : ShapeModel){
+	reDrawShape(shape : Drawable){
 		shape.initializeDrowing();
 		this.stage.update();
 	}
 	
-	drawShape(shape:ShapeModel){
+	drawShape(shape:Drawable){
 		shape.initializeDrowing();
 		this.stage.addChild(shape);
 		this.stage.update();
