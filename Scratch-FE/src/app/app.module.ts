@@ -87,7 +87,7 @@ const appRoutes: Routes = [
       appRoutes
     )
   ],
-  entryComponents: [NewTableDialogComponent],
+  entryComponents: [NewTableDialogComponent, DeleteDialogComponent],
   providers: [],
   bootstrap: [AppComponent]
 })
