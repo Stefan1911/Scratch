@@ -30,6 +30,8 @@ import { FormsModule } from '@angular/forms';
 import { ChatComponentComponent } from './components/chat-component/chat-component.component';
 import { MatListModule } from '@angular/material/list';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ConfirmComponent } from './components/confirm/confirm.component';
+import { DeleteDialogComponent } from './components/delete-dialog/delete-dialog.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: FirstPageComponent },
@@ -59,7 +61,9 @@ const appRoutes: Routes = [
     LogInComponent,
     NewProjectComponent,
     NewTableDialogComponent,
-    ChatComponentComponent
+    ChatComponentComponent,
+    ConfirmComponent,
+    DeleteDialogComponent
   ],
   imports: [
     BrowserModule,

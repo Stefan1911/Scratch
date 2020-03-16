@@ -7,8 +7,8 @@ export class ProjectModel {
 	tables :DrawingBoardModel [];
     name: string;
     description:string;
-    pictureUrl:string;
-	userIDs:string[];
+    pictureUrl:String;
+	userIDs:String[];
 	constructor(name: string, descriptopn: string,pictureUrl:string) {
         this.name=name;
         this.description=descriptopn;

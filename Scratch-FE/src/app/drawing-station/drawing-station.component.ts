@@ -23,10 +23,12 @@ export class DrawingStationComponent implements OnInit {
 
   Project : ProjectModel;
   selectedBoardId: string;
+  showChat:boolean;
 
   connectionID:string
   public drawingBoards : DrawingBoardModel[];
   constructor(private router : ActivatedRoute,private projectService : ProjectService,public dialog: MatDialog, public reciver : SignalRResiver) {
+    this.showChat=false;
     let projectId = this.router.snapshot.params["projectId"]; 
     this.projectService.getProject(projectId).subscribe((Response : any)=>{  
       this.Project = Response;
@@ -44,7 +46,9 @@ export class DrawingStationComponent implements OnInit {
 
    }
 
-
+   visibleChat(){
+     this.showChat=!this.showChat;
+   }
   ngOnInit() {
  
   }
