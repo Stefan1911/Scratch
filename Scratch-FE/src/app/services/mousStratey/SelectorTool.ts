@@ -1,8 +1,5 @@
 import { Point, MouseEvent, Shape, DisplayObject } from 'createjs-module';
-import { ShapeSubjectService } from '../ShapeSubjectService';
 import { AppCanvasComponent } from 'src/app/drawing-station/app-canvas/app-canvas.component';
-import { PointModel } from 'src/app/models/PointModel';
-import { ShapeService } from '../httpServices/ShapeService';
 import { ResizableShape } from 'src/app/models/ShapeDecorators/ResizableShape';
 
 export class SelectorTool{
@@ -69,6 +66,7 @@ export class SelectorTool{
     }
 
     updateShapePoints(shapeIndex:number, xMovement:number, yMovement:number){
+        this.canvas.shapes[shapeIndex].shapeIndex = shapeIndex;
         this.canvas.shapes[shapeIndex].points.map((point)=>{
             point.x += xMovement;
             point.y += yMovement;
