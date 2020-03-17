@@ -32,7 +32,13 @@
     <mat-drawer-content>
         <div class="nesto">
             <app-canvas [drawingBoardId]="selectedBoardId" [projectId]="selectedBoardId" #canvas class="canvas"> </app-canvas>
-            <app-chat-component #chat ></app-chat-component>
+            <div *ngIf="!showChat ; else elseBlock">
+                <button (click)="visibleChat()" mat-flat-button class="openBtn"><mat-icon>keyboard_arrow_up</mat-icon></button>
+            </div>
+            <ng-template #elseBlock>
+                <button (click)="visibleChat()"  mat-flat-button class="closeBtn"><mat-icon>keyboard_arrow_down</mat-icon></button>
+                <app-chat-component #chat ></app-chat-component>
+            </ng-template>
         </div>     
 </mat-drawer-content>
   </mat-drawer-container>

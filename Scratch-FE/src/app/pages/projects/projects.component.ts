@@ -4,6 +4,10 @@ import { Router } from '@angular/router';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog'; 
 import { NewProjectComponent } from 'src/app/components/new-project/new-project.component';
 import {ViewEncapsulation} from '@angular/core';
+import { ProjectService } from 'src/app/services/httpServices/projectService';
+import { UserStore } from 'src/app/services/userStoreService';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { DeleteDialogComponent } from 'src/app/components/delete-dialog/delete-dialog.component';
 
 @Component({
   selector: 'app-projects',
@@ -14,10 +18,15 @@ import {ViewEncapsulation} from '@angular/core';
 export class ProjectsComponent implements OnInit {
 
   projects: ProjectModel[];
-  constructor( private Router : Router,public dialog: MatDialog) {
-    var proj=new ProjectModel("Supplemental actions","They are typically placed at the bottom of the card For more than two supplemental actions, use an overflow menu instead.","https://images.pexels.com/photos/300857/pexels-photo-300857.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+
+  constructor( private router : Router,public dialog: MatDialog, private userStore : UserStore, private projectService:ProjectService, private _snackBar: MatSnackBar) {
     this.projects=new Array();
-    this.projects.push(proj);
+    this.projectService.getUserProject(userStore.user.id).subscribe((response : ProjectModel[]) => {
+      if(response != null && response != undefined){
+       this.projects=response;
+      }
+    });
+
    }
 
    onNewProject(){
@@ -25,11 +34,35 @@ export class ProjectsComponent implements OnInit {
       panelClass: 'my-dialog'
     }); 
     dialogRef.afterClosed().subscribe((response : ProjectModel) => {
-      this.projects.push(response);
+      if(response!=null || response!=undefined)
+        this.projects.push(response);
     });
    }
    
-  ngOnInit() {
-  }
+   onDeleteProject(projectId: string){
+    const dialogRef = this.dialog.open(DeleteDialogComponent, {    
+    }); 
+    dialogRef.afterClosed().subscribe((response : boolean) => {
+      if(response)
+        {
+          this.projectService.deleteProject(projectId).subscribe((response : ProjectModel) => {
+            if(response != null && response != undefined){
+             this.openSnackBar();
+            }
+          });
+        }
+        
+    });
+   }
+  ngOnInit() {}
 
+    open(projectId: string){
+      this.router.navigate(["drawingStation/"+projectId]);
+    }
+   
+    openSnackBar() {
+      this._snackBar.open("Project deleted","", {
+        duration: 2500,
+      });
+    }
 }
