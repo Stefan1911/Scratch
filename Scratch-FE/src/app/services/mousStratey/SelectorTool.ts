@@ -59,7 +59,7 @@ export class SelectorTool{
     }
 
     setDecoratro(shapeIndex : number){
-        let temp = new ResizableShape(this.canvas.shapes[shapeIndex]);
+        let temp = new ResizableShape(this.canvas.shapes[shapeIndex],this.canvas);
         this.canvas.shapes[shapeIndex] = temp;
         this.canvas.stage.removeChildAt(shapeIndex);
         this.canvas.stage.addChildAt(temp,shapeIndex);

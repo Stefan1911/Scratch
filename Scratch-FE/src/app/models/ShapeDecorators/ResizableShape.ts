@@ -3,13 +3,17 @@ import { ShapeModel } from '../ShapeModel';
 import { PointModel } from '../PointModel';
 import { ShapeHelperModel } from '../HelperModels/shapeHelperModel';
 import * as createjs from 'createjs-module';
+import { create } from 'domain';
+import { AppCanvasComponent } from 'src/app/drawing-station/app-canvas/app-canvas.component';
 
 export class ResizableShape extends createjs.Container implements Drawable{
 
     private decorator: createjs.Shape;
-    constructor(private shape :Drawable) {
+    private decoratrList: createjs.Shape[];
+    constructor(private shape :Drawable,private canvas : AppCanvasComponent) {
         super();
         this.decorator = new createjs.Shape();
+        this.decoratrList = new Array();
 
     }
     peelDecoration(): Drawable {
@@ -23,17 +27,37 @@ export class ResizableShape extends createjs.Container implements Drawable{
         this.removeAllChildren();
         this.initializeDecorator()
         this.shape.initializeDrowing();
-        this.addChild(this.decorator);
         this.addChild(this.shape);
+        this.decoratrList.forEach(element => {
+            this.addChild(element);
+        });        
     }
 
     initializeDecorator(){
-        this.decorator.graphics.clear();
-        let pointOne = this.shape.points[0];
-        let pointTwo = this.shape.points[1];
-        let width = pointTwo.x - pointOne.x;
-        let heigth = pointTwo.y - pointOne.y;
-        this.decorator.graphics.beginFill("#ffffff").beginStroke("#ffffff").drawRect(pointOne.x - 20,pointOne.y - 20,width + 40,heigth + 40)
+
+        this.decoratrList = new Array();
+        this.shape.points.forEach((point,index) => {
+            let pointDecorator = new createjs.Shape;
+            pointDecorator.graphics
+                .beginFill("#850c68")
+                .beginStroke("#ffffff")
+                .drawCircle(point.x,point.y,30);
+            this.setupEvents(pointDecorator,index);
+            this.decoratrList.push(pointDecorator)
+        });
+    }
+
+    setupEvents(pointDecorator : createjs.Shape,index :number){
+        pointDecorator.on("pressmove", (event : createjs.MouseEvent) => {
+            console.log(this.shape.points[0]);
+            this.shape.points[index].x = event.stageX;
+            this.shape.points[index].y = event.stageY;
+            this.shape.initializeDrowing();
+            this.canvas.stage.update();
+        });
+        pointDecorator.on("pressup", (event: createjs.MouseEvent) => {
+            this.canvas.postService.updateShape(this.canvas.conncionID,this.shape);
+        })
     }
     get shapeIndex() : number{
         return this.shape.shapeIndex;
