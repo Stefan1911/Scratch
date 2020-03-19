@@ -34,14 +34,13 @@ export class DrawingStationComponent implements OnInit {
       this.Project = Response;
       this.drawingBoards = Response.drawingBoards;
       this.selectedBoardId = this.drawingBoards[0].id;
-      this.chat.boardId=this.selectedBoardId;    
       this.drawignBoard.projectId = projectId 
-      this.drawignBoard.initShapes(this.selectedBoardId);   
+      this.drawignBoard.initShapes(this.selectedBoardId);  
+      this.chat.boardId=this.selectedBoardId;    
       this.chat.chatInit(this.selectedBoardId);
       this.reciver.registerDrawingStation(this).then( (mightBeTheId) =>{
         this.connectionID = mightBeTheId
       });
-    this
     })
 
    }
@@ -49,9 +48,7 @@ export class DrawingStationComponent implements OnInit {
    visibleChat(){
      this.showChat=!this.showChat;
    }
-  ngOnInit() {
- 
-  }
+  ngOnInit() { }
 
   onToolChange(tool){
     this.drawignBoard.setTool(tool);

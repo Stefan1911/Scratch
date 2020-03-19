@@ -37,8 +37,8 @@
             </div>
             <ng-template #elseBlock>
                 <button (click)="visibleChat()"  mat-flat-button class="closeBtn"><mat-icon>keyboard_arrow_down</mat-icon></button>
-                <app-chat-component #chat ></app-chat-component>
             </ng-template>
+            <app-chat-component [style.display]="showChat ? '' : 'none'" #chat ></app-chat-component>
         </div>     
 </mat-drawer-content>
   </mat-drawer-container>

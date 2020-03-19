@@ -49,7 +49,6 @@ export class ResizableShape extends createjs.Container implements Drawable{
 
     setupEvents(pointDecorator : createjs.Shape,index :number){
         pointDecorator.on("pressmove", (event : createjs.MouseEvent) => {
-            console.log(this.shape.points[0]);
             this.shape.points[index].x = event.stageX;
             this.shape.points[index].y = event.stageY;
             this.shape.initializeDrowing();

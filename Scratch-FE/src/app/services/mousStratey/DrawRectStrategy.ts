@@ -26,7 +26,6 @@ export class DrawRectStrategy{
         this.canvas.shapes.push(this.currentShapeModel);
         this.stage.addChild(this.currentShapeModel);
         this.isMousDown = true;
-        console.log(this.canvas.shapes);
         
     }
     onMouseUp(event : MouseEvent){

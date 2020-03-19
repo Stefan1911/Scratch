@@ -51,9 +51,7 @@ export class SignalRResiver {
 		return id;
 	}
 	async registerChat(chat:ChatComponentComponent){
-		console.log("hi");
 		this.hubConnectionChat.on(chat.boardId+"/chat/add",(message )=>{
-			console.log("hello" + chat.boardId);
 			chat.chat.messages.push(message);
 		})
 	}

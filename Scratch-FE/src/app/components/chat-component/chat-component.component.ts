@@ -36,8 +36,6 @@ export class ChatComponentComponent implements OnInit {
     this.reciver.registerChat(this);
   }
   send(){
-    console.log(this.content);
-    
     let message : MessageModel = new MessageModel();
     // message.timeStamp=Date.now;
     message.tableId=this.boardId;
