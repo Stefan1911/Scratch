@@ -24,4 +24,8 @@ export class ProjectService{
     deleteProject(projectId:String){
         return this.http.delete("http://localhost:5000/api/project/"+projectId)
     }
+    joinProject(projectId:String, userId: String){
+        console.log(projectId+"  /  "+userId);
+        return this.http.put("http://localhost:5000/api/project/join/"+projectId+"/"+userId,{})
+    }
 }

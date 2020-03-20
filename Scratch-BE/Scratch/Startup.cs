@@ -86,6 +86,8 @@ namespace Scratch
             services.AddUseCase<CreateProjectRequest, ProjectResponse, CreateProjectUseCase>();
 			services.AddUseCase<GetUserProjectsRequest, CollectionResponse<ProjectResponse>, GetUserProjectsUseCase>();
 			services.AddUseCase<GetProjectRequest, ProjectResponse, GetProjectUseCase>();
+			services.AddUseCase<JoinProjectRequest, ProjectResponse, JoinProjectUseCase>();
+			services.AddUseCase<DeleteProjectRequest, ProjectResponse, DeleteProjectUseCase>();
 			#endregion
 			#region User
 			services.AddSingleton<IUserRepository, UserRepository>();

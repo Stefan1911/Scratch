@@ -8,6 +8,7 @@ import { ProjectService } from 'src/app/services/httpServices/projectService';
 import { UserStore } from 'src/app/services/userStoreService';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DeleteDialogComponent } from 'src/app/components/delete-dialog/delete-dialog.component';
+import { JoinProjectComponent } from 'src/app/components/join-project/join-project.component';
 
 @Component({
   selector: 'app-projects',
@@ -47,6 +48,7 @@ export class ProjectsComponent implements OnInit {
         {
           this.projectService.deleteProject(projectId).subscribe((response : ProjectModel) => {
             if(response != null && response != undefined){
+             this.projects.pop().id=projectId;
              this.openSnackBar();
             }
           });
@@ -63,6 +65,21 @@ export class ProjectsComponent implements OnInit {
     openSnackBar() {
       this._snackBar.open("Project deleted","", {
         duration: 2500,
+      });
+    }
+    
+    onJoin(){
+      const dialogRef = this.dialog.open(JoinProjectComponent, {    
+      }); 
+      dialogRef.afterClosed().subscribe((projectKey : string) => {
+        if(projectKey != null && projectKey != undefined)
+          { 
+            this.projectService.joinProject(projectKey,this.userStore.user.id).subscribe((response :ProjectModel ) => {
+            if(response != null && response != undefined){
+                this.projects.push(response);
+            }
+          });
+          }         
       });
     }
 }

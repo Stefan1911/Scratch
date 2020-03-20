@@ -24,6 +24,12 @@ namespace Persistence.Repositories
             return project;
 
         }
+        public async Task<IEnumerable<string>> DeleteAsync(string id)
+        {
+            var project= await context.Projects.FindAsync(i => i.Id.Equals(id));
+            await context.Projects.DeleteOneAsync(_project=>_project.Id.Equals(id));
+            return project.FirstOrDefaultAsync().Result.UserIDs;
+        }
 
         public async Task<ProjectModel> GetAsync(string id)
         {
@@ -41,6 +47,12 @@ namespace Persistence.Repositories
         {
             var projects = await context.Projects.FindAsync(x => x.UserIDs.Contains(id));
             return projects.ToList();
+        }
+        public async Task JoinProjectAsync(string userId, string projectId)
+        {
+            var filter = Builders<ProjectModel>.Filter.Eq(project => project.Id, projectId);
+            var update = Builders<ProjectModel>.Update.Push(project => project.UserIDs, userId);
+            await context.Projects.UpdateOneAsync(filter, update);
         }
     }
 }

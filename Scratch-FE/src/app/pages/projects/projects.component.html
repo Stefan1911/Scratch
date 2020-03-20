@@ -1,5 +1,19 @@
 <div class="div">
-    <button mat-flat-button color="primary"class="newProjectBtn" (click)="onNewProject()"><mat-icon>add</mat-icon> New Project</button>
+    <!-- <button mat-flat-button color="primary"class="newProjectBtn" (click)="onNewProject()"><mat-icon>add</mat-icon> New Project</button> -->
+    <button mat-flat-button color="primary" [matMenuTriggerFor]="menu" class="newProjectBtn" aria-label="Example icon-button with a menu" >
+      <mat-icon>add</mat-icon> Project
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="onJoin()">
+        <mat-icon><img src="https://img.icons8.com/dotty/30/000000/add-user-group-woman-woman.png"/></mat-icon> 
+      <span>Join project</span>
+      </button>
+      <hr color="white">
+      <button mat-menu-item (click)="onNewProject()">
+        <mat-icon> <img src="https://img.icons8.com/ios/30/000000/group-of-projects.png"/></mat-icon>
+        <span>Create new project</span>
+    </button>
+    </mat-menu>
     <div class="container">
     <div class="row justify-content-around">    
     <mat-card class="example-card col-3" *ngFor="let project of projects" > 
