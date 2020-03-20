@@ -16,8 +16,8 @@ export class ShapeService{
 		let newShape = new ShapeHelperModel();
 		newShape.fromShapeModel(shape);
 		newShape.sendingClientID = connecionID;
-		this.http.post("http://localhost:5000/api/Shape",newShape)
-			.subscribe();
+		return this.http.post("http://localhost:5000/api/Shape",newShape)
+		//	.subscribe();
 	}
 
 	updateShape(connecionID:string ,shape : Drawable){
@@ -25,6 +25,13 @@ export class ShapeService{
 		newShape.fromShapeModel(shape);
 		newShape.sendingClientID = connecionID;
 		this.http.put("http://localhost:5000/api/Shape",newShape)
+			.subscribe();
+	}
+
+	deleteShape(connecionID:string ,tableId : string,shapeId : string){
+		console.log({tableId,shapeId});
+		
+		return this.http.delete("http://localhost:5000/api/Shape/"+connecionID +"/"+ tableId+"/"+shapeId)
 			.subscribe();
 	}
 }

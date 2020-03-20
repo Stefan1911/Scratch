@@ -40,6 +40,7 @@ namespace Scratch.Controllers
         {
             var request = new UpdateShapeRequest
             {
+                Id = shapeModel.Id,
                 Index=shapeModel.ShapeIndex,
 				SenderClientId = shapeModel.sendingClientID,
                 TableId = shapeModel.TableId,
@@ -66,5 +67,18 @@ namespace Scratch.Controllers
 
             return Ok(response);
         }
+
+        [HttpDelete("{clientId}/{tableId}/{shapeId}")]
+        public async Task<IActionResult> Delete([FromServices] IHandle<DeleteShapeRequest, NoResponse> handle,string tableId,string shapeId,string clientId)
+        {
+            var request = new DeleteShapeRequest{
+                TableId = tableId,
+                ShapeId = shapeId,
+                ClientId = clientId
+            };
+            await handle.HandleAsync(request);
+            return NoContent();
+        }
+
     }
 }

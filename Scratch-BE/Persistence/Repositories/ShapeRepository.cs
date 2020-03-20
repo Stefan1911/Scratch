@@ -29,13 +29,13 @@ namespace Persistence.Repositories
 			return shape;
 		}
 
-		public async Task DeleteAsync(string shapeId, string DrawingBoardId)
+		public async Task DeleteAsync(string DrawingBoardId, string shapeId)
 		{
 
 			var filter = Builders<ProjectModel>.Filter.ElemMatch(_project => _project.DrawingBoards, _board => _board.Id.Equals(DrawingBoardId));
-			var shapeFilter = Builders<ShapeModel>.Filter.ElemMatch(_shape => _shape.Id , shapeId);
+			var shapeFilter = Builders<ShapeModel>.Filter.Where(_shape => _shape.Id.Equals(shapeId));
 			var update = Builders<ProjectModel>.Update.PullFilter<ShapeModel>("DrawingBoards.$.Shapes",shapeFilter);
-			await _context.Projects.UpdateOneAsync(filter,update);
+			var result = await _context.Projects.UpdateOneAsync(filter,update);
 		}
 
 		public async Task<IEnumerable<ShapeModel>> GetCollecionAsync(string DrawingBoardId)
@@ -53,7 +53,6 @@ namespace Persistence.Repositories
 
 		public async Task<ShapeModel> UpdateAsync(int index, ShapeModel shape, string DrawingBoardId)
 		{
-			shape.Id = ObjectId.GenerateNewId().ToString();
 			IEnumerable<ShapeModel> shapes= await GetCollecionAsync(DrawingBoardId);		
 			var shapes2=shapes.ToList();
 			shapes2.Insert(index, shape);

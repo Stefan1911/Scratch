@@ -23,6 +23,11 @@ namespace MessagingService
             await _messagingHub.Clients.AllExcept(excludedClientID).SendAsync(MessageName +"/delete",boardId);
         }
 
+        public async Task DeleteShapeAsync(string MessageName, string excludedClientID, string shapeId)
+        {
+            await _messagingHub.Clients.AllExcept(excludedClientID).SendAsync(MessageName +"/deleteShape",shapeId);
+        }
+
         public async Task PushShapeAsync(string MessageName, string excludedClientId,ShapeModel shape)
 		{
 			await _messagingHub.Clients.AllExcept(excludedClientId).SendAsync(MessageName,shape);

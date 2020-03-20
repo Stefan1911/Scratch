@@ -4,6 +4,7 @@ namespace Scratch.Models
 {
     public class ShapeModel
     {
+        public string Id { get; set; }
         public int ShapeIndex { get; set; }
         public string TableId { get; set; }
         public List<PointModel> Points { get; set; }

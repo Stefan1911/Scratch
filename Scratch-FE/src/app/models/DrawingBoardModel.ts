@@ -1,11 +1,12 @@
 import { ShapeModel } from './ShapeModel';
 import { ChatModel } from './ChatModel';
+import { ShapeHelperModel } from './HelperModels/shapeHelperModel';
 
 export class DrawingBoardModel {
 	
 	id : string;
 	name : String;
-	shapes: ShapeModel[];
+	shapes: ShapeHelperModel[];
 	chat: ChatModel;
 	
 	

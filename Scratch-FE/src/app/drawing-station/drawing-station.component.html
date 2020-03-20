@@ -1,6 +1,6 @@
 <mat-drawer-container class="example-container">
     <mat-drawer class="toolBar" mode="side" opened>
-        <mat-tab-group class="tabSize">
+        <mat-tab-group [selectedIndex]="selectedTabNumber.value" (selectedIndexChange)="selectedTabNumber.setValue($event)" class="tabSize">
             <mat-tab label="Tables">
                 <button (click)="onAddTable()" mat-button style="margin-top:4%;"><mat-icon aria-hidden="false">add</mat-icon> New Table</button>
                 <hr color="white">
@@ -25,6 +25,9 @@
             </mat-tab>
             <mat-tab label="Tools">
                 <app-toolbar (toolChage)="onToolChange($event)" class=""></app-toolbar>        
+            </mat-tab>
+            <mat-tab *ngIf="isShapeTabVisible()" label="shape">
+                <app-shape-properties (onDelete)="deleteShape()"></app-shape-properties>
             </mat-tab>
         </mat-tab-group>
         <div class="image"> </div>

@@ -40,7 +40,6 @@ export class ResizableShape extends createjs.Container implements Drawable{
             let pointDecorator = new createjs.Shape;
             pointDecorator.graphics
                 .beginFill("#850c68")
-                .beginStroke("#ffffff")
                 .drawCircle(point.x,point.y,30);
             this.setupEvents(pointDecorator,index);
             this.decoratrList.push(pointDecorator)
@@ -55,9 +54,18 @@ export class ResizableShape extends createjs.Container implements Drawable{
             this.canvas.stage.update();
         });
         pointDecorator.on("pressup", (event: createjs.MouseEvent) => {
-            this.canvas.postService.updateShape(this.canvas.conncionID,this.shape);
+            this.canvas.shapeService.updateShape(this.canvas.conncionID,this.shape);
         })
     }
+
+    get shapeId() : string{
+        return this.shape.shapeId;
+    }
+
+    set shapeId(value : string) {
+        this.shape.shapeId = value;
+    }
+
     get shapeIndex() : number{
         return this.shape.shapeIndex;
     }

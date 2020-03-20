@@ -9,6 +9,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { NewTableDialogComponent } from '../components/new-table-dialog/new-table-dialog.component';
 import { SignalRResiver } from '../services/httpServices/signalRReciver';
 import { ChatComponentComponent } from '../components/chat-component/chat-component.component';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-drawing-station',
@@ -24,6 +25,7 @@ export class DrawingStationComponent implements OnInit {
   Project : ProjectModel;
   selectedBoardId: string;
   showChat:boolean;
+  selectedTabNumber:FormControl = new FormControl(0);
 
   connectionID:string
   public drawingBoards : DrawingBoardModel[];
@@ -75,10 +77,21 @@ export class DrawingStationComponent implements OnInit {
           this.drawingBoards.push(response);
         });
       }
-    });
-
-  
+    });  
   }
 
+  isShapeTabVisible(){
+    if(this.drawignBoard != undefined && this.drawignBoard != null){
+      if(this.drawignBoard.selectedShape != undefined && this.drawignBoard.selectedShape != null){
+        this.selectedTabNumber.setValue(2);
+        return true;
+      }
+    }
+    return false;
+  }
+
+  deleteShape(){
+    this.drawignBoard.deleteShape();
+  }
 }
 

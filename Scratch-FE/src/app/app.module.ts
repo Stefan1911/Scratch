@@ -33,6 +33,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ConfirmComponent } from './components/confirm/confirm.component';
 import { DeleteDialogComponent } from './components/delete-dialog/delete-dialog.component';
 import { JoinProjectComponent } from './components/join-project/join-project.component';
+import { ShapePropertiesComponent } from './components/shape-properties/shape-properties.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: FirstPageComponent },
@@ -65,7 +66,8 @@ const appRoutes: Routes = [
     ChatComponentComponent,
     ConfirmComponent,
     DeleteDialogComponent,
-    JoinProjectComponent
+    JoinProjectComponent,
+    ShapePropertiesComponent
   ],
   imports: [
     BrowserModule,

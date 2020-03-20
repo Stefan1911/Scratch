@@ -66,6 +66,7 @@ namespace Scratch
             services.AddSingleton<IShapeRepository, ShapeRepository>();
             services.AddUseCase<CreateShapeRequest, ShapeResponse, CreateShapeUseCase>();
             services.AddUseCase<UpdateShapeRequest, ShapeResponse, UpdateShapeUseCase>();
+			services.AddUseCase<DeleteShapeRequest,NoResponse,DeleteShapeUseCase>();
 			#endregion
 			#region Chat
 			services.AddSingleton<IChatRepository, ChatRepository>();

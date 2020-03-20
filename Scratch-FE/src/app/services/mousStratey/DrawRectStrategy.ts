@@ -4,6 +4,7 @@ import { ShapeModel } from 'src/app/models/ShapeModel';
 import { ShapeSubjectService } from '../ShapeSubjectService';
 import { PointModel } from 'src/app/models/PointModel';
 import { AppCanvasComponent } from 'src/app/drawing-station/app-canvas/app-canvas.component';
+import { ShapeHelperModel } from 'src/app/models/HelperModels/shapeHelperModel';
 
 export class DrawRectStrategy{
     isMousDown : boolean = false;
@@ -37,7 +38,12 @@ export class DrawRectStrategy{
 			this.currentShapeModel.points[1] = new PointModel(this.topLeftCorner.x+this.defaultWidth,this.topLeftCorner.y+this.defaultHeigth);
 			this.canvas.reDrawAllShapes();
         }	
-        this.canvas.postService.sendShape(this.canvas.conncionID,this.currentShapeModel);	
+        this.canvas.shapeService.sendShape(this.canvas.conncionID,this.currentShapeModel)
+        .subscribe( (shape : ShapeHelperModel) => {
+            this.currentShapeModel.shapeId = shape.id;
+            console.log(this.currentShapeModel);
+            
+        })	
         
         
     }

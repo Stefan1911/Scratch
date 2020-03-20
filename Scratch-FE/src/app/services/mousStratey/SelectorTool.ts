@@ -14,6 +14,7 @@ export class SelectorTool{
     }
     onMousDown(event : MouseEvent){
         this.peelDecoration();
+        this.canvas.selectedShape = null;
 		this.isMousDown = true;
         this.previousPoint = new Point(event.stageX,event.stageY);        
 		this.totalXDistance = 0;
@@ -27,7 +28,7 @@ export class SelectorTool{
         
         this.isMousDown = false;
         let shapeIndex = this.canvas.stage.getChildIndex(this.SelectedObject);
-        if(shapeIndex >= 0){
+        if(shapeIndex >= 0 && (this.totalXDistance != 0 || this.totalYDistance != 0)){
             this.updateShapePoints(shapeIndex,this.totalXDistance,this.totalYDistance);
         }
         this.SelectedObject = null;
@@ -71,7 +72,7 @@ export class SelectorTool{
             point.x += xMovement;
             point.y += yMovement;
         });
-        this.canvas.postService.updateShape(this.canvas.conncionID,this.canvas.shapes[shapeIndex]);
+        this.canvas.shapeService.updateShape(this.canvas.conncionID,this.canvas.shapes[shapeIndex]);
     }
 
 }

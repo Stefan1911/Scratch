@@ -4,6 +4,7 @@ import { ShapeHelperModel } from './HelperModels/shapeHelperModel';
 import { Drawable } from './interfaces/initializable';
 
 export class ShapeModel extends createjs.Shape implements Drawable{
+	shapeId : string
 	shapeIndex : number;
 	tableId : string;
 	points : PointModel[];
@@ -22,6 +23,7 @@ export class ShapeModel extends createjs.Shape implements Drawable{
 		return this;
 	}
 	public fromShapeHelper(shape : ShapeHelperModel){
+		this.shapeId = shape.id;
 		this.shapeIndex = shape.shapeIndex;
 		this.tableId = shape.tableId;
 		this.points = shape.points;

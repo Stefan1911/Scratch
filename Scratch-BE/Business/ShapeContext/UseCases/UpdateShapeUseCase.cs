@@ -23,6 +23,7 @@ namespace Business.ShapeContext.UseCases
         {
             var shape = new ShapeModel
             {
+                Id = request.Id,
                 FillColor = request.FillColor,
                 StrockColor = request.StrockColor,
                 Type = request.Type,

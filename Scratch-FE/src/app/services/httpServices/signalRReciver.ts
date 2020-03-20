@@ -59,7 +59,7 @@ export class SignalRResiver {
 		this.hubConnectionChat.off(chat.boardId+"/chat/add");
 	}
 	async registerCanvas(canvas :AppCanvasComponent): Promise<string>{
-		//this.removeCanvasAllHubs(canvas)
+		this.removeAllCanvasHubs(canvas)
 		this.hubConnection.on(canvas.drawingBoardId, (shape : ShapeHelperModel) => {
 			let newShape = new ShapeModel();
 			newShape.fromShapeHelper(shape);
@@ -71,6 +71,9 @@ export class SignalRResiver {
 			canvas.shapes[shapeIndex].fromShapeHelper(shape);
 			canvas.reDrawShape(canvas.shapes[shapeIndex]);
 		})
+		this.hubConnection.on(canvas.drawingBoardId+"/deleteShape",(shapeId : string) =>{
+			canvas.deleteShapeWithId(shapeId);
+		})
 		let id = await this.promis;
 		return id;
 	}
@@ -78,6 +81,7 @@ export class SignalRResiver {
 	removeAllCanvasHubs(canvas :AppCanvasComponent){
 		this.hubConnection.off(canvas.drawingBoardId);
 		this.hubConnection.off(canvas.drawingBoardId + "/updateShape");
+		this.hubConnection.off(canvas.drawingBoardId+"/deleteShape")
 	}
 
 }

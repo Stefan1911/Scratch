@@ -1,8 +1,8 @@
 import { PointModel } from '../PointModel';
-import { ShapeModel } from '../ShapeModel';
 import { Drawable } from '../interfaces/initializable';
 
 export class ShapeHelperModel {
+	id : string;
 	shapeIndex : number;
 	tableId : string;
 	points : PointModel[];
@@ -17,6 +17,7 @@ export class ShapeHelperModel {
 	constructor() {}
 	
 	fromShapeModel(shape : Drawable){
+		this.id = shape.shapeId;
 		this.shapeIndex = shape.shapeIndex;
 		this.tableId = shape.tableId;
 		this.points = shape.points;

@@ -11,6 +11,7 @@ import { PointModel } from 'src/app/models/PointModel';
 import { MAT_LABEL_GLOBAL_OPTIONS } from '@angular/material/core';
 import { Subscription } from 'rxjs';
 import { Drawable } from 'src/app/models/interfaces/initializable';
+import { ShapeHelperModel } from 'src/app/models/HelperModels/shapeHelperModel';
 
 @Component({
   selector: 'app-canvas',
@@ -34,7 +35,7 @@ export class AppCanvasComponent implements OnInit {
 	subscriptions : Subscription[];
   
   constructor(public strategyFactory : MouseStrategyFactory
-			,public postService: ShapeService
+			,public shapeService: ShapeService
 			,public reciver : SignalRResiver 
 			,public getService : TableService
 			) { 
@@ -51,7 +52,14 @@ export class AppCanvasComponent implements OnInit {
 		if(this.checkString(this.drawingBoardId)&& this.checkString(this.projectId)){
 			this.getService.getTable(this.projectId,this.drawingBoardId)
 			.subscribe((drawingBoard: DrawingBoardModel) => {
-				this.DrawAllShapes(drawingBoard.shapes);
+				let temp = drawingBoard.shapes.map( (shapeHelper : ShapeHelperModel) => {
+					let model = new ShapeModel();
+					model.fromShapeHelper(shapeHelper);
+					return model;
+				})
+				console.log(temp);
+				
+				this.DrawAllShapes(temp);
 			})
 			this.reciver
 				.registerCanvas(this)
@@ -86,10 +94,12 @@ export class AppCanvasComponent implements OnInit {
 
 	}
 
-	DrawAllShapes( shapes:ShapeModel[]){
-		shapes.forEach((shape) =>{
+	DrawAllShapes( shapes:Drawable[]){
+		this.shapes = new Array();
+		shapes.forEach((shape : Drawable) =>{
 			shape.tableId = this.drawingBoardId;
 			let tempShape = new ShapeModel();
+			tempShape.shapeId = shape.shapeId;
 			tempShape.shapeIndex = shape.shapeIndex;
 			tempShape.tableId = shape.tableId;
 			tempShape.points = shape.points;
@@ -103,7 +113,7 @@ export class AppCanvasComponent implements OnInit {
 	}
 
 	reDrawAllShapes(){
-		this.stage.clear()
+		this.stage.removeAllChildren()
 		this.shapes.forEach( (shape : ShapeModel )=> {
 			this.drawShape(shape);
 		});
@@ -123,5 +133,16 @@ export class AppCanvasComponent implements OnInit {
 
 	checkString(str:String) : boolean{
 		return str!=undefined&&str!=null&&str!="";
+	}
+
+	deleteShape(){
+		this.shapeService.deleteShape(this.conncionID,this.drawingBoardId,this.selectedShape.shapeId)
+		this.deleteShapeWithId(this.selectedShape.shapeId);
+	}
+
+	deleteShapeWithId(id: string){
+		this.shapes = this.shapes.filter(shape => shape.shapeId != id);
+		this.reDrawAllShapes();
+		this.selectedShape = null;
 	}
 }
