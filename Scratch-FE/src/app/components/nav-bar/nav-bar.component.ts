@@ -46,7 +46,9 @@ export class NavBarComponent implements OnInit {
     this.userStore.user = null;
     this.Router.navigate(["home"])
   }
-
+  onProjectsPage(){   
+    this.Router.navigate(["projects"])
+  }
   openDialog(): void {
     const dialogRef = this.dialog.open(ProfileComponent, {
       panelClass: 'my-dialog'

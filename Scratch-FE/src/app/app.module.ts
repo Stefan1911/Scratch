@@ -32,6 +32,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ConfirmComponent } from './components/confirm/confirm.component';
 import { DeleteDialogComponent } from './components/delete-dialog/delete-dialog.component';
+import { JoinProjectComponent } from './components/join-project/join-project.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: FirstPageComponent },
@@ -63,7 +64,8 @@ const appRoutes: Routes = [
     NewTableDialogComponent,
     ChatComponentComponent,
     ConfirmComponent,
-    DeleteDialogComponent
+    DeleteDialogComponent,
+    JoinProjectComponent
   ],
   imports: [
     BrowserModule,
@@ -87,7 +89,7 @@ const appRoutes: Routes = [
       appRoutes
     )
   ],
-  entryComponents: [NewTableDialogComponent, DeleteDialogComponent],
+  entryComponents: [NewTableDialogComponent, DeleteDialogComponent, JoinProjectComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

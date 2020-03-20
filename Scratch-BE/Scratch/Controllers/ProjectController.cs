@@ -62,6 +62,30 @@ namespace Scratch.Controllers
 
             return Ok(response);
         }
+
+        [HttpDelete("{projectId}")]
+        public async Task<IActionResult> Delete([FromServices] IHandle<DeleteProjectRequest,ProjectResponse> handle, string projectId)
+        {
+            var request = new DeleteProjectRequest()
+            {
+                ProjectId = projectId
+            };
+            var response = await handle.HandleAsync(request);
+
+            return Ok(response);
+        }
+        [HttpPut("join/{projectId}/{userId}")]
+        public async Task<IActionResult> JoinProject([FromServices] IHandle<JoinProjectRequest, ProjectResponse> handle,
+          string projectId, string userId)
+        {
+            var request = new JoinProjectRequest()
+            {
+                ProjectId = projectId,
+                UserId = userId
+            };
+            var response = await handle.HandleAsync(request);
+            return Ok(response);
+        }
     }
 
 }

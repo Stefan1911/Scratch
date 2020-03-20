@@ -1,0 +1,11 @@
+<div mat-dialog-content>
+    <p>Aks for the project key, then enter it here.</p>
+</div>
+<mat-form-field>
+    <mat-label>Key</mat-label>
+    <input matInput [(ngModel)]="projectId">
+</mat-form-field>
+<div mat-dialog-actions>
+  <button mat-button (click)="cancel()">Cancel</button>
+  <button mat-button (click)="onJoin()" cdkFocusInitial>Join</button>
+</div>

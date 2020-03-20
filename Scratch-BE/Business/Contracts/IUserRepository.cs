@@ -9,10 +9,12 @@ namespace Business.Contracts
     public interface IUserRepository
     {
         Task<UserModel> AddAsync(UserModel instance);
+        Task JoinProjectAsync(string userId, string projectId);
         Task<IEnumerable<UserModel>> GetRangeAsync(IEnumerable<string> userIDs);
         Task<IEnumerable<UserModel>> AddRangeAsync(IEnumerable<UserModel> users);
         Task<UserModel> GetByUsername(string username);
         Task<UserModel> GetAsync(string id);
+        Task DeleteProjectAsync(string projectId, IEnumerable<string> usersId);
         Task<UserModel> UpdateAsync( UserModel user);
         Task UpdateRangeAsync(IEnumerable<string> users, string projectId);
         Task<IEnumerable<UserModel>> GetCollecionAsync();
