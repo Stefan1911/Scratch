@@ -14,15 +14,20 @@ export class SelectorTool{
     }
     onMousDown(event : MouseEvent){
         this.peelDecoration();
-        this.canvas.selectedShape = null;
+        if(this.canvas.selectedShape !== null){
+            this.canvas.selectedShape = null;
+            this.canvas.shapeSelectionChaned.emit()
+        }
 		this.isMousDown = true;
         this.previousPoint = new Point(event.stageX,event.stageY);        
 		this.totalXDistance = 0;
 		this.totalYDistance = 0;
         this.SelectedObject = this.canvas.stage.getObjectUnderPoint(event.stageX,event.stageY,0);
         this.shapeIndex = this.canvas.stage.getChildIndex(this.SelectedObject);
-        if(this.shapeIndex >= 0)        
+        if(this.shapeIndex >= 0){
             this.setDecoratro(this.shapeIndex);
+            this.canvas.shapeSelectionChaned.emit();
+        }        
     }
     onMouseUp(event : MouseEvent){
         

@@ -10,6 +10,7 @@ import { NewTableDialogComponent } from '../components/new-table-dialog/new-tabl
 import { SignalRResiver } from '../services/httpServices/signalRReciver';
 import { ChatComponentComponent } from '../components/chat-component/chat-component.component';
 import { FormControl } from '@angular/forms';
+import { MatTab } from '@angular/material/tabs';
 
 @Component({
   selector: 'app-drawing-station',
@@ -21,6 +22,9 @@ export class DrawingStationComponent implements OnInit {
   drawignBoard : AppCanvasComponent;
   @ViewChild("chat", {static: false})
   chat : ChatComponentComponent;
+
+   @ViewChild("shapeTab", {static: false})
+   shapeTab : MatTab
 
   Project : ProjectModel;
   selectedBoardId: string;
@@ -80,16 +84,20 @@ export class DrawingStationComponent implements OnInit {
     });  
   }
 
-  isShapeTabVisible(){
+  shapeSelectionChanged(){
     if(this.drawignBoard != undefined && this.drawignBoard != null){
       if(this.drawignBoard.selectedShape != undefined && this.drawignBoard.selectedShape != null){
+        this.shapeTab.disabled = false
         this.selectedTabNumber.setValue(2);
-        return true;
+      }
+      else{
+        if(this.selectedTabNumber.value === 2){
+          this.shapeTab.disabled = true;
+          this.selectedTabNumber.setValue(0);
+        }
       }
     }
-    return false;
   }
-
   deleteShape(){
     this.drawignBoard.deleteShape();
   }

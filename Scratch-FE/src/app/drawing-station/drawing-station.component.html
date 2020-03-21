@@ -26,7 +26,7 @@
             <mat-tab label="Tools">
                 <app-toolbar (toolChage)="onToolChange($event)" class=""></app-toolbar>        
             </mat-tab>
-            <mat-tab *ngIf="isShapeTabVisible()" label="shape">
+            <mat-tab #shapeTab disabled="true" visible="false" label="shape">
                 <app-shape-properties (onDelete)="deleteShape()"></app-shape-properties>
             </mat-tab>
         </mat-tab-group>
@@ -34,7 +34,7 @@
     </mat-drawer>
     <mat-drawer-content>
         <div class="nesto">
-            <app-canvas [drawingBoardId]="selectedBoardId" [projectId]="selectedBoardId" #canvas class="canvas"> </app-canvas>
+            <app-canvas (shapeSelectionChaned)="shapeSelectionChanged()" [drawingBoardId]="selectedBoardId" [projectId]="selectedBoardId" #canvas class="canvas"> </app-canvas>
             <div *ngIf="!showChat ; else elseBlock">
                 <button (click)="visibleChat()" mat-flat-button class="openBtn"><mat-icon>keyboard_arrow_up</mat-icon></button>
             </div>

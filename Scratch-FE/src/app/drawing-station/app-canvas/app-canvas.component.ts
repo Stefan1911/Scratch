@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import * as createjs from 'createjs-module';
 import { MouseStrategyFactory, MouseStrategyEnum } from 'src/app/services/mousStratey/MouseStrategyFactory';
 import { ShapeSubjectService } from 'src/app/services/ShapeSubjectService';
@@ -30,9 +30,10 @@ export class AppCanvasComponent implements OnInit {
 	drawingBoard : DrawingBoardModel;
 	conncionID : string ;
 	shapes: Drawable[];
-	selectedShape: Drawable;
+	selectedShape: Drawable = null;
 
-	subscriptions : Subscription[];
+	@Output()
+	shapeSelectionChaned: EventEmitter<void>;
   
   constructor(public strategyFactory : MouseStrategyFactory
 			,public shapeService: ShapeService
@@ -40,6 +41,7 @@ export class AppCanvasComponent implements OnInit {
 			,public getService : TableService
 			) { 
 				this.shapes = new Array();
+				this.shapeSelectionChaned = new EventEmitter();
 			}
 
 	ngOnInit() {		
