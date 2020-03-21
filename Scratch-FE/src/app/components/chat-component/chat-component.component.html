@@ -20,13 +20,13 @@
       <div class="inputAndBtn">
         <mat-form-field appearance="fill" class="input">
             <mat-label>Text</mat-label>
-            <input matInput [value]="content" (input)="content = $event.target.value">
+            <input matInput [value]="content" (keyup.enter)="send()" (input)="content = $event.target.value">
           </mat-form-field>
           <button mat-button (click)="send()">
             <mat-icon>send</mat-icon>
            </button>
       </div>
-      <div class="messages">
+      <div #scrollMe [scrollTop]="scrollMe.scrollHeight" class="messages">
           <div *ngFor="let message of chat.messages" class="list" >
               <img src={{message.userPictureUrl}} class="picture" >  
               <div class="nameAndContent">

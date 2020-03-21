@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { UserModel } from 'src/app/models/UserModel';
 import { ChatModel } from 'src/app/models/ChatModel';
 import { MessageModel } from 'src/app/models/MessageModel';
@@ -37,17 +37,12 @@ export class ChatComponentComponent implements OnInit {
   }
   send(){
     let message : MessageModel = new MessageModel();
-    // message.timeStamp=Date.now;
     message.tableId=this.boardId;
     message.content=this.content;
     message.userId=this.userStore.user.id;
     message.userName=this.userStore.user.name;
     message.userPictureUrl=this.userStore.user.pictureUrL;
-    this.messageService.PostMessage(message).subscribe((response : MessageModel) => {
-      if(response != null && response != undefined){
-        //this.chat.messages.push(response);
-      }
-    });
+    this.messageService.PostMessage(message).subscribe((response : MessageModel) => { });
     this.content = "";
   }
   ngOnInit() {
