@@ -11,6 +11,7 @@ import { SignalRResiver } from '../services/httpServices/signalRReciver';
 import { ChatComponentComponent } from '../components/chat-component/chat-component.component';
 import { FormControl } from '@angular/forms';
 import { MatTab } from '@angular/material/tabs';
+import { ShapePropertiesComponent } from '../components/shape-properties/shape-properties.component';
 
 @Component({
   selector: 'app-drawing-station',
@@ -22,9 +23,10 @@ export class DrawingStationComponent implements OnInit {
   drawignBoard : AppCanvasComponent;
   @ViewChild("chat", {static: false})
   chat : ChatComponentComponent;
-
-   @ViewChild("shapeTab", {static: false})
-   shapeTab : MatTab
+  @ViewChild("shapeProperties", {static:false})
+  shapeProperties : ShapePropertiesComponent;
+  @ViewChild("shapeTab", {static: false})
+  shapeTab : MatTab
 
   Project : ProjectModel;
   selectedBoardId: string;
@@ -88,6 +90,8 @@ export class DrawingStationComponent implements OnInit {
     if(this.drawignBoard != undefined && this.drawignBoard != null){
       if(this.drawignBoard.selectedShape != undefined && this.drawignBoard.selectedShape != null){
         this.shapeTab.disabled = false
+        this.shapeProperties.currentFillColor = this.drawignBoard.selectedShape.fillColor;
+        this.shapeProperties.currentStrockColor = this.drawignBoard.selectedShape.strockColor;
         this.selectedTabNumber.setValue(2);
       }
       else{

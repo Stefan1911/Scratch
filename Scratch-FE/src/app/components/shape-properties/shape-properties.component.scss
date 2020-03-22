@@ -1,0 +1,15 @@
+.colorForm{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-top: 10px;
+}
+.buttonSize{
+    min-width: 50px;
+    min-height: 50px;
+    border-radius: 50%;
+    border-width: 0;
+    margin :5px
+}

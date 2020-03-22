@@ -1,9 +1,21 @@
-<button (click)="onColorChange()" mat-flat-button color="accent">
-    <mat-icon>delete</mat-icon> set color
-</button>
-<button (click)="onColorChange('#700985')" mat-flat-button color="primary">
-    <mat-icon>delete</mat-icon> set color
-</button>
+<div class="colorForm">
+    <label >Fill color</label>
+    <button [style.background-color]="currentFillColor" mat-mini-fab [matMenuTriggerFor]="menu" (click)="isFillColor = true" ></button>
+</div>
+<div class="colorForm">
+    <label >Border color</label>
+    <button [style.background-color]="currentStrockColor" mat-mini-fab [matMenuTriggerFor]="menu" (click)="isFillColor = false"  ></button>
+</div>
+<mat-menu #menu>
+    <div class="container">
+        <div class="col">
+            <div class="row">
+                <button *ngFor="let colorD of colors" (click)="onColorChange(colorD)" [style.background-color]="colorD" class="buttonSize" ></button>
+            </div>
+        </div>
+    </div>
+</mat-menu>
+<hr color="white">
 <button (click)="onDelete()" mat-flat-button color="warn">
     <mat-icon>delete</mat-icon> Delete
 </button>
