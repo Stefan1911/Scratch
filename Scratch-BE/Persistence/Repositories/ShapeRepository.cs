@@ -53,13 +53,14 @@ namespace Persistence.Repositories
 
 		public async Task<ShapeModel> UpdateAsync(int index, ShapeModel shape, string DrawingBoardId)
 		{
-			IEnumerable<ShapeModel> shapes= await GetCollecionAsync(DrawingBoardId);		
-			var shapes2=shapes.ToList();
-			shapes2.Insert(index, shape);
-			shapes2.RemoveAt(index + 1);
 			var filter = Builders<ProjectModel>.Filter.ElemMatch(_project => _project.DrawingBoards, _board => _board.Id.Equals(DrawingBoardId));
-			var update = Builders<ProjectModel>.Update.Set("DrawingBoards.$.Shapes", shapes2);
-			await _context.Projects.UpdateOneAsync(filter, update);
+			var update = Builders<ProjectModel>.Update.Set("DrawingBoards.$.Shapes.$[shape]", shape);
+
+			var arrayFilters = new List<ArrayFilterDefinition>{
+				(ArrayFilterDefinition<BsonDocument>) new BsonDocument("shape._id", new ObjectId(shape.Id)),
+			};
+			var updateOptions = new UpdateOptions { ArrayFilters = arrayFilters, IsUpsert = true };
+			await _context.Projects.UpdateOneAsync(filter,update,updateOptions);
 			return shape;
 		}
 	}

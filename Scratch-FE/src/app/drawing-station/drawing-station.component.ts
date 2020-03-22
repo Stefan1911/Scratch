@@ -101,5 +101,9 @@ export class DrawingStationComponent implements OnInit {
   deleteShape(){
     this.drawignBoard.deleteShape();
   }
+
+  changeShapeColor(colorObject : any){
+   this.drawignBoard.chageShapeColor(colorObject.color,colorObject.isFill);
+  }
 }
 

@@ -12,6 +12,7 @@ import { MAT_LABEL_GLOBAL_OPTIONS } from '@angular/material/core';
 import { Subscription } from 'rxjs';
 import { Drawable } from 'src/app/models/interfaces/initializable';
 import { ShapeHelperModel } from 'src/app/models/HelperModels/shapeHelperModel';
+import { collectExternalReferences } from '@angular/compiler';
 
 @Component({
   selector: 'app-canvas',
@@ -116,7 +117,7 @@ export class AppCanvasComponent implements OnInit {
 
 	reDrawAllShapes(){
 		this.stage.removeAllChildren()
-		this.shapes.forEach( (shape : ShapeModel )=> {
+		this.shapes.forEach( (shape : Drawable )=> {
 			this.drawShape(shape);
 		});
 		this.stage.update();
@@ -147,4 +148,16 @@ export class AppCanvasComponent implements OnInit {
 		this.reDrawAllShapes();
 		this.selectedShape = null;
 	}
+
+	chageShapeColor(color : string, isFill:boolean){
+		if(isFill){
+			this.selectedShape.fillColor = color;
+		}
+		else{
+			this.selectedShape.strockColor = color
+		}
+		this.reDrawAllShapes();
+		this.shapeService.updateShape(this.conncionID,this.selectedShape);
+	}
+
 }

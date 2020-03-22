@@ -27,7 +27,7 @@
                 <app-toolbar (toolChage)="onToolChange($event)" class=""></app-toolbar>        
             </mat-tab>
             <mat-tab #shapeTab disabled="true" visible="false" label="shape">
-                <app-shape-properties (onDelete)="deleteShape()"></app-shape-properties>
+                <app-shape-properties (onColorChange)="changeShapeColor($event)" (onDelete)="deleteShape()"></app-shape-properties>
             </mat-tab>
         </mat-tab-group>
         <div class="image"> </div>

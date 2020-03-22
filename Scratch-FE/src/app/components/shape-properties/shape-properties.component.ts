@@ -10,9 +10,12 @@ export class ShapePropertiesComponent implements OnInit {
 
   @Output("onDelete")
   deleteEvent : EventEmitter<void>;
+  @Output("onColorChange")
+  coloreChanged : EventEmitter<{color : string, isFill:boolean}>
 
   constructor() {
     this.deleteEvent = new EventEmitter();
+    this.coloreChanged = new EventEmitter();
    }
 
   ngOnInit() {
@@ -20,5 +23,9 @@ export class ShapePropertiesComponent implements OnInit {
 
   onDelete(){
     this.deleteEvent.emit();
+  }
+
+  onColorChange(color : string = "#059e19" , isFill : boolean = true){
+    this.coloreChanged.emit({color,isFill});
   }
 }

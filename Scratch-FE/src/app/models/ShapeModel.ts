@@ -18,6 +18,8 @@ export class ShapeModel extends createjs.Shape implements Drawable{
 	 */
 	constructor() {
 		super();
+		this.fillColor ="DeepSkyBlue";
+		this.strockColor ="#000000";
 	}
 	peelDecoration() : Drawable {
 		return this;
@@ -39,7 +41,10 @@ export class ShapeModel extends createjs.Shape implements Drawable{
 			let pointTwo = this.points[1];
 			let width = pointTwo.x - pointOne.x;
 			let heigth = pointTwo.y - pointOne.y;
-			this.graphics.beginFill("DeepSkyBlue").beginStroke("#000000").drawRect(pointOne.x,pointOne.y,width,heigth);
+			this.graphics
+				.beginFill(this.fillColor)
+				.beginStroke(this.strockColor)
+				.drawRect(pointOne.x,pointOne.y,width,heigth);
 		}
 	}
 }

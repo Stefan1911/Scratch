@@ -60,8 +60,8 @@ export class DrawRectStrategy{
 
     createDefaultShape(){
         this.currentShapeModel = new ShapeModel();
-		this.currentShapeModel.fillColor = "#000000";
-		this.currentShapeModel.strockColor = "DeepSkyBlue";
+		this.currentShapeModel.fillColor = "DeepSkyBlue";
+		this.currentShapeModel.strockColor = "#000000"; 
         this.currentShapeModel.type = "Rectangle";
         this.currentShapeModel.tableId = this.canvas.drawingBoardId;
         this.currentShapeModel.points = new Array();
