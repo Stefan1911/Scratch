@@ -33,7 +33,7 @@ export class NavBarComponent implements OnInit {
   }
   
   setPicture(){
-    this.pictureUrl=this.userStore.user.pictureUrL;
+    this.pictureUrl=this.userStore.user.pictureUrl;
     if(this.pictureUrl=="" || this.pictureUrl==null || this.pictureUrl==undefined)
       this.pictureUrl="https://img.icons8.com/plasticine/2x/gender-neutral-user.png";
   }

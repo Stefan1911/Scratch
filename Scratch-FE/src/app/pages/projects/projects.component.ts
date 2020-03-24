@@ -9,13 +9,18 @@ import { UserStore } from 'src/app/services/userStoreService';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DeleteDialogComponent } from 'src/app/components/delete-dialog/delete-dialog.component';
 import { JoinProjectComponent } from 'src/app/components/join-project/join-project.component';
+import { KeyComponent } from 'src/app/components/key/key.component';
 
+export interface DialogData {
+  key: string;
+}
 @Component({
   selector: 'app-projects',
   templateUrl: './projects.component.html',
   styleUrls: ['./projects.component.scss'],
   encapsulation: ViewEncapsulation.None 
 })
+
 export class ProjectsComponent implements OnInit {
 
   projects: ProjectModel[];
@@ -46,7 +51,7 @@ export class ProjectsComponent implements OnInit {
     dialogRef.afterClosed().subscribe((response : boolean) => {
       if(response)
         {
-          this.projectService.deleteProject(projectId).subscribe((response : ProjectModel) => {
+          this.projectService.deleteProject(projectId, this.userStore.user.id).subscribe((response : ProjectModel) => {
             if(response != null && response != undefined){
              this.projects.pop().id=projectId;
              this.openSnackBar();
@@ -67,7 +72,12 @@ export class ProjectsComponent implements OnInit {
         duration: 2500,
       });
     }
-    
+    onShowKey(projectId:string){
+      const dialogRef = this.dialog.open(KeyComponent, {  
+        data: {key: projectId} 
+      }); 
+
+    }
     onJoin(){
       const dialogRef = this.dialog.open(JoinProjectComponent, {    
       }); 

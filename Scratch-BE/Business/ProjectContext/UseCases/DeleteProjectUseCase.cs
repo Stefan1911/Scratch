@@ -23,9 +23,8 @@ namespace Business.ProjectContext.UseCases
         }
         public async Task<ProjectResponse> HandleAsync(DeleteProjectRequest request)
         {
-            var project = await _projectRepository.GetAsync(request.ProjectId);
-            var userIds = await _projectRepository.DeleteAsync(request.ProjectId);
-            await _userRepository.DeleteProjectAsync(request.ProjectId, userIds);
+            var project = await _projectRepository.DeleteAsync(request.ProjectId, request.UserId);
+            await _userRepository.DeleteProjectAsync(request.ProjectId, request.UserId);
             return project.ToResponse();
         }
     }

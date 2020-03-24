@@ -5,6 +5,6 @@ export class UserModel {
     projectIDs : String;
     username : String;
     password : String;
-    pictureUrL : String;
+    pictureUrl : String;
 
 }

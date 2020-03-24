@@ -1,36 +1,61 @@
 .bg {
-    /* The image used */
     background-image: url("https://mewallpaper.com/thumbnail/abstract/4363-colorful-shapes-black-background-free-download-image.jpg");
-    /* Full height */
-    height: 100vh;
-    /* Center and scale the image nicely */
+    height: 95vh;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    // display: flex;
-    // justify-content: center;
-
 }
 .title{
     color:rgb(245, 245, 245);
     font-family: cursive;
     font-size: 50px;
-    margin-left: 10%;
+    margin-left: 5%;
     margin-top: 8%;
 }
 .name{
     color:rgb(250, 248, 248);
     font-family: cursive;
-    font-size: 90px;
+    font-size: 100px;
     margin-left: 12%;
     margin-bottom: 12%;
+    text-shadow: 4px 4px 4px grey;
 }
 .unvisible{
     visibility: hidden;
 }
 .text{
-    color:rgb(243, 196, 229);
+    color:rgb(246, 248, 134);
     font-family: serif;
     font-size: 20px;
-    margin-left: 10%;
+    margin-left: 5%;
+    text-shadow: 2px 2px 4px grey;
+    border-right: 3px solid orange;
+    animation: type 5s steps(40, end);   
+    margin: 1 auto;
+  //  animation-iteration-count: 2;
+    white-space: nowrap;
+    overflow: hidden;
+    letter-spacing: .08em; 
+}
+.delayText{
+    animation: typeDelay 8s steps(62, end);
+    animation-delay: 5s;
+    animation-fill-mode: forwards;
+    width: 0;
+}
+@keyframes type{
+    0%{
+        width:0ch;
+    }
+    100%{
+         width: 38ch; 
+    }
+}
+@keyframes typeDelay{
+    0%{
+     width:0ch;
+    }
+    100%{
+         width: 62ch; 
+    }
 }

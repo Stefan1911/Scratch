@@ -15,6 +15,7 @@ export class NewProjectComponent implements OnInit {
   name:string;
   pictureUrl:string;
   description:string;
+  table:string;
   project:ProjectModel;
   constructor(private projectService : ProjectService,private userStore : UserStore,public dialogRef: MatDialogRef<NewProjectComponent>, private _snackBar: MatSnackBar) { }
   

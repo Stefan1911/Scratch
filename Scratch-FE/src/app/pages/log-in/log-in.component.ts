@@ -41,7 +41,7 @@ export class LogInComponent implements OnInit {
     user.name = this.fullName;
     user.username = (this.isLogin)? this.username : this.registerUsername;
     user.password = (this.isLogin)? this.password : this.registerPassword;
-    user.pictureUrL="https://img.icons8.com/plasticine/2x/gender-neutral-user.png";
+    user.pictureUrl="https://img.icons8.com/plasticine/2x/gender-neutral-user.png";
     
     this.logInService.PostUser(user,this.isLogin).subscribe((response : {user : UserModel,usernameIncorrect : boolean}) => {
       if(response.user != null && response.user != undefined){

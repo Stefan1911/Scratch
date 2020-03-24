@@ -23,7 +23,13 @@
     margin-bottom: 5%;
     top:100px;
     background-color:rgb(20, 20, 20);
+    transition: transform .2s;
 }
+.example-card:hover {
+    -ms-transform: scale(1.1); /* IE 9 */
+    -webkit-transform: scale(1.1); /* Safari 3-8 */
+    transform: scale(1.1); 
+  }
  .picture{
      height: 150px;
  } 

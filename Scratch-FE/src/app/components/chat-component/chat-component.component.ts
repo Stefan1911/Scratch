@@ -41,8 +41,12 @@ export class ChatComponentComponent implements OnInit {
     message.content=this.content;
     message.userId=this.userStore.user.id;
     message.userName=this.userStore.user.name;
-    message.userPictureUrl=this.userStore.user.pictureUrL;
-    this.messageService.PostMessage(message).subscribe((response : MessageModel) => { });
+    message.userPictureUrl=this.userStore.user.pictureUrl;
+    this.messageService.PostMessage(message).subscribe((response : MessageModel) => {
+      if(response != null && response != undefined){
+        //this.chat.messages.push(response);
+      }
+    });
     this.content = "";
   }
   ngOnInit() {

@@ -8,6 +8,7 @@ namespace Boundary.ProjectContext.Request
     public class DeleteProjectRequest : IRequestContext
     {
         public string ProjectId { get; set; }
+        public string UserId { get; set; }
     }
 }
 

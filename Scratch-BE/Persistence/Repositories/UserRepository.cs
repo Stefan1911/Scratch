@@ -19,9 +19,9 @@ namespace Persistence.Repositories
         {
             _context = context;
         }
-        public async Task DeleteProjectAsync(string projectId,IEnumerable<string> usersId)
+        public async Task DeleteProjectAsync(string projectId,string userId)
         {
-            var deleteFilter = Builders<UserModel>.Filter.Where(user => usersId.Contains(user.Id));
+            var deleteFilter = Builders<UserModel>.Filter.Eq(user => user.Id,userId);
             var update = Builders<UserModel>.Update.Pull(user => user.ProjectIDs, projectId);
             await _context.Users.UpdateManyAsync(deleteFilter, update);
         }

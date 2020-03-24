@@ -21,11 +21,11 @@ export class ProjectService{
     getUserProject(userId:String){
 		return this.http.get("http://localhost:5000/api/project/userProjects/"+userId)
     }
-    deleteProject(projectId:String){
-        return this.http.delete("http://localhost:5000/api/project/"+projectId)
+    deleteProject(projectId:String,userId:String){
+        return this.http.delete("http://localhost:5000/api/project/"+projectId+"/"+userId,{})
     }
     joinProject(projectId:String, userId: String){
-        console.log(projectId+"  /  "+userId);
         return this.http.put("http://localhost:5000/api/project/join/"+projectId+"/"+userId,{})
+
     }
 }
