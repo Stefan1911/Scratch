@@ -30,10 +30,10 @@ import { FormsModule } from '@angular/forms';
 import { ChatComponentComponent } from './components/chat-component/chat-component.component';
 import { MatListModule } from '@angular/material/list';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { ConfirmComponent } from './components/confirm/confirm.component';
 import { DeleteDialogComponent } from './components/delete-dialog/delete-dialog.component';
 import { JoinProjectComponent } from './components/join-project/join-project.component';
 import { ShapePropertiesComponent } from './components/shape-properties/shape-properties.component';
+import { KeyComponent } from './components/key/key.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: FirstPageComponent },
@@ -64,9 +64,9 @@ const appRoutes: Routes = [
     NewProjectComponent,
     NewTableDialogComponent,
     ChatComponentComponent,
-    ConfirmComponent,
     DeleteDialogComponent,
     JoinProjectComponent,
+    KeyComponent
     ShapePropertiesComponent
   ],
   imports: [
@@ -91,7 +91,7 @@ const appRoutes: Routes = [
       appRoutes
     )
   ],
-  entryComponents: [NewTableDialogComponent, DeleteDialogComponent, JoinProjectComponent],
+  entryComponents: [NewTableDialogComponent, DeleteDialogComponent, JoinProjectComponent, KeyComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -24,11 +24,16 @@ namespace Persistence.Repositories
             return project;
 
         }
-        public async Task<IEnumerable<string>> DeleteAsync(string id)
+        public async Task<ProjectModel> DeleteAsync(string id,string userId)
         {
-            var project= await context.Projects.FindAsync(i => i.Id.Equals(id));
-            await context.Projects.DeleteOneAsync(_project=>_project.Id.Equals(id));
-            return project.FirstOrDefaultAsync().Result.UserIDs;
+            var deleteFilter = Builders<ProjectModel>.Filter.Where(_project => _project.Id.Equals(id));
+            var update = Builders<ProjectModel>.Update.Pull(_project => _project.UserIDs, userId);
+            await context.Projects.UpdateManyAsync(deleteFilter, update);
+
+            ProjectModel project = await GetAsync(id);
+            if (project.UserIDs.Count == 0)
+                await context.Projects.DeleteOneAsync(_project=>_project.Id.Equals(id));
+            return project;
         }
 
         public async Task<ProjectModel> GetAsync(string id)

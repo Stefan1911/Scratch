@@ -63,12 +63,13 @@ namespace Scratch.Controllers
             return Ok(response);
         }
 
-        [HttpDelete("{projectId}")]
-        public async Task<IActionResult> Delete([FromServices] IHandle<DeleteProjectRequest,ProjectResponse> handle, string projectId)
+        [HttpDelete("{projectId}/{userId}")]
+        public async Task<IActionResult> Delete([FromServices] IHandle<DeleteProjectRequest,ProjectResponse> handle, string projectId, string userId)
         {
             var request = new DeleteProjectRequest()
             {
-                ProjectId = projectId
+                ProjectId = projectId,
+                UserId=userId
             };
             var response = await handle.HandleAsync(request);
 

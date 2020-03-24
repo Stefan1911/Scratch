@@ -14,7 +14,7 @@ namespace Business.Contracts
         Task<IEnumerable<UserModel>> AddRangeAsync(IEnumerable<UserModel> users);
         Task<UserModel> GetByUsername(string username);
         Task<UserModel> GetAsync(string id);
-        Task DeleteProjectAsync(string projectId, IEnumerable<string> usersId);
+        Task DeleteProjectAsync(string projectId, string usersId);
         Task<UserModel> UpdateAsync( UserModel user);
         Task UpdateRangeAsync(IEnumerable<string> users, string projectId);
         Task<IEnumerable<UserModel>> GetCollecionAsync();

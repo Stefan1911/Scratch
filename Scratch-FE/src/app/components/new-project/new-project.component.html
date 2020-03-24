@@ -13,6 +13,10 @@
             <input matInput  #message maxlength="256" (input)="description = $event.target.value">
             <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
           </mat-form-field>
+        <p class="txt">Table name:</p>
+          <mat-form-field class="full-width">
+            <input matInput (input)="table = $event.target.value">
+          </mat-form-field>
     </div>
     <div class="div2">
         <p class="txt">Project photo</p>

@@ -12,7 +12,7 @@ namespace Business.Contracts
         Task<ProjectModel> GetAsync(string id);
         Task<IEnumerable<ProjectModel>> GetProjectOfUserAsync(string id);
         Task<IEnumerable<ProjectModel>> GetCollecionAsync();
-        Task<IEnumerable<string>> DeleteAsync(string id);
+        Task<ProjectModel> DeleteAsync(string id, string userId);
         Task JoinProjectAsync(string userId, string projectId);
     }
 }

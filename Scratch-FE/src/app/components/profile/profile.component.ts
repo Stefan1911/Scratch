@@ -24,7 +24,7 @@ export class ProfileComponent implements OnInit {
     this.name=userStore.user.name;
     this.email=userStore.user.email;
     this.username=userStore.user.username;
-    this.pictureUrl=userStore.user.pictureUrL;
+    this.pictureUrl=userStore.user.pictureUrl;
     this.oldName=userStore.user.name;
     this.oldEmail=userStore.user.email;
     this.oldUsername=userStore.user.username;
