@@ -66,7 +66,7 @@ const appRoutes: Routes = [
     ChatComponentComponent,
     DeleteDialogComponent,
     JoinProjectComponent,
-    KeyComponent
+    KeyComponent,
     ShapePropertiesComponent
   ],
   imports: [
