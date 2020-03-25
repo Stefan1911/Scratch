@@ -27,8 +27,8 @@ const TREE_DATA: treeNode[] = [
         tiles : [
           {toolName : MouseStrategyEnum.drawRect,iconName : "rectangle"},
           { toolName:MouseStrategyEnum.selector ,iconName : "move-arrows"},
-          { toolName:MouseStrategyEnum.pencil ,iconName : "pencil"},
-          { toolName : MouseStrategyEnum.drawRect,iconName : "rectangle"},
+          { toolName:MouseStrategyEnum.drawCircle ,iconName : "circle"},
+          { toolName : MouseStrategyEnum.drawLien,iconName : "line"},
           { toolName:MouseStrategyEnum.selector ,iconName : "move-arrows"},
           { toolName:MouseStrategyEnum.selector ,iconName : "move-arrows"},
           { toolName : MouseStrategyEnum.drawRect,iconName : "rectangle"},
@@ -73,8 +73,11 @@ export class ToolbarComponent implements OnInit {
       'move-arrows',
       sanitizer.bypassSecurityTrustResourceUrl('assets/img/fav-icons/move-arrows.svg'));
     iconRegistry.addSvgIcon(
-      'pencil',
-      sanitizer.bypassSecurityTrustResourceUrl('assets/img/fav-icons/pencil.svg'));
+      'circle',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/img/fav-icons/circle.svg'));
+    iconRegistry.addSvgIcon(
+        'line',
+        sanitizer.bypassSecurityTrustResourceUrl('assets/img/fav-icons/line.svg'));
     iconRegistry.addSvgIcon(
       'Coming soon...',
       sanitizer.bypassSecurityTrustResourceUrl('assets/img/fav-icons/not-found.svg'));

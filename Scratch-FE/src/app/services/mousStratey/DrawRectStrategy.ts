@@ -16,7 +16,7 @@ export class DrawRectStrategy{
 	currentShapeModel :ShapeModel;
     stage : createjs.Stage;
 
-    constructor(private canvas: AppCanvasComponent) {
+    constructor(private canvas: AppCanvasComponent,private shapeType : string) {
         this.stage = canvas.stage;
     }
     onMousDown(event : MouseEvent){
@@ -62,7 +62,7 @@ export class DrawRectStrategy{
         this.currentShapeModel = new ShapeModel();
 		this.currentShapeModel.fillColor = "DeepSkyBlue";
 		this.currentShapeModel.strockColor = "#000000"; 
-        this.currentShapeModel.type = "Rectangle";
+        this.currentShapeModel.type = this.shapeType;
         this.currentShapeModel.tableId = this.canvas.drawingBoardId;
         this.currentShapeModel.points = new Array();
         this.currentShapeModel.points.push(new PointModel(0,0));
