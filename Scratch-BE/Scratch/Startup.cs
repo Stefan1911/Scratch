@@ -72,6 +72,7 @@ namespace Scratch
 			services.AddSingleton<IChatRepository, ChatRepository>();
 			services.AddUseCase<CreateChatRequest, ChatResponse, CreateChatUseCase>();
 			services.AddUseCase<GetChatRequest, ChatResponse, GetChatUseCase>();
+			services.AddUseCase<GetChatUsersRequest, CollectionResponse<UserResponse>, GetChatUsersUseCase>();
 			#endregion
 			#region Message
 			services.AddSingleton<IMessageRepository, MessageRepository>();

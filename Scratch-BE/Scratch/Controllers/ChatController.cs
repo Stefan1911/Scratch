@@ -1,6 +1,7 @@
 ﻿using Boundary.ChatContext.Request;
 using Boundary.ChatContext.Response;
 using Boundary.MessageContext.Request;
+using Boundary.UserContext.Response;
 using Kernel;
 using Kernel.Response;
 using Microsoft.AspNetCore.Mvc;
@@ -47,6 +48,17 @@ namespace Scratch.Controllers
 
             return Ok(response);
         }
+        [HttpGet("users/{boardId}")]
+        public async Task<IActionResult> GetUsers([FromServices] IHandle<GetChatUsersRequest, CollectionResponse<UserResponse>> handle
+            , string boardId)
+        {
+            var request = new GetChatUsersRequest()
+            {
+                BoardId = boardId
+            };
+            var response = await handle.HandleAsync(request);
 
+            return Ok(response);
+        }
     }
 }

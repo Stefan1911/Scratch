@@ -52,6 +52,9 @@
   display: flex;
   flex-direction: column;
 }
+.userName{
+  margin-left:40px;
+}
 .inputAndBtn{
   position: absolute;
   bottom: 0;
@@ -69,7 +72,7 @@
   width: 295px;
 }
 ::-webkit-scrollbar {
-  width: 9px;
+  width: 7px;
 }
 
 ::-webkit-scrollbar-track {
