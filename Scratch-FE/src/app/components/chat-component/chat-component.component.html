@@ -6,15 +6,16 @@
         <hr color="violet" style="margin-top: 40px;"> 
             <mat-list >
                 <mat-list-item *ngFor="let user of users" class="list" >
-                  <img src={{user.pictureUrL}} class="picture" >
-                  <p  class="name"> {{user.name}} </p>
+                  <img src={{user.pictureUrl}} class="picture" >
+                  <div class="userName">
+                    <p> {{user.name}} </p>
+                  </div>
                 </mat-list-item>
               </mat-list>    
-    
     </mat-drawer>
   
     <div class="example-sidenav-content">
-      <button mat-button (click)="drawer.toggle()" class="groupBtn" >
+      <button mat-button (click)="drawer.toggle()" (click)="onShowUsers()"class="groupBtn" >
        <mat-icon>group</mat-icon>
       </button>
       <div class="inputAndBtn">

@@ -14,5 +14,7 @@ export class MessageService {
     GetChat(boardId:string){
         return this.http.get("http://localhost:5000/api/chat/"+boardId)
     }
-  
+    GetUsers(boardId:String){
+        return this.http.get("http://localhost:5000/api/chat/users/"+boardId)
+    }
 }

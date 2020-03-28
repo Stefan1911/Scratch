@@ -52,5 +52,12 @@ export class ChatComponentComponent implements OnInit {
   ngOnInit() {
   }
   
-
+  onShowUsers()
+  {
+    this.messageService.GetUsers(this.boardId).subscribe((response : UserModel[]) => {
+      if(response != null && response != undefined){
+       this.users=response;
+      }
+    });
+  }
 }

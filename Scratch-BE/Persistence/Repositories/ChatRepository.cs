@@ -1,13 +1,11 @@
 ﻿using Business.Contracts;
 using Business.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using System;
+using System.Collections.Generic;
 using System.Linq;
-using MongoDB.Driver.Builders;
+using System.Threading.Tasks;
 
 namespace Persistence.Repositories
 {
@@ -31,7 +29,6 @@ namespace Persistence.Repositories
         }
        public async Task<ChatModel> GetAsync(string drawingBoardId)
         {
-
             var filter = Builders<ProjectModel>.Filter.ElemMatch(_project => _project.DrawingBoards, _board => _board.Id.Equals(drawingBoardId));
             var project = await _context.Projects
                                                 .Find(filter)
@@ -43,6 +40,14 @@ namespace Persistence.Repositories
                                     .Chat;
         }
 
-       
+        public async Task<ICollection<UserModel>> GetUsers(string boardId)
+        {
+            var filter = Builders<ProjectModel>.Filter.ElemMatch(_project => _project.DrawingBoards, _board => _board.Id.Equals(boardId));
+            var projectUsers = await _context.Projects
+                                                .Find(filter)
+                                                .FirstOrDefaultAsync();
+            var users = await _context.Users.FindAsync(x => projectUsers.UserIDs.Contains(x.Id));
+            return users.ToList();
+        }
     }
 }

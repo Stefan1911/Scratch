@@ -11,14 +11,15 @@
     font-size: 50px;
     margin-left: 5%;
     margin-top: 8%;
+    text-shadow: 3px 3px 5px grey;
 }
 .name{
     color:rgb(250, 248, 248);
     font-family: cursive;
     font-size: 100px;
-    margin-left: 12%;
+    margin-left: 7%;
     margin-bottom: 12%;
-    text-shadow: 4px 4px 4px grey;
+    text-shadow: 4px 5px 5px grey;
 }
 .unvisible{
     visibility: hidden;
@@ -30,7 +31,7 @@
     margin-left: 5%;
     text-shadow: 2px 2px 4px grey;
     border-right: 3px solid orange;
-    animation: type 5s steps(40, end);   
+    animation: type 3s steps(40, end);   
     margin: 1 auto;
   //  animation-iteration-count: 2;
     white-space: nowrap;
@@ -38,8 +39,8 @@
     letter-spacing: .08em; 
 }
 .delayText{
-    animation: typeDelay 8s steps(62, end);
-    animation-delay: 5s;
+    animation: typeDelay 5s steps(62, end);
+    animation-delay: 3s;
     animation-fill-mode: forwards;
     width: 0;
 }
