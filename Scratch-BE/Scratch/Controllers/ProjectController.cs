@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Boundary.DrawingBoardContext.Request;
 using Boundary.ProjectContext.Request;
 using Boundary.ProjectContext.Response;
 using Boundary.UserContext.Request;
@@ -27,11 +28,18 @@ namespace Scratch.Controllers
                 Name = projectModel.Name,
                 UserIDs = projectModel.UserIDs,
                 Description=projectModel.Description,
-                PictureUrl=projectModel.PictureUrl
+                PictureUrl=projectModel.PictureUrl,
+                DrawingBoards = projectModel.DrawingBoards
+                    .Select(DrawingBoardModel =>{
+                        return new CreateDrawingBoardRequest{
+                            Name = DrawingBoardModel.Name
+                        };
+                    }).ToList()
+                
             };
             var response = await handle.HandleAsync(request);
             return Ok(response);
-        }
+        }   
 
         [HttpGet]
         public async Task<IActionResult> Get([FromServices] IHandle<GetProjectCollectionRequest, CollectionResponse<ProjectResponse>> handle)

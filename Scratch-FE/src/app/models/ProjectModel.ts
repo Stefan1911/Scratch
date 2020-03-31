@@ -4,7 +4,7 @@ import { UserModel } from './UserModel';
 export class ProjectModel {
 	
 	id : string;
-	tables :DrawingBoardModel [];
+	drawingBoards :DrawingBoardModel [];
     name: string;
     description:string;
     pictureUrl:String;

@@ -5,6 +5,7 @@ import { ProjectService } from 'src/app/services/httpServices/projectService';
 import { ProjectsComponent } from 'src/app/pages/projects/projects.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { UserStore } from 'src/app/services/userStoreService';
+import { DrawingBoardModel } from 'src/app/models/DrawingBoardModel';
 
 @Component({
   selector: 'app-new-project',
@@ -21,6 +22,10 @@ export class NewProjectComponent implements OnInit {
   
   submit(){
     let project : ProjectModel= new ProjectModel(this.name,this.description, this.pictureUrl);
+    project.drawingBoards = new Array()
+    let newTable = new DrawingBoardModel();
+    newTable.name = this.table;
+    project.drawingBoards.push(newTable);
     project.userIDs= new Array();
     project.userIDs.push(this.userStore.user.id);
     project.pictureUrl="https://pateserv.com/images/projects/project.jpg";

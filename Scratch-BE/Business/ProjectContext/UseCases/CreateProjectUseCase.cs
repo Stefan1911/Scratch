@@ -27,8 +27,16 @@ namespace Business.UserContext.UseCases
                 Name = request.Name,
                 Description=request.Description,
                 PictureUrl=request.PictureUrl,
-                DrawingBoards=new List<DrawingBoardModel>(),
-                UserIDs = request.UserIDs
+                DrawingBoards=request.DrawingBoards
+                    .Select((CreateDrawingBoardrequest) => {
+                    return new DrawingBoardModel{
+                        Name = CreateDrawingBoardrequest.Name??"myFirstTable",
+                        Chat = new ChatModel(),
+			            Shapes = new List<ShapeModel>()
+                        };
+                    })
+                    .ToList(),
+                UserIDs = request.UserIDs,
             };
             var returnProject = await _projectRepository.AddAsync(project);
 

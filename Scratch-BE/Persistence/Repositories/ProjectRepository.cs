@@ -20,6 +20,8 @@ namespace Persistence.Repositories
 
         public async Task<ProjectModel> AddAsync(ProjectModel project)
         {
+            project.DrawingBoards[0].Id = ObjectId.GenerateNewId().ToString();
+            project.DrawingBoards[0].Chat.Id = ObjectId.GenerateNewId().ToString();
             await context.Projects.InsertOneAsync(project);
             return project;
 
