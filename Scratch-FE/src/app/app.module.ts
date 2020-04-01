@@ -30,10 +30,13 @@ import { FormsModule } from '@angular/forms';
 import { ChatComponentComponent } from './components/chat-component/chat-component.component';
 import { MatListModule } from '@angular/material/list';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { DeleteDialogComponent } from './components/delete-dialog/delete-dialog.component';
 import { JoinProjectComponent } from './components/join-project/join-project.component';
 import { ShapePropertiesComponent } from './components/shape-properties/shape-properties.component';
 import { KeyComponent } from './components/key/key.component';
+import { CloudinaryModule } from '@cloudinary/angular-5.x';
+import * as  Cloudinary from 'cloudinary-core';
 
 const appRoutes: Routes = [
   { path: 'home', component: FirstPageComponent },
@@ -86,7 +89,9 @@ const appRoutes: Routes = [
     MatDialogModule,
     FormsModule,
     MatListModule,
+    MatProgressSpinnerModule,
     MatSnackBarModule,
+    CloudinaryModule.forRoot(Cloudinary, { cloud_name: 'scratchimagestore'}),
     RouterModule.forRoot(
       appRoutes
     )

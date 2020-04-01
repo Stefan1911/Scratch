@@ -1,6 +1,10 @@
-<div  class="card">
-    <button mat-flat-button class="exit" (click)="onNoClick()">
-        <mat-icon>close</mat-icon> 
+<!-- <div  class="card"> -->
+    <div class="spinnerCard card" *ngIf="uploadingFile">
+      <mat-spinner></mat-spinner>
+    </div>
+    <div class="card" *ngIf="!uploadingFile">
+      <button mat-flat-button class="exit" (click)="onNoClick()">
+        <mat-icon>close</mat-icon>
     </button>
     <div class="div1">
         <h3 class="txt">Create new project</h3>
@@ -21,16 +25,20 @@
     <div class="div2">
         <p class="txt">Project photo</p>
         <div *ngIf="showPicture()==false">
-          <img  class="image" src="https://previews.123rf.com/images/rawpixel/rawpixel1603/rawpixel160315905/53950623-project-word-operation-plan-job-concept.jpg">
+
+          <img #ImageFrame  class="image" [src]="imageURL" >
         </div>
         <div *ngIf="showPicture()==true">
             <img class="image"src={{pictureUrl}}>
         </div>
-        <button mat-flat-button color="primary">Upload an image</button>
+        <input style="display: none" type="file" (change)="onFileChanged($event)" #fileInput>
+        <button mat-flat-button  (click)="fileInput.click()" color="primary">Upload an image</button>
     </div>
     <div class="div3">
         <button mat-flat-button class="cancel" (click)="onNoClick()">Cancel</button>
-    <button mat-flat-button color="primary" (click)="submit()">Save Changes</button> 
+    <button mat-flat-button color="primary" (click)="submit()">Save Changes</button>
     </div>
-   
-</div>
+    </div>
+
+
+<!-- </div> -->

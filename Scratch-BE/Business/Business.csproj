@@ -1,17 +1,14 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
-
-	<ItemGroup>
-		<PackageReference Include="mongocsharpdriver" Version="2.10.0" />
-		<PackageReference Include="Microsoft.AspNetCore.SignalR.Core" Version="1.1.0" />
-	</ItemGroup>
-	
   <ItemGroup>
-    <ProjectReference Include="..\Boundary\Boundary.csproj" />
-    <ProjectReference Include="..\Kernel\Kernel.csproj" />
+    <PackageReference Include="mongocsharpdriver" Version="2.10.0"/>
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Core" Version="1.1.0"/>
+    <PackageReference Include="CloudinaryDotNet" Version="1.10.0"/>
   </ItemGroup>
-
+  <ItemGroup>
+    <ProjectReference Include="..\Boundary\Boundary.csproj"/>
+    <ProjectReference Include="..\Kernel\Kernel.csproj"/>
+  </ItemGroup>
 </Project>

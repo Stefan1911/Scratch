@@ -7,6 +7,8 @@ using Boundary.ChatContext.Response;
 using Boundary.DrawingBoardContext.Request;
 using Boundary.ExampleContext.Request;
 using Boundary.ExampleContext.Response;
+using Boundary.ImageContext.Request;
+using Boundary.ImageContext.Response;
 using Boundary.MessageContext.Request;
 using Boundary.MessageContext.Response;
 using Boundary.ProjectContext.Request;
@@ -20,6 +22,8 @@ using Business.ChatContext.UseCases;
 using Business.Contracts;
 using Business.DrawingBoardContext.UseCases;
 using Business.ExampleContext.UseCases;
+using Business.ImageContext.Settings;
+using Business.ImageContext.UseCases;
 using Business.ProjectContext.UseCases;
 using Business.ShapeContext.UseCases;
 using Business.UserContext.UseCases;
@@ -49,11 +53,13 @@ namespace Scratch
             Configuration = configuration;
 			_corsConfiguration = GetCorsConfiguration();
 			_signalRConfig = GetSignalRConfiguration();
+			_cloudinaryConfiguration = GetCloudinaryAccountConfiguration();
         }
 
         public IConfiguration Configuration { get; }
 		public CorsConfiguration _corsConfiguration { get; set; }
 		public SignalRConfiguration _signalRConfig { get; set; }
+		public CloudinaryAccountConfiguration _cloudinaryConfiguration { get; set; }
 
         public void ConfigureServices(IServiceCollection services)
         {
@@ -107,6 +113,10 @@ namespace Scratch
 			services.AddSignalR();
 			services.AddSingleton<IDrawingBoardMessageBroker,DrawingBoardMessageBroker>();
 			services.AddSingleton<IChatMessageBroker, ChatMessageBroker>();
+			#endregion
+			#region ImageUpload
+			services.AddSingleton(_cloudinaryConfiguration);
+			services.AddUseCase<UploadImageRequest,UploadImageResponse,UploadImageUseCase>();
 			#endregion
 
 			services.AddCors(options =>
@@ -177,6 +187,13 @@ namespace Scratch
 			var configuration = new SignalRConfiguration();
 			iConfig.GetSection(nameof(SignalRConfiguration)).Bind(configuration);;
 
+			return configuration;
+		}
+		public static CloudinaryAccountConfiguration GetCloudinaryAccountConfiguration()
+		{
+			var iConfig = GetIConfigurationRoot();
+			var configuration = new CloudinaryAccountConfiguration();
+			iConfig.GetSection(nameof(CloudinaryAccountConfiguration)).Bind(configuration);;
 			return configuration;
 		}
     }

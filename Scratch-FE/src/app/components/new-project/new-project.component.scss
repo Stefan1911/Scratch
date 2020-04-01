@@ -5,6 +5,10 @@
     display: flex;
     flex-direction: row;
 }
+.spinnerCard{
+    align-items: center;
+    justify-content: center;
+}
 .exit{
     position: absolute;
     right: 0;
@@ -34,7 +38,7 @@
     margin-left: 10px;
 }
 .image{
-    height: 180px;
+    height: 100px;
     width: 180px;
     margin-bottom: 10%;
 }
