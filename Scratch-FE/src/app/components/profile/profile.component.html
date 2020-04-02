@@ -1,4 +1,7 @@
-<div  class="card">
+<div class="spinnerCard card" *ngIf="uploadingFile">
+    <mat-spinner></mat-spinner>
+  </div>
+<div *ngIf="!uploadingFile"  class="card">
     <button mat-flat-button class="exit" (click)="onNoClick()">
         <mat-icon>close</mat-icon> 
     </button>
@@ -26,7 +29,8 @@
         <div *ngIf="showPicture()==true">
             <img class="image"src={{pictureUrl}}>
         </div>
-        <button mat-flat-button color="primary">Upload an image</button>
+        <input style="display: none" type="file" (change)="onImageChanged($event)" #fileInput>
+        <button mat-flat-button  (click)="fileInput.click()" color="primary">Upload an image</button>
     </div>
     <div class="div3">
         <button mat-flat-button class="cancel" (click)="onNoClick()">Cancel</button>

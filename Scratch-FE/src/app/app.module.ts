@@ -41,6 +41,7 @@ import * as  Cloudinary from 'cloudinary-core';
 const appRoutes: Routes = [
   { path: 'home', component: FirstPageComponent },
   { path: 'login', component: LogInComponent },
+  { path: 'register', component: LogInComponent },
   { path: 'chat', component: ChatComponentComponent },
   { path: 'drawingStation/:projectId', component: DrawingStationComponent, canActivate:[LoginGuardService]},
   { path: 'profile', component: ProfileComponent },

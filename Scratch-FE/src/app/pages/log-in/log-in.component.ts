@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { LogInService } from 'src/app/services/httpServices/LogInService';
 import { UserModel } from 'src/app/models/UserModel';
 import { UserStore } from 'src/app/services/userStoreService';
 import { Router } from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import { MatTabGroup } from '@angular/material/tabs';
 
 @Component({
   selector: 'app-log-in',
@@ -14,9 +15,14 @@ export class LogInComponent implements OnInit {
 
   constructor(private logInService : LogInService, private userStore : UserStore,private router : Router, private _snackBar: MatSnackBar) { }
 
+  @ViewChild("matTabGroup",{static : false})
+  tabGroup : MatTabGroup;
+
   hide = true;
-  buttonText : String = "LogIn"
+  buttonText : String = "LogIn";
+  rout : string;
   isLogin : boolean = true;
+  tabIndex : number
 
   username : String;
   password : String;
@@ -27,6 +33,10 @@ export class LogInComponent implements OnInit {
   registerPassword : string;
 
   ngOnInit() {
+    let rout = this.router.routerState.snapshot.url;
+    this.isLogin = (rout === "/login")? true : false;
+    this.buttonText = (this.isLogin)? "LogIn":"Register";
+    this.tabIndex = (rout === "/login")? 0 : 1;
   }
 
   selectionChanged(event : number){

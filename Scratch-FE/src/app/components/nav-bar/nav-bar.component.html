@@ -26,8 +26,14 @@
 </button>
   </mat-menu>
 </div>
-<div *ngIf="!IsLogedIn" class="buttonPanel">
-  <button color="primary" mat-flat-button (click)="redirectToLogin()">LogIn</button>
-  <button mat-flat-button color="primary" (click)="redirectToLogin()">Register</button>
+<div *ngIf="!IsLogedIn" >
+  <div *ngIf="isHomePage()" class="buttonPanel">
+    <button color="primary" mat-flat-button (click)="redirectToPath('login')">LogIn</button>
+    <button mat-flat-button color="primary" (click)="redirectToPath('register')">Register</button>
+  </div>
+  <div *ngIf="!isHomePage()" class="buttonPanel">
+    <button mat-flat-button color="primary" (click)="redirectToPath('home')">Home</button>
+  </div>
+
 </div>
 </mat-toolbar> 

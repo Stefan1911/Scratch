@@ -38,8 +38,12 @@ export class NavBarComponent implements OnInit {
       this.pictureUrl="https://img.icons8.com/plasticine/2x/gender-neutral-user.png";
   }
   
-  redirectToLogin(){
-    this.Router.navigate(["login"]);
+  redirectToPath(path: String){
+    this.Router.navigate([path]);
+  }
+  isHomePage(){
+    let rout = this.Router.routerState.snapshot.url;
+    return rout === "/home"
   }
 
   onLogout(){

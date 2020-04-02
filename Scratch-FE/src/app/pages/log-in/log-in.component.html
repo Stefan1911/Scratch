@@ -2,7 +2,7 @@
     <div class="verticalContainer">
         <mat-card class="example-card">
             <mat-card-content>
-                <mat-tab-group (selectedIndexChange)="this.selectionChanged($event)">
+                <mat-tab-group [selectedIndex]="tabIndex" #matTabGroup (selectedIndexChange)="this.selectionChanged($event)">
                     <mat-tab label="Login"> 
                             <form class="example-form">
                                 <mat-form-field class="example-full-width">
