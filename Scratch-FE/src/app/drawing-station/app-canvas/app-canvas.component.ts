@@ -1,18 +1,13 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import * as createjs from 'createjs-module';
-import { MouseStrategyFactory, MouseStrategyEnum } from 'src/app/services/mousStratey/MouseStrategyFactory';
-import { ShapeSubjectService } from 'src/app/services/ShapeSubjectService';
+import { MouseStrategyFactory, MouseStrategyEnum } from 'src/app/services/mousStratey/Factories/MouseStrategyFactory';
 import { ShapeService } from 'src/app/services/httpServices/ShapeService';
 import { SignalRResiver } from 'src/app/services/httpServices/signalRReciver';
 import { TableService } from 'src/app/services/httpServices/TableService';
 import { DrawingBoardModel } from 'src/app/models/DrawingBoardModel';
-import { ShapeModel } from 'src/app/models/ShapeModel';
-import { PointModel } from 'src/app/models/PointModel';
-import { MAT_LABEL_GLOBAL_OPTIONS } from '@angular/material/core';
-import { Subscription } from 'rxjs';
-import { Drawable } from 'src/app/models/interfaces/initializable';
+import { Drawable, ShapeNames } from 'src/app/models/interfaces/Drawable';
 import { ShapeHelperModel } from 'src/app/models/HelperModels/shapeHelperModel';
-import { collectExternalReferences } from '@angular/compiler';
+import { ShapeFactory } from 'src/app/services/mousStratey/Factories/ShapeFactory';
 
 @Component({
   selector: 'app-canvas',
@@ -36,10 +31,11 @@ export class AppCanvasComponent implements OnInit {
 	@Output()
 	shapeSelectionChaned: EventEmitter<void>;
   
-  constructor(public strategyFactory : MouseStrategyFactory
-			,public shapeService: ShapeService
-			,public reciver : SignalRResiver 
-			,public getService : TableService
+  constructor(public strategyFactory : MouseStrategyFactory,
+			public shapeService: ShapeService,
+			public reciver : SignalRResiver,
+			public getService : TableService,
+			public shapeFactory : ShapeFactory
 			) { 
 				this.shapes = new Array();
 				this.shapeSelectionChaned = new EventEmitter();
@@ -56,7 +52,7 @@ export class AppCanvasComponent implements OnInit {
 			this.getService.getTable(this.projectId,this.drawingBoardId)
 			.subscribe((drawingBoard: DrawingBoardModel) => {
 				let temp = drawingBoard.shapes.map( (shapeHelper : ShapeHelperModel) => {
-					let model = new ShapeModel();
+					let model = this.shapeFactory.getShape(ShapeNames[shapeHelper.type]);
 					model.fromShapeHelper(shapeHelper);
 					return model;
 				})
@@ -98,19 +94,12 @@ export class AppCanvasComponent implements OnInit {
 	}
 
 	DrawAllShapes( shapes:Drawable[]){
+		this.stage.removeAllChildren();
 		this.shapes = new Array();
 		shapes.forEach((shape : Drawable) =>{
 			shape.tableId = this.drawingBoardId;
-			let tempShape = new ShapeModel();
-			tempShape.shapeId = shape.shapeId;
-			tempShape.shapeIndex = shape.shapeIndex;
-			tempShape.tableId = shape.tableId;
-			tempShape.points = shape.points;
-			tempShape.fillColor = shape.fillColor;
-			tempShape.strockColor = shape.strockColor;
-			tempShape.type = shape.type;
-			this.shapes.push(tempShape);
-			this.drawShape(tempShape);
+			this.shapes.push(shape);
+			this.drawShape(shape);
 		})
 
 	}

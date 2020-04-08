@@ -1,8 +1,4 @@
 import { Component } from '@angular/core';
-import { ShapeService } from './services/httpServices/ShapeService';
-import { ShapeSubjectService } from './services/ShapeSubjectService';
-import { Shape } from 'createjs-module';
-import { ShapeModel } from './models/ShapeModel';
 import { Title } from '@angular/platform-browser';
 
 @Component({

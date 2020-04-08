@@ -1,5 +1,5 @@
 import { PointModel } from '../PointModel';
-import { Drawable } from '../interfaces/initializable';
+import { Drawable } from '../interfaces/Drawable';
 
 export class ShapeHelperModel {
 	id : string;

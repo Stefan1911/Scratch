@@ -1,10 +1,8 @@
 import {  MouseEvent, Shape } from 'createjs-module';
-import { ShapeSubjectService } from '../ShapeSubjectService';
-
 export class PencilTool{
     isMousDown : boolean = false;
     CurrentlyDrawingShape : createjs.Shape;
-    constructor(private stage : createjs.Stage,shapeSubjects : ShapeSubjectService) {
+    constructor(private stage : createjs.Stage) {
     }
     onMousDown(event : MouseEvent){
 

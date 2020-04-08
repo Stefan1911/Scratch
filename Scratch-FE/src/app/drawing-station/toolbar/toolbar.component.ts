@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import {NestedTreeControl} from '@angular/cdk/tree';
 import {MatTreeNestedDataSource} from '@angular/material/tree';
-import { MouseStrategyEnum } from 'src/app/services/mousStratey/MouseStrategyFactory';
+import { MouseStrategyEnum } from 'src/app/services/mousStratey/Factories/MouseStrategyFactory';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 

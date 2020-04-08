@@ -3,13 +3,11 @@ import * as signalR from "@aspnet/signalr";
 import { AppCanvasComponent } from 'src/app/drawing-station/app-canvas/app-canvas.component';
 import { LogInComponent } from 'src/app/pages/log-in/log-in.component';
 import { DrawingBoardModel } from 'src/app/models/DrawingBoardModel';
-import { ThrowStmt } from '@angular/compiler';
-import { promise } from 'protractor';
 import { DrawingStationComponent } from 'src/app/drawing-station/drawing-station.component';
 import { ShapeHelperModel } from 'src/app/models/HelperModels/shapeHelperModel';
-import { ShapeModel } from 'src/app/models/ShapeModel';
 import { ChatComponentComponent } from 'src/app/components/chat-component/chat-component.component';
-import { MessageModel } from 'src/app/models/MessageModel';
+import { ShapeFactory } from '../mousStratey/Factories/ShapeFactory';
+import { ShapeNames } from 'src/app/models/interfaces/Drawable';
 
 @Injectable({
 	providedIn: 'root'
@@ -21,7 +19,7 @@ export class SignalRResiver {
 	private connetionURL : string
 	private id:string
 	private promis;
-	constructor() {		
+	constructor(private shapeFactory : ShapeFactory) {		
 		this.hubConnection = new signalR.HubConnectionBuilder()
 			.withUrl('http://localhost:5000/DrawingBoard')
 			.build();
@@ -61,7 +59,7 @@ export class SignalRResiver {
 	async registerCanvas(canvas :AppCanvasComponent): Promise<string>{
 		this.removeAllCanvasHubs(canvas)
 		this.hubConnection.on(canvas.drawingBoardId, (shape : ShapeHelperModel) => {
-			let newShape = new ShapeModel();
+			let newShape = this.shapeFactory.getShape(ShapeNames[shape.type]);
 			newShape.fromShapeHelper(shape);
 			newShape.tableId = canvas.drawingBoardId;
 			canvas.shapes.push(newShape);

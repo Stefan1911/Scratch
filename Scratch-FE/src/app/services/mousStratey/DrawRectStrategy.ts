@@ -1,10 +1,9 @@
 import { Point, MouseEvent, Shape, Rectangle } from 'createjs-module';
-import { Subject } from 'rxjs';
-import { ShapeModel } from 'src/app/models/ShapeModel';
-import { ShapeSubjectService } from '../ShapeSubjectService';
 import { PointModel } from 'src/app/models/PointModel';
 import { AppCanvasComponent } from 'src/app/drawing-station/app-canvas/app-canvas.component';
 import { ShapeHelperModel } from 'src/app/models/HelperModels/shapeHelperModel';
+import { ShapeFactory } from './Factories/ShapeFactory';
+import { Drawable, ShapeNames } from 'src/app/models/interfaces/Drawable';
 
 export class DrawRectStrategy{
     isMousDown : boolean = false;
@@ -13,10 +12,10 @@ export class DrawRectStrategy{
     minDrawingHeigth:number = 2;
     defaultWidth = 100;
     defaultHeigth = 100;
-	currentShapeModel :ShapeModel;
+	currentShapeModel :Drawable;
     stage : createjs.Stage;
 
-    constructor(private canvas: AppCanvasComponent,private shapeType : string) {
+    constructor(private canvas: AppCanvasComponent,private shapeType : ShapeNames,private shapeFactory: ShapeFactory) {
         this.stage = canvas.stage;
     }
     onMousDown(event : MouseEvent){
@@ -59,10 +58,7 @@ export class DrawRectStrategy{
     }
 
     createDefaultShape(){
-        this.currentShapeModel = new ShapeModel();
-		this.currentShapeModel.fillColor = "DeepSkyBlue";
-		this.currentShapeModel.strockColor = "#000000"; 
-        this.currentShapeModel.type = this.shapeType;
+        this.currentShapeModel = this.shapeFactory.getShape(this.shapeType);
         this.currentShapeModel.tableId = this.canvas.drawingBoardId;
         this.currentShapeModel.points = new Array();
         this.currentShapeModel.points.push(new PointModel(0,0));

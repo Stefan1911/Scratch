@@ -1,4 +1,3 @@
-import { ShapeModel } from './ShapeModel';
 import { ChatModel } from './ChatModel';
 import { ShapeHelperModel } from './HelperModels/shapeHelperModel';
 

@@ -1,5 +1,4 @@
-import { Drawable } from '../interfaces/initializable';
-import { ShapeModel } from '../ShapeModel';
+import { Drawable } from '../interfaces/Drawable';
 import { PointModel } from '../PointModel';
 import { ShapeHelperModel } from '../HelperModels/shapeHelperModel';
 import * as createjs from 'createjs-module';

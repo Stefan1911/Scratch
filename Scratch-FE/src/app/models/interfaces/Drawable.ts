@@ -13,6 +13,12 @@ export interface Drawable  extends DisplayObject {
 	sendingClientID :string
 
 	peelDecoration() : Drawable;
-    fromShapeHelper(shape : ShapeHelperModel);
+	fromShapeHelper(shape : ShapeHelperModel);
     initializeDrowing();
+}
+
+export enum ShapeNames{
+    Rectangle,
+	Circle,
+	Line
 }

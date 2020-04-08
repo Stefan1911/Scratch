@@ -45,7 +45,6 @@ export class LogInComponent implements OnInit {
   }
 
   submit(){
-    //console.table({emal : this.email , fullName : this.fullName , username : this.username , password : this.password, regUsername : this.registerUsername, regPass : this.registerPassword})
     let user : UserModel = new UserModel();
     user.email  = this.email;
     user.name = this.fullName;

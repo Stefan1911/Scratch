@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
-import { MouseStrategyFactory, MouseStrategyEnum } from '../services/mousStratey/MouseStrategyFactory';
+import { MouseStrategyFactory, MouseStrategyEnum } from '../services/mousStratey/Factories/MouseStrategyFactory';
 import { ProjectModel } from '../models/ProjectModel';
 import { DrawingBoardModel } from '../models/DrawingBoardModel';
 import { ActivatedRoute } from '@angular/router';
