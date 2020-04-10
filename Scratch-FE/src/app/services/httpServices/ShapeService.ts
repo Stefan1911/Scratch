@@ -19,6 +19,8 @@ export class ShapeService{
 	}
 
 	updateShape(connecionID:string ,shape : Drawable){
+		console.log(shape);
+		
 		let newShape = new ShapeHelperModel();
 		newShape.fromShapeModel(shape);
 		newShape.sendingClientID = connecionID;

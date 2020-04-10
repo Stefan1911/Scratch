@@ -52,7 +52,7 @@ export class AppCanvasComponent implements OnInit {
 			.subscribe((drawingBoard: DrawingBoardModel) => {
 				let temp = drawingBoard.shapes.map( (shapeHelper : ShapeHelperModel) => {
 					let model = this.shapeFactory.getShape(ShapeNames[shapeHelper.type]);
-					model.fromShapeHelper(shapeHelper);
+					model.fromShapeHelper(shapeHelper,this.drawingBoardId);
 					return model;
 				})
 				console.log(temp);

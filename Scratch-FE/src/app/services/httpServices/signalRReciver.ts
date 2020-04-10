@@ -60,14 +60,14 @@ export class SignalRResiver {
 		this.removeAllCanvasHubs(canvas)
 		this.hubConnection.on(canvas.drawingBoardId, (shape : ShapeHelperModel) => {
 			let newShape = this.shapeFactory.getShape(ShapeNames[shape.type]);
-			newShape.fromShapeHelper(shape);
+			newShape.fromShapeHelper(shape,canvas.drawingBoardId);
 			newShape.tableId = canvas.drawingBoardId;
 			canvas.shapes.push(newShape);
 			canvas.drawShape(newShape);
 			});
 		this.hubConnection.on(canvas.drawingBoardId + "/updateShape", (shape : ShapeHelperModel, shapeIndex) =>{
 			let foundShape = canvas.shapes.find( _shape => _shape.shapeId === shape.id);
-			foundShape.fromShapeHelper(shape);
+			foundShape.fromShapeHelper(shape,canvas.drawingBoardId);
 			canvas.reDrawShape(foundShape);
 		})
 		this.hubConnection.on(canvas.drawingBoardId+"/deleteShape",(shapeId : string) =>{

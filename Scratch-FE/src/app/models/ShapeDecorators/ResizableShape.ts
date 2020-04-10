@@ -18,8 +18,8 @@ export class ResizableShape extends createjs.Container implements Drawable{
     peelDecoration(): Drawable {
         return this.shape.peelDecoration();
     }
-    fromShapeHelper(shape: ShapeHelperModel) {
-        this.shape.fromShapeHelper(shape);
+    fromShapeHelper(shape: ShapeHelperModel, tableId : string) {
+        this.shape.fromShapeHelper(shape,tableId);
     }
 
     initializeDrowing() {

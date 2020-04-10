@@ -13,7 +13,7 @@ export interface Drawable  extends DisplayObject {
 	sendingClientID :string
 
 	peelDecoration() : Drawable;
-	fromShapeHelper(shape : ShapeHelperModel);
+	fromShapeHelper(shape : ShapeHelperModel, tableId: string);
     initializeDrowing();
 }
 

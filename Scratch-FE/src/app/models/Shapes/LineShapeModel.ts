@@ -22,10 +22,10 @@ export class LineShapeModel extends createjs.Shape implements Drawable{
 	peelDecoration() : Drawable {
 		return this;
 	}
-	public fromShapeHelper(shape : ShapeHelperModel){
+	public fromShapeHelper(shape : ShapeHelperModel,tableId : string){
 		this.shapeId = shape.id;
 		this.shapeIndex = shape.shapeIndex;
-		this.tableId = shape.tableId;
+		this.tableId = tableId;
 		this.points = shape.points;
 		this.fillColor = shape.fillColor;
 		this.strockColor = shape.strockColor;
