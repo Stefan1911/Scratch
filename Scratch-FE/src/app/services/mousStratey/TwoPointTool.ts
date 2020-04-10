@@ -1,11 +1,10 @@
 import { Point, MouseEvent, Shape, Rectangle } from 'createjs-module';
 import { PointModel } from 'src/app/models/PointModel';
 import { AppCanvasComponent } from 'src/app/drawing-station/app-canvas/app-canvas.component';
-import { ShapeHelperModel } from 'src/app/models/HelperModels/shapeHelperModel';
 import { ShapeFactory } from './Factories/ShapeFactory';
 import { Drawable, ShapeNames } from 'src/app/models/interfaces/Drawable';
 
-export class DrawRectStrategy{
+export class TwoPointTool{
     isMousDown : boolean = false;
     topLeftCorner : Point;
     minDrawingWidth:number = 2;
@@ -19,6 +18,8 @@ export class DrawRectStrategy{
         this.stage = canvas.stage;
     }
     onMousDown(event : MouseEvent){
+        console.log(event);
+        
         this.createDefaultShape();
         this.topLeftCorner = new Point(event.stageX,event.stageY);
         this.currentShapeModel.points[0] = new PointModel(this.topLeftCorner.x,this.topLeftCorner.y);
@@ -37,14 +38,7 @@ export class DrawRectStrategy{
 			this.currentShapeModel.points[1] = new PointModel(this.topLeftCorner.x+this.defaultWidth,this.topLeftCorner.y+this.defaultHeigth);
 			this.canvas.reDrawAllShapes();
         }	
-        this.canvas.shapeService.sendShape(this.canvas.conncionID,this.currentShapeModel)
-        .subscribe( (shape : ShapeHelperModel) => {
-            this.currentShapeModel.shapeId = shape.id;
-            console.log(this.currentShapeModel);
-            
-        })	
-        
-        
+        this.canvas.saveShape(this.currentShapeModel);	
     }
     onMouseMove(event : MouseEvent){
         if(this.isMousDown){

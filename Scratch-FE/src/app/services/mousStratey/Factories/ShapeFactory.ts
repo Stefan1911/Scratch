@@ -3,6 +3,8 @@ import { CircleShapeModel } from 'src/app/models/Shapes/CircleShapeModel';
 import { LineShapeModel } from 'src/app/models/Shapes/LineShapeModel';
 import { Injectable } from '@angular/core';
 import { ShapeNames } from 'src/app/models/interfaces/Drawable';
+import { MultiLineShapeModel } from 'src/app/models/Shapes/MultiLineShapeModel';
+import { PolygonShapeModel } from 'src/app/models/Shapes/PolygonShapeModel';
 
 @Injectable({ providedIn: 'root'})
 export class ShapeFactory {
@@ -19,6 +21,12 @@ export class ShapeFactory {
                 break;
             case ShapeNames.Line:
                 return new LineShapeModel();
+                break;
+            case ShapeNames.multiLine:
+                return new MultiLineShapeModel();
+                break;
+            case ShapeNames.polygon:
+                return new PolygonShapeModel();
                 break;
             default:
                 return null

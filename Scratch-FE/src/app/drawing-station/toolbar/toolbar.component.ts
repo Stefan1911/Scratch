@@ -28,23 +28,17 @@ const TREE_DATA: treeNode[] = [
           {toolName : MouseStrategyEnum.drawRect,iconName : "rectangle"},
           { toolName:MouseStrategyEnum.selector ,iconName : "move-arrows"},
           { toolName:MouseStrategyEnum.drawCircle ,iconName : "circle"},
-          { toolName : MouseStrategyEnum.drawLien,iconName : "line"},
-          { toolName:MouseStrategyEnum.selector ,iconName : "move-arrows"},
-          { toolName:MouseStrategyEnum.selector ,iconName : "move-arrows"},
-          { toolName : MouseStrategyEnum.drawRect,iconName : "rectangle"},
-          { toolName:MouseStrategyEnum.selector ,iconName : "move-arrows"},
+          { toolName : MouseStrategyEnum.drawPolygon,iconName : "polygon"},
         ]
       }
     ]
   }, {
-    dispalyText: 'UML Diagrams',
+    dispalyText: 'Lines',
      children: [
      {
         tiles: [
-          {
-            toolName : MouseStrategyEnum.moveView,
-            iconName : "Coming soon...",
-          }
+          { toolName : MouseStrategyEnum.drawLien,iconName : "line"},
+          { toolName : MouseStrategyEnum.drawMultiLine,iconName : "multi-line",},
         ]
       }
     ]
@@ -78,6 +72,12 @@ export class ToolbarComponent implements OnInit {
     iconRegistry.addSvgIcon(
         'line',
         sanitizer.bypassSecurityTrustResourceUrl('assets/img/fav-icons/line.svg'));
+    iconRegistry.addSvgIcon(
+        'multi-line',
+        sanitizer.bypassSecurityTrustResourceUrl('assets/img/fav-icons/multyPointLine.svg'));
+    iconRegistry.addSvgIcon(
+        'polygon',
+        sanitizer.bypassSecurityTrustResourceUrl('assets/img/fav-icons/distort.svg'));
     iconRegistry.addSvgIcon(
       'Coming soon...',
       sanitizer.bypassSecurityTrustResourceUrl('assets/img/fav-icons/not-found.svg'));

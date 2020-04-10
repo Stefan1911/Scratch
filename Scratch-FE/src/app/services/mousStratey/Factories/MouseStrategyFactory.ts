@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { DrawRectStrategy } from '../DrawRectStrategy';
+import { TwoPointTool } from '../TwoPointTool';
 import { SelectorTool } from '../SelectorTool';
-import { PencilTool } from '../PencilTool';
+import { MultiPointTool } from '../MultiPointTool';
 import { AppCanvasComponent } from 'src/app/drawing-station/app-canvas/app-canvas.component';
 import { ShapeFactory } from './ShapeFactory';
 import { ShapeNames } from 'src/app/models/interfaces/Drawable';
@@ -14,16 +14,23 @@ export class MouseStrategyFactory {
         let retStrategy:any;
         switch (strategy) {
             case MouseStrategyEnum.drawRect:
-                retStrategy = new DrawRectStrategy(canvas,ShapeNames.Rectangle,this.shapeFactory);
+                retStrategy = new TwoPointTool(canvas,ShapeNames.Rectangle,this.shapeFactory);
                 break;
             case MouseStrategyEnum.drawCircle:
-                retStrategy = new DrawRectStrategy(canvas,ShapeNames.Circle,this.shapeFactory);
+                retStrategy = new TwoPointTool(canvas,ShapeNames.Circle,this.shapeFactory);
                 break;
             case MouseStrategyEnum.drawLien:
-                retStrategy = new DrawRectStrategy(canvas,ShapeNames.Line,this.shapeFactory);
+                retStrategy = new TwoPointTool(canvas,ShapeNames.Line,this.shapeFactory);
                 break;
             case MouseStrategyEnum.selector:
                 retStrategy = new SelectorTool(canvas);
+                break;
+            case MouseStrategyEnum.drawMultiLine:
+                retStrategy = new MultiPointTool(canvas,ShapeNames.multiLine,this.shapeFactory);
+                break;
+            case MouseStrategyEnum.drawPolygon:
+                retStrategy = new MultiPointTool(canvas,ShapeNames.polygon,this.shapeFactory);
+                break;
             break;
                 break;
         }
@@ -39,5 +46,7 @@ export enum MouseStrategyEnum{
     drawRect,
     drawCircle,
     drawLien,
-    selector,
+    drawMultiLine,
+    drawPolygon,
+    selector
 }

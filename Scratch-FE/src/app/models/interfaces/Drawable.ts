@@ -20,5 +20,7 @@ export interface Drawable  extends DisplayObject {
 export enum ShapeNames{
     Rectangle,
 	Circle,
-	Line
+	Line,
+	multiLine,
+	polygon
 }

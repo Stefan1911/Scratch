@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output, ViewChild, ElementRef } from '@angular/core';
 import * as createjs from 'createjs-module';
 import { MouseStrategyFactory, MouseStrategyEnum } from 'src/app/services/mousStratey/Factories/MouseStrategyFactory';
 import { ShapeService } from 'src/app/services/httpServices/ShapeService';
@@ -16,7 +16,6 @@ import { ShapeFactory } from 'src/app/services/mousStratey/Factories/ShapeFactor
   providers: [MouseStrategyFactory]
 })
 export class AppCanvasComponent implements OnInit {
-
 	mouseStrategy : any;
 	stage : createjs.Stage;
 	@Input()
@@ -41,7 +40,7 @@ export class AppCanvasComponent implements OnInit {
 				this.shapeSelectionChaned = new EventEmitter();
 			}
 
-	ngOnInit() {		
+	ngOnInit() {	
 		this.initShapes(this.drawingBoardId);
 	}
 
@@ -147,6 +146,14 @@ export class AppCanvasComponent implements OnInit {
 		}
 		this.reDrawAllShapes();
 		this.shapeService.updateShape(this.conncionID,this.selectedShape);
+	}
+
+	saveShape(newShape : Drawable){
+		newShape.tableId = this.drawingBoardId;
+		this.shapeService.sendShape(this.conncionID,newShape)
+                .subscribe( (shape : ShapeHelperModel) => {					
+                    newShape.shapeId = shape.id;
+                })
 	}
 
 }
