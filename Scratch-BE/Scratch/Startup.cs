@@ -102,7 +102,7 @@ namespace Scratch
 			#region User
 			services.AddSingleton<IUserRepository, UserRepository>();
 			services.AddUseCase<LogInRequest,LogInResponse,LogInUseCase>();
-            services.AddUseCase<CreateUserRequest, UserResponse, CreateUserUseCase>();
+            services.AddUseCase<CreateUserRequest, LogInResponse, CreateUserUseCase>();
 			services.AddUseCase<UpdateUserRequest, UserResponse, UpdateUserUseCase>();
 			services.AddUseCase<GetUserCollectionRequest, CollectionResponse<UserResponse>, GetUserCollectionUseCase > ();
             #endregion

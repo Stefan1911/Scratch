@@ -14,7 +14,7 @@ namespace Scratch.Controllers
     public class UserController : ControllerBase
     {
         [HttpPost("register")]
-        public async Task<IActionResult> Register([FromServices] IHandle<CreateUserRequest, UserResponse> handle,
+        public async Task<IActionResult> Register([FromServices] IHandle<CreateUserRequest, LogInResponse> handle,
             [FromBody]UserModel userModel)
         {
             var request = new CreateUserRequest

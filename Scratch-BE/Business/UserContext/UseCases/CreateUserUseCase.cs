@@ -12,7 +12,7 @@ using System.Text;
 
 namespace Business.UserContext.UseCases
 {
-   public class CreateUserUseCase : IHandle<CreateUserRequest, UserResponse>
+   public class CreateUserUseCase : IHandle<CreateUserRequest, LogInResponse>
     {
         private IUserRepository _repository;
 
@@ -20,7 +20,7 @@ namespace Business.UserContext.UseCases
         {
             _repository = repository;
         }
-        public async Task<UserResponse> HandleAsync(CreateUserRequest request)
+        public async Task<LogInResponse> HandleAsync(CreateUserRequest request)
         {
             var user = new UserModel
             {
@@ -31,8 +31,11 @@ namespace Business.UserContext.UseCases
                 PictureUrl = request.PictureUrl
             };
             var returnUser = await _repository.AddAsync(user);
-            
-            return returnUser.ToResponse();
+
+            return new LogInResponse() {
+                User = returnUser.ToResponse(),
+                UsernameIncorrect = false
+            };
         }
 
         
