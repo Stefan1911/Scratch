@@ -47,5 +47,30 @@ namespace Scratch.Controllers
 
             return Ok(response);
         }
+        [HttpPatch]
+        public async Task<IActionResult> RenameTable([FromServices] IHandle<RenameDrawingBoardRequest, DrawingBoardResponse> handle,
+             [FromBody]DrawingBoardRenameModelcs drawingBoard)
+        {
+            var request = new RenameDrawingBoardRequest()
+            {
+                TableId = drawingBoard.TableId,
+                Name = drawingBoard.Name,
+                ProjectId=drawingBoard.ProjectId
+            };
+            var response = await handle.HandleAsync(request);
+            return Ok(response);
+        }
+        [HttpDelete("{projectId}/{tableId}")]
+        public async Task<IActionResult> Delete([FromServices] IHandle<DeleteDrawingBoardRequest, DrawingBoardResponse> handle,
+           string projectId, string tableId)
+        {
+            var request = new DeleteDrawingBoardRequest()
+            {
+                ProjectId= projectId,
+                TableId = tableId
+            };
+            var response = await handle.HandleAsync(request);
+            return Ok(response);
+        }
     }
 }

@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { AddNameOrRename } from 'src/app/drawing-station/drawing-station.component';
 
 @Component({
   selector: 'app-new-table-dialog',
@@ -11,8 +12,11 @@ export class NewTableDialogComponent implements OnInit {
   }
 
   private tableName :string;
-  constructor(
-    public dialogRef: MatDialogRef<NewTableDialogComponent>) {}
+  private rename:boolean;
+
+  constructor( public dialogRef: MatDialogRef<NewTableDialogComponent> , @Inject(MAT_DIALOG_DATA) public data: AddNameOrRename ) {
+      this.rename=data.rename;
+  }
 
   onCancel(): void {
     this.dialogRef.close(null);

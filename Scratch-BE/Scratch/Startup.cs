@@ -88,9 +88,11 @@ namespace Scratch
 			services.AddSingleton<IDrawingBoardRepository, DrawingBoardRepository>();
             services.AddUseCase<CreateDrawingBoardRequest, DrawingBoardResponse, CreateDrawingBoardUseCase>();
 			services.AddUseCase<GetDrawingBoardRequest, DrawingBoardResponse, GetDrawingBoardUseCase>();
-            #endregion
-            #region Project
-            services.AddSingleton<IProjectRepository, ProjectRepository>();
+			services.AddUseCase<RenameDrawingBoardRequest, DrawingBoardResponse, RenameDrawingBoardUseCase>();
+			services.AddUseCase<DeleteDrawingBoardRequest, DrawingBoardResponse, DeleteDrawingBoardUseCase>();		
+			#endregion
+			#region Project
+			services.AddSingleton<IProjectRepository, ProjectRepository>();
             services.AddUseCase<CreateProjectRequest, ProjectResponse, CreateProjectUseCase>();
 			services.AddUseCase<GetUserProjectsRequest, CollectionResponse<ProjectResponse>, GetUserProjectsUseCase>();
 			services.AddUseCase<GetProjectRequest, ProjectResponse, GetProjectUseCase>();

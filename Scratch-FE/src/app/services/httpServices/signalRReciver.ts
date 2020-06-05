@@ -42,8 +42,16 @@ export class SignalRResiver {
 
 	async registerDrawingStation(drawingStatino : DrawingStationComponent): Promise<string>{
 		this.hubConnection.off(drawingStatino.Project.id+"/add");
+		this.hubConnection.off(drawingStatino.Project.id+"/rename");
+		this.hubConnection.off(drawingStatino.Project.id+"/delete");
 		this.hubConnection.on(drawingStatino.Project.id+"/add",(drawingBoard: DrawingBoardModel)=>{
 			drawingStatino.drawingBoards.push(drawingBoard);
+		})
+		this.hubConnection.on(drawingStatino.Project.id+"/rename",(model: {name, tableId})=>{
+			drawingStatino.drawingBoards.find(item=>item.id===model.tableId).name=model.name;
+		})
+		this.hubConnection.on(drawingStatino.Project.id+"/delete",(drawingBoardId: String)=>{
+			drawingStatino.drawingBoards = drawingStatino.drawingBoards.filter(item => item.id !== drawingBoardId);
 		})
 		let id = await this.promis;
 		return id;

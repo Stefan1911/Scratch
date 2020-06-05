@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using System.Linq;
+using MongoDB.Driver.Builders;
 
 namespace Persistence.Repositories
 {
@@ -43,6 +44,19 @@ namespace Persistence.Repositories
         {
             var project = await _context.Projects.Find(x => x.Id.Equals(projectId)).FirstOrDefaultAsync();
             return project.DrawingBoards.ToList();
+        }
+
+        public async Task RenameAsync(string drawingBoardId, string name)
+        {
+            var filter = Builders<ProjectModel>.Filter.ElemMatch(_project => _project.DrawingBoards, _board => _board.Id.Equals(drawingBoardId));
+            var update = Builders<ProjectModel>.Update.Set("DrawingBoards.$.Name", name);
+            await _context.Projects.UpdateOneAsync(filter, update);
+        }
+        public async Task DeleteAsync(string drawingBoardId)
+        {
+            var filter = Builders<ProjectModel>.Filter.ElemMatch(_project => _project.DrawingBoards, _board => _board.Id.Equals(drawingBoardId));       
+            var update = Builders<ProjectModel>.Update.PullFilter(y => y.DrawingBoards, builder => builder.Id.Equals( drawingBoardId));
+            var result = await _context.Projects.UpdateOneAsync(filter, update);      
         }
     }
 }

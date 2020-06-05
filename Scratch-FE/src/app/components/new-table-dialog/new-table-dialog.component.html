@@ -1,10 +1,13 @@
-<div mat-dialog-content>
+<div mat-dialog-content *ngIf="!rename ; else elseBlock">
     <p>Table name:</p>
-    <mat-form-field>
-        <!-- <mat-label>Name</mat-label> -->
-        <input matInput [(ngModel)]="tableName">
-    </mat-form-field>
 </div>
+<ng-template #elseBlock>
+  <p>New table name:</p>
+</ng-template>
+<mat-form-field>
+  <!-- <mat-label>Name</mat-label> -->
+  <input matInput [(ngModel)]="tableName">
+</mat-form-field>
 <div mat-dialog-actions>
   <button mat-button (click)="onCancel()">Cancel</button>
   <button mat-button (click)="onOk()" cdkFocusInitial>Ok</button>

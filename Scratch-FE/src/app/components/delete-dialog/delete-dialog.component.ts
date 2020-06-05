@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { DeleteOrLeave } from 'src/app/drawing-station/drawing-station.component';
 
 @Component({
   selector: 'app-delete-dialog',
@@ -8,7 +9,10 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog
 })
 export class DeleteDialogComponent implements OnInit {
 
-  constructor(public dialogRef: MatDialogRef<DeleteDialogComponent>) { }
+  private leave:boolean;
+  constructor(public dialogRef: MatDialogRef<DeleteDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: DeleteOrLeave) { 
+    this.leave=data.leave;
+  }
 
   ngOnInit() {
    }
