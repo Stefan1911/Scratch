@@ -12,7 +12,15 @@ import { ChatComponentComponent } from '../components/chat-component/chat-compon
 import { FormControl } from '@angular/forms';
 import { MatTab } from '@angular/material/tabs';
 import { ShapePropertiesComponent } from '../components/shape-properties/shape-properties.component';
+import { TableService } from '../services/httpServices/TableService';
+import { DeleteDialogComponent } from '../components/delete-dialog/delete-dialog.component';
 
+export interface AddNameOrRename {
+  rename: boolean;
+}
+export interface DeleteOrLeave {
+  leave: boolean;
+}
 @Component({
   selector: 'app-drawing-station',
   templateUrl: './drawing-station.component.html',
@@ -35,7 +43,7 @@ export class DrawingStationComponent implements OnInit {
 
   connectionID:string
   public drawingBoards : DrawingBoardModel[];
-  constructor(private router : ActivatedRoute,private projectService : ProjectService,public dialog: MatDialog, public reciver : SignalRResiver) {
+  constructor(private router : ActivatedRoute,private projectService : ProjectService,private tableService : TableService,public dialog: MatDialog, public reciver : SignalRResiver) {
     this.showChat=false;
     let projectId = this.router.snapshot.params["projectId"]; 
     this.projectService.getProject(projectId).subscribe((Response : any)=>{  
@@ -74,6 +82,7 @@ export class DrawingStationComponent implements OnInit {
 
   onAddTable(){
     const dialogRef = this.dialog.open(NewTableDialogComponent, {
+      data: {rename: false} ,
       width: '250px'
     });
 
@@ -109,5 +118,26 @@ export class DrawingStationComponent implements OnInit {
   changeShapeColor(colorObject : any){
    this.drawignBoard.chageShapeColor(colorObject.color,colorObject.isFill);
   }
+  onRename(){
+    const dialogRef = this.dialog.open(NewTableDialogComponent, {  
+      data: {rename: true} 
+    }); 
+    dialogRef.afterClosed().subscribe(result => {
+      if(result != null && result != undefined){
+        this.tableService.renameTable(this.selectedBoardId,this.Project.id,result).subscribe((response : DrawingBoardModel)=>{
+        });
+      }
+    });  
+  }
+  onDelete(){
+    const dialogRef = this.dialog.open(DeleteDialogComponent, {  
+      data: {leave: false} 
+    }); 
+    dialogRef.afterClosed().subscribe(result => {
+      if(result != null && result != undefined){
+        this.tableService.deleteTable(this.selectedBoardId, this.Project.id).subscribe((response : DrawingBoardModel)=>{
+        });
+      }
+    });  
+  }
 }
-

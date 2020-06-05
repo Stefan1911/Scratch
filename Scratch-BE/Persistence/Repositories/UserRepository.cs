@@ -77,8 +77,17 @@ namespace Persistence.Repositories
         {
             var filter = Builders<UserModel>.Filter.Eq(_user => _user.Id, user.Id);
             var builder = Builders<UserModel>.Update;
-            var update = builder.Set(_user => _user.Name, user.Name).Set(_user => _user.Username, user.Username)
-                .Set(_user => _user.PictureUrl, user.PictureUrl).Set(_user => _user.Email, user.Email);
+            UpdateDefinition<UserModel> update;
+            if (user.PictureUrl != null)
+            {
+                 update = builder.Set(_user => _user.Name, user.Name).Set(_user => _user.Username, user.Username)
+                            .Set(_user => _user.PictureUrl, user.PictureUrl).Set(_user => _user.Email, user.Email);
+            }
+            else
+            {
+                update = builder.Set(_user => _user.Name, user.Name).Set(_user => _user.Username, user.Username)
+                                .Set(_user => _user.Email, user.Email);
+            }
 
             await _context.Users.UpdateOneAsync(filter, update);
             return user;

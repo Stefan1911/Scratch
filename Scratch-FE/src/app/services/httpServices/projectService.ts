@@ -26,6 +26,5 @@ export class ProjectService{
     }
     joinProject(projectId:String, userId: String){
         return this.http.put("http://localhost:5000/api/project/join/"+projectId+"/"+userId,{})
-
     }
 }
